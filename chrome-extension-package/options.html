@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadeeth Garden Tab - Settings</title>
+    <link rel="stylesheet" href="options.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="icon">🌿</span>
+                Hadeeth Garden Tab Settings
+            </h1>
+            <p class="subtitle">Customize your Islamic garden experience</p>
+        </header>
+
+        <main class="main-content">
+            <div class="settings-grid">
+                <!-- Display Settings -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="eye"></i>
+                        Display Settings
+                    </h2>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text">Show Arabic Text</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showArabic" checked>
+                                <span class="slider"></span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text">Show English Translation</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showEnglish" checked>
+                                <span class="slider"></span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text">Font Size</span>
+                            <span class="font-size-value" id="fontSizeValue">16px</span>
+                        </label>
+                        <input type="range" id="fontSize" min="12" max="24" value="16" class="slider-range">
+                        <div class="range-labels">
+                            <span>Small</span>
+                            <span>Large</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Theme Settings -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="palette"></i>
+                        Theme Settings
+                    </h2>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text">Theme</span>
+                        </label>
+                        <div class="theme-options">
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="auto" checked>
+                                <span class="theme-card">
+                                    <i data-feather="monitor"></i>
+                                    <span>Auto</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="light">
+                                <span class="theme-card">
+                                    <i data-feather="sun"></i>
+                                    <span>Light</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="dark">
+                                <span class="theme-card">
+                                    <i data-feather="moon"></i>
+                                    <span>Dark</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reading Progress -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="book-open"></i>
+                        Reading Progress
+                    </h2>
+                    
+                    <div class="progress-info">
+                        <div class="progress-stat">
+                            <span class="stat-label">Current Hadith:</span>
+                            <span class="stat-value" id="currentHadithNumber">Loading...</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">Total Hadiths:</span>
+                            <span class="stat-value" id="totalHadiths">Loading...</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">Progress:</span>
+                            <span class="stat-value" id="progressPercentage">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    
+                    <button id="resetProgressBtn" class="action-btn secondary">
+                        <i data-feather="refresh-cw"></i>
+                        Reset to First Hadith
+                    </button>
+                </section>
+
+                <!-- Favorites Management -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="star"></i>
+                        Favorites Management
+                    </h2>
+                    
+                    <div class="favorites-info">
+                        <div class="favorites-stat">
+                            <span class="stat-label">Favorited Hadiths:</span>
+                            <span class="stat-value" id="favoritesCount">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="favorites-actions">
+                        <button id="exportFavoritesBtn" class="action-btn secondary">
+                            <i data-feather="download"></i>
+                            Export Favorites
+                        </button>
+                        <button id="importFavoritesBtn" class="action-btn secondary">
+                            <i data-feather="upload"></i>
+                            Import Favorites
+                        </button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                    </div>
+                    
+                    <button id="clearFavoritesBtn" class="action-btn danger">
+                        <i data-feather="trash-2"></i>
+                        Clear All Favorites
+                    </button>
+                </section>
+
+                <!-- Notifications -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="bell"></i>
+                        <span data-i18n="settings.notifications">Daily Notifications</span>
+                    </h2>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text" data-i18n="notifications.enable">Enable Daily Notifications</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="notificationsEnabled">
+                                <span class="slider"></span>
+                            </div>
+                        </label>
+                        <div class="setting-description">
+                            Get reminded to read your daily hadith at your preferred time
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" id="notificationTimeGroup">
+                        <label class="setting-label">
+                            <span class="label-text" data-i18n="notifications.time">Notification Time</span>
+                        </label>
+                        <input type="time" id="notificationTime" value="09:00" class="time-input">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <button id="testNotificationBtn" class="action-btn secondary">
+                            <i data-feather="bell"></i>
+                            <span data-i18n="notifications.test">Test Notification</span>
+                        </button>
+                        <div class="notification-status" id="notificationStatus"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-actions">
+                <button id="saveSettingsBtn" class="action-btn primary">
+                    <i data-feather="save"></i>
+                    Save Settings
+                </button>
+            </div>
+            
+            <div class="footer-info">
+                <p class="attribution">
+                    Hadith content from <a href="https://sunnah.com/riyadussalihin" target="_blank">sunnah.com</a> 
+                    – used for personal educational purposes.
+                </p>
+                <p class="version">Hadeeth Garden Tab v1.0.0</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <span class="notification-message"></span>
+            <button class="notification-close">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

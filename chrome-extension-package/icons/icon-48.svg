@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+    <defs>
+        <radialGradient id="mainGradient" cx="50%" cy="30%" r="80%">
+            <stop offset="0%" style="stop-color:#81c784;stop-opacity:1" />
+            <stop offset="30%" style="stop-color:#66bb6a;stop-opacity:1" />
+            <stop offset="70%" style="stop-color:#4caf50;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2d7d32;stop-opacity:1" />
+        </radialGradient>
+        
+        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+            <stop offset="50%" style="stop-color:#f1f8e9;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:0.9" />
+        </linearGradient>
+        
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1b5e20;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2d7d32;stop-opacity:1" />
+        </linearGradient>
+        
+        <pattern id="geometricPattern" patternUnits="userSpaceOnUse" width="6" height="6">
+            <rect width="6" height="6" fill="none"/>
+            <path d="M0,3 L3,0 L6,3 L3,6 Z" fill="white" fill-opacity="0.06"/>
+        </pattern>
+        
+        <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0.3" dy="0.6" stdDeviation="0.6" flood-color="#1b5e20" flood-opacity="0.3"/>
+        </filter>
+    </defs>
+    
+    <!-- Background circle with gradient -->
+    <circle cx="24" cy="24" r="22" fill="url(#mainGradient)" stroke="#1b5e20" stroke-width="0.8"/>
+    <circle cx="24" cy="24" r="21" fill="url(#geometricPattern)" opacity="0.3"/>
+    
+    <!-- Decorative border ring -->
+    <circle cx="24" cy="24" r="20" fill="none" stroke="white" stroke-width="0.5" opacity="0.4"/>
+    
+    <!-- Main decorative leaf -->
+    <path d="M13 24 Q24 13 35 24 Q24 35 13 24 Z" fill="url(#leafGradient)" stroke="white" stroke-width="0.5" opacity="0.9"/>
+    <path d="M15 24 Q24 16 33 24 Q24 32 15 24 Z" fill="white" fill-opacity="0.6"/>
+    
+    <!-- Leaf veins -->
+    <path d="M14 24 Q24 15 34 24" stroke="#2d7d32" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M16 25 Q24 18 32 25" stroke="#2d7d32" stroke-width="0.6" fill="none" opacity="0.4"/>
+    
+    <!-- Arabic text "حديث" -->
+    <g filter="url(#textShadow)">
+        <text x="24" y="26" font-family="Amiri, Arabic Typesetting, Times New Roman" font-size="6" 
+              font-weight="bold" text-anchor="middle" fill="url(#textGradient)" 
+              direction="rtl" dominant-baseline="central">حديث</text>
+    </g>
+    
+    <!-- Central Islamic star -->
+    <g transform="translate(24, 17)">
+        <circle r="3.5" fill="none" stroke="white" stroke-width="0.5" opacity="0.8"/>
+        <circle r="2.5" fill="white" opacity="0.9"/>
+        <circle r="1.5" fill="#2d7d32" opacity="0.8"/>
+        
+        <path d="M0,-3 L0.6,-0.6 L3,0 L0.6,0.6 L0,3 L-0.6,0.6 L-3,0 L-0.6,-0.6 Z" 
+              fill="white" opacity="0.7" transform="scale(0.6)"/>
+    </g>
+    
+    <!-- Bottom decorative element -->
+    <g transform="translate(24, 32)">
+        <circle r="1.8" fill="white" opacity="0.8"/>
+        <circle r="1.2" fill="#4caf50" opacity="0.9"/>
+        
+        <!-- Small leaves -->
+        <path d="M-2.5,-1.5 Q-1.8,-2.2 -1.1,-1.5 Q-1.8,-0.8 -2.5,-1.5" fill="white" opacity="0.5"/>
+        <path d="M2.5,-1.5 Q1.8,-2.2 1.1,-1.5 Q1.8,-0.8 2.5,-1.5" fill="white" opacity="0.5"/>
+    </g>
+    
+    <!-- Corner accents -->
+    <g opacity="0.6">
+        <circle cx="24" cy="8" r="1" fill="white" opacity="0.8"/>
+        <circle cx="10" cy="24" r="0.8" fill="white" opacity="0.7"/>
+        <circle cx="38" cy="24" r="0.8" fill="white" opacity="0.7"/>
+        
+        <!-- Corner leaves -->
+        <path d="M12,12 Q13,11 14,12 Q13,13 12,12" fill="white" opacity="0.4"/>
+        <path d="M34,12 Q35,11 36,12 Q35,13 34,12" fill="white" opacity="0.4"/>
+        <path d="M12,36 Q13,35 14,36 Q13,37 12,36" fill="white" opacity="0.4"/>
+        <path d="M34,36 Q35,35 36,36 Q35,37 34,36" fill="white" opacity="0.4"/>
+    </g>
+</svg>

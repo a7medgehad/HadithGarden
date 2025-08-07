@@ -1,0 +1,51 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="64" height="64" rx="12" fill="url(#logoGradient)"/>
+    
+    <!-- Open Book - Left Page -->
+    <path d="M8 18 L32 20 L32 50 L8 48 Z" 
+          fill="white" 
+          opacity="0.95" 
+          stroke="rgba(46, 125, 50, 0.3)" 
+          stroke-width="0.5"/>
+    
+    <!-- Open Book - Right Page -->
+    <path d="M32 20 L56 18 L56 48 L32 50 Z" 
+          fill="white" 
+          opacity="0.95" 
+          stroke="rgba(46, 125, 50, 0.3)" 
+          stroke-width="0.5"/>
+    
+    <!-- Book Spine/Binding -->
+    <line x1="32" y1="20" x2="32" y2="50" 
+          stroke="rgba(46, 125, 50, 0.4)" 
+          stroke-width="1"/>
+    
+    <!-- Text Lines - Left Page -->
+    <line x1="12" y1="25" x2="28" y2="25.5" stroke="rgba(46, 125, 50, 0.6)" stroke-width="0.8"/>
+    <line x1="12" y1="28" x2="26" y2="28.5" stroke="rgba(46, 125, 50, 0.5)" stroke-width="0.8"/>
+    <line x1="12" y1="31" x2="28" y2="31.5" stroke="rgba(46, 125, 50, 0.6)" stroke-width="0.8"/>
+    <line x1="12" y1="34" x2="24" y2="34.5" stroke="rgba(46, 125, 50, 0.4)" stroke-width="0.8"/>
+    
+    <!-- Text Lines - Right Page -->
+    <line x1="36" y1="25.5" x2="52" y2="25" stroke="rgba(46, 125, 50, 0.6)" stroke-width="0.8"/>
+    <line x1="38" y1="28.5" x2="52" y2="28" stroke="rgba(46, 125, 50, 0.5)" stroke-width="0.8"/>
+    <line x1="36" y1="31.5" x2="52" y2="31" stroke="rgba(46, 125, 50, 0.6)" stroke-width="0.8"/>
+    <line x1="40" y1="34.5" x2="52" y2="34" stroke="rgba(46, 125, 50, 0.4)" stroke-width="0.8"/>
+    
+    <!-- Islamic Decoration - Small ornament at top -->
+    <circle cx="32" cy="13" r="2" fill="rgba(255, 215, 0, 0.8)"/>
+    <circle cx="32" cy="13" r="1" fill="rgba(46, 125, 50, 0.9)"/>
+    
+    <!-- Page Shadows for depth -->
+    <path d="M30 20 L30 50 L32 50 L32 20 Z" fill="rgba(46, 125, 50, 0.1)"/>
+    <path d="M32 20 L34 20 L34 50 L32 50 Z" fill="rgba(46, 125, 50, 0.1)"/>
+    
+    <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4CAF50"/>
+            <stop offset="50%" stop-color="#66BB6A"/>
+            <stop offset="100%" stop-color="#2E7D32"/>
+        </linearGradient>
+    </defs>
+</svg>
