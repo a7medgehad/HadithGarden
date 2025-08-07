@@ -9,9 +9,7 @@ class HadeethGardenTab {
             fontSize: 16,
             theme: 'auto',
             language: 'en',
-            dailyGoal: 5,
-            notificationsEnabled: true,
-            notificationTime: '09:00'
+            dailyGoal: 5
         };
         this.favorites = [];
         this.localization = new HadeethLocalization();
@@ -51,8 +49,7 @@ class HadeethGardenTab {
                 feather.replace();
             }
             
-            // Initialize notification button
-            this.updateNotificationButton();
+
             
         } catch (error) {
             console.error('Failed to initialize Hadeeth Garden Tab:', error);
@@ -376,10 +373,7 @@ class HadeethGardenTab {
             this.showFavoritesModal();
         });
 
-        // Notifications toggle button
-        document.getElementById('notificationsBtn').addEventListener('click', () => {
-            this.toggleNotifications();
-        });
+
         
         // Settings button
         document.getElementById('settingsBtn').addEventListener('click', () => {
@@ -508,174 +502,264 @@ class HadeethGardenTab {
     }
 
     showFavoritesModal() {
-        const modal = this.createFavoritesModal();
-        document.body.appendChild(modal);
-        
-        // Animate in
-        setTimeout(() => modal.classList.add('show'), 100);
-    }
-
-    createFavoritesModal() {
-        const modal = document.createElement('div');
-        modal.className = 'favorites-modal-overlay';
-        
-        const favoriteHadith = this.hadithData.filter(hadith => this.favorites.includes(hadith.id));
-        
-        modal.innerHTML = `
-            <div class="favorites-modal">
-                <div class="modal-header">
-                    <h2 data-i18n="favorites.title">${this.localization.t('favorites.title')}</h2>
-                    <button class="close-btn" onclick="this.closest('.favorites-modal-overlay').remove()">
-                        <i data-feather="x"></i>
-                    </button>
-                </div>
-                <div class="modal-content">
-                    ${favoriteHadith.length === 0 ? 
-                        `<div class="empty-favorites">
-                            <div class="empty-icon">💫</div>
-                            <p data-i18n="favorites.empty">${this.localization.t('favorites.empty')}</p>
-                        </div>` :
-                        favoriteHadith.map(hadith => `
-                            <div class="favorite-hadith-item" data-id="${hadith.id}">
-                                <div class="hadith-preview">
-                                    <div class="hadith-meta">
-                                        <span class="chip">${this.localization.t('hadith.book')} ${hadith.book}</span>
-                                        <span class="chip">${this.localization.t('hadith.number')} ${hadith.number}</span>
-                                    </div>
-                                    ${this.settings.showArabic ? `<div class="arabic-preview" dir="rtl">${hadith.arabic.substring(0, 100)}...</div>` : ''}
-                                    ${this.settings.showEnglish ? `<div class="english-preview">${hadith.english.substring(0, 100)}...</div>` : ''}
-                                </div>
-                                <div class="favorite-actions">
-                                    <button class="view-hadith-btn" onclick="window.hadeethGarden.goToHadith(${hadith.id})">
-                                        <i data-feather="eye"></i>
-                                    </button>
-                                    <button class="remove-favorite-btn" onclick="window.hadeethGarden.removeFavorite(${hadith.id})" data-i18n-title="favorites.remove">
-                                        <i data-feather="trash-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        `).join('')
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button class="close-modal-btn" onclick="this.closest('.favorites-modal-overlay').remove()" data-i18n="favorites.close">
-                        ${this.localization.t('favorites.close')}
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        // Add event listeners
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.remove();
-            }
-        });
-        
-        return modal;
-    }
-
-    async removeFavorite(hadithId) {
-        this.favorites = this.favorites.filter(id => id !== hadithId);
-        await this.saveFavorites();
-        
-        // Refresh modal if open
+        // Remove any existing modal
         const existingModal = document.querySelector('.favorites-modal-overlay');
         if (existingModal) {
             existingModal.remove();
-            this.showFavoritesModal();
         }
+
+        if (this.favorites.length === 0) {
+            this.showNotificationToast('No favorites saved yet. Add some hadith to your favorites first!', 'info');
+            return;
+        }
+
+        // Create modal overlay
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'favorites-modal-overlay';
+        modalOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
         
-        // Update favorite button if current hadith
-        if (this.currentHadith && this.currentHadith.id === hadithId) {
-            this.updateFavoriteButton();
-        }
-    }
-
-    async goToHadith(hadithId) {
-        const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
-        if (hadithIndex !== -1) {
-            this.currentHadithIndex = hadithIndex;
-            await this.displayCurrentHadith();
-            
-            // Close modal
-            const modal = document.querySelector('.favorites-modal-overlay');
-            if (modal) modal.remove();
-        }
-    }
-
-    async toggleNotifications() {
-        try {
-            // Toggle notification settings
-            this.settings.notificationsEnabled = !this.settings.notificationsEnabled;
-            
-            // Save settings
-            await this.saveSettings();
-            
-            // Update UI
-            this.updateNotificationButton();
-            
-            // Schedule or clear notifications
-            if (this.settings.notificationsEnabled) {
-                await this.scheduleNotifications();
-                this.showNotificationStatus('Daily notifications enabled', 'success');
-            } else {
-                await this.clearNotifications();
-                this.showNotificationStatus('Daily notifications disabled', 'info');
-            }
-            
-        } catch (error) {
-            console.error('Failed to toggle notifications:', error);
-            this.showNotificationStatus('Failed to update notifications', 'error');
-        }
-    }
-
-    updateNotificationButton() {
-        const btn = document.getElementById('notificationsBtn');
-        const icon = btn.querySelector('i');
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.className = 'favorites-modal-content';
+        modalContent.style.cssText = `
+            background: var(--surface-color);
+            border-radius: 16px;
+            max-width: 90vw;
+            max-height: 80vh;
+            width: 700px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        `;
         
-        if (this.settings.notificationsEnabled) {
-            btn.classList.add('enabled');
-            btn.classList.remove('disabled');
-            icon.setAttribute('data-feather', 'bell');
-        } else {
-            btn.classList.add('disabled');
-            btn.classList.remove('enabled');
-            icon.setAttribute('data-feather', 'bell-off');
-        }
+        // Modal header
+        const modalHeader = document.createElement('div');
+        modalHeader.className = 'modal-header';
+        modalHeader.style.cssText = `
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--header-bg);
+        `;
+        modalHeader.innerHTML = `
+            <h2 style="margin: 0; color: var(--text-primary); font-size: 1.5rem;">My Favorite Hadith</h2>
+            <button class="close-modal-btn" style="
+                background: none;
+                border: none;
+                color: var(--text-secondary);
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+            " aria-label="Close">
+                <i data-feather="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        `;
+        
+        // Modal body
+        const modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+        modalBody.style.cssText = `
+            padding: 1.5rem 2rem 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        `;
+        
+        // Favorites list
+        const favoritesList = document.createElement('div');
+        favoritesList.className = 'favorites-list';
+        favoritesList.style.cssText = `
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        `;
+        
+        this.favorites.forEach(hadithId => {
+            const hadith = this.hadithData.find(h => h.id === hadithId);
+            if (!hadith) return;
+            
+            const favoriteItem = document.createElement('div');
+            favoriteItem.className = 'favorite-item';
+            favoriteItem.style.cssText = `
+                background: var(--card-bg);
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                padding: 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 1rem;
+                transition: all 0.2s ease;
+            `;
+            
+            favoriteItem.innerHTML = `
+                <div class="favorite-content" style="flex: 1; min-width: 0;">
+                    <div class="favorite-hadith-info" style="
+                        display: flex;
+                        gap: 1rem;
+                        margin-bottom: 0.75rem;
+                        font-size: 0.875rem;
+                        color: var(--text-secondary);
+                    ">
+                        <span class="hadith-number" style="
+                            background: var(--primary-green);
+                            color: white;
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-weight: 500;
+                        ">Hadith ${hadith.id}</span>
+                        <span class="hadith-book">Riyāḍ al-Ṣāliḥīn</span>
+                    </div>
+                    <div class="favorite-text" style="
+                        color: var(--text-primary);
+                        line-height: 1.6;
+                        font-size: 0.95rem;
+                    ">
+                        ${hadith.englishText.substring(0, 150)}${hadith.englishText.length > 150 ? '...' : ''}
+                    </div>
+                </div>
+                <div class="favorite-actions" style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    flex-shrink: 0;
+                ">
+                    <button class="action-btn jump-to-btn" data-hadith-id="${hadith.id}" style="
+                        background: var(--primary-green);
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 0.875rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        transition: all 0.2s ease;
+                    " title="Jump to this hadith">
+                        <i data-feather="external-link" style="width: 16px; height: 16px;"></i>
+                        Go to
+                    </button>
+                    <button class="action-btn remove-favorite-btn" data-hadith-id="${hadith.id}" style="
+                        background: #dc3545;
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 0.875rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        transition: all 0.2s ease;
+                    " title="Remove from favorites">
+                        <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                        Remove
+                    </button>
+                </div>
+            `;
+            
+            favoritesList.appendChild(favoriteItem);
+        });
+        
+        modalBody.appendChild(favoritesList);
+        
+        // Assemble modal
+        modalContent.appendChild(modalHeader);
+        modalContent.appendChild(modalBody);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
         
         // Refresh feather icons
         if (typeof feather !== 'undefined') {
             feather.replace();
         }
-    }
-
-    async scheduleNotifications() {
-        try {
-            if (typeof chrome !== 'undefined' && chrome.runtime) {
-                await chrome.runtime.sendMessage({
-                    action: 'scheduleNotification',
-                    time: this.settings.notificationTime || '09:00'
-                });
+        
+        // Add event listeners
+        const closeBtn = modalOverlay.querySelector('.close-modal-btn');
+        closeBtn.addEventListener('click', () => {
+            modalOverlay.style.opacity = '0';
+            modalContent.style.transform = 'scale(0.8)';
+            setTimeout(() => modalOverlay.remove(), 300);
+        });
+        
+        // Close on overlay click
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => modalOverlay.remove(), 300);
             }
-        } catch (error) {
-            console.error('Failed to schedule notifications:', error);
-        }
-    }
-
-    async clearNotifications() {
-        try {
-            if (typeof chrome !== 'undefined' && chrome.runtime) {
-                await chrome.runtime.sendMessage({
-                    action: 'clearNotifications'
-                });
+        });
+        
+        // Close on Escape key
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => modalOverlay.remove(), 300);
+                document.removeEventListener('keydown', handleEscape);
             }
-        } catch (error) {
-            console.error('Failed to clear notifications:', error);
-        }
+        };
+        document.addEventListener('keydown', handleEscape);
+        
+        // Jump to hadith buttons
+        modalOverlay.querySelectorAll('.jump-to-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const hadithId = parseInt(e.currentTarget.dataset.hadithId);
+                this.goToHadith(hadithId);
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => modalOverlay.remove(), 300);
+            });
+        });
+        
+        // Remove from favorites buttons
+        modalOverlay.querySelectorAll('.remove-favorite-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const hadithId = parseInt(e.currentTarget.dataset.hadithId);
+                await this.removeFromFavorites(hadithId);
+                
+                // Refresh modal
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    modalOverlay.remove();
+                    this.showFavoritesModal();
+                }, 300);
+            });
+        });
+        
+        // Animate modal in
+        requestAnimationFrame(() => {
+            modalOverlay.style.opacity = '1';
+            modalContent.style.transform = 'scale(1)';
+        });
     }
 
-    showNotificationStatus(message, type) {
+    async removeFromFavorites(hadithId) {
+        this.favorites = this.favorites.filter(id => id !== hadithId);
+        await this.saveFavorites();
+        this.updateFavoriteButton();
+    }
+
+    showNotificationToast(message, type = 'info') {
         // Create temporary notification
         const notification = document.createElement('div');
         notification.className = `notification-toast ${type}`;
@@ -713,7 +797,33 @@ class HadeethGardenTab {
                 }
             }, 300);
         }, 3000);
+        
+        // Refresh modal if open
+        const existingModal = document.querySelector('.favorites-modal-overlay');
+        if (existingModal) {
+            existingModal.remove();
+            this.showFavoritesModal();
+        }
+        
+        // Update favorite button if current hadith
+        if (this.currentHadith && this.currentHadith.id === hadithId) {
+            this.updateFavoriteButton();
+        }
     }
+
+    async goToHadith(hadithId) {
+        const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
+        if (hadithIndex !== -1) {
+            this.currentHadithIndex = hadithIndex;
+            await this.displayCurrentHadith();
+            
+            // Close modal
+            const modal = document.querySelector('.favorites-modal-overlay');
+            if (modal) modal.remove();
+        }
+    }
+
+
 }
 
 // Initialize the application when DOM is loaded

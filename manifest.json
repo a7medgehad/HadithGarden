@@ -5,13 +5,8 @@
   "description": "Replace your new tab with sequential hadith from Riyāḍ al-Ṣāliḥīn in an elegant Islamic garden theme",
   "permissions": [
     "storage",
-    "activeTab",
-    "notifications",
-    "alarms"
+    "activeTab"
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
