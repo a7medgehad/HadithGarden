@@ -54,7 +54,12 @@ class HadeethLocalization {
                 'settings.notifications': 'Reminders',
                 'settings.save': 'Save Settings',
                 'settings.export': 'Export Favorites',
-                'settings.import': 'Import Favorites'
+                'settings.import': 'Import Favorites',
+                
+                // Additional UI elements
+                'ui.achievements': 'Achievements',
+                'ui.daily_goal': 'Daily Goal',
+                'ui.hadith_goal': 'hadith'
             },
             'ar': {
                 // App Title
@@ -107,7 +112,12 @@ class HadeethLocalization {
                 'settings.notifications': 'التذكيرات',
                 'settings.save': 'حفظ الإعدادات',
                 'settings.export': 'تصدير المفضلة',
-                'settings.import': 'استيراد المفضلة'
+                'settings.import': 'استيراد المفضلة',
+                
+                // Additional UI elements
+                'ui.achievements': 'الإنجازات',
+                'ui.daily_goal': 'الهدف اليومي',
+                'ui.hadith_goal': 'أحاديث'
             }
         };
     }

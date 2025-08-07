@@ -268,6 +268,7 @@ body {
     align-items: center;
     gap: 1rem;
     flex: 1;
+    margin-right: 2rem; /* Add space before controls */
 }
 
 .header-logo {
@@ -309,6 +310,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .language-select {
@@ -363,6 +365,12 @@ body {
     border-color: var(--light-green);
     outline: none;
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.goal-label-suffix {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-left: 0.5rem;
 }
 
 /* Header Logo Styles */

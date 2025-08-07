@@ -282,7 +282,7 @@ class HadeethGamification {
                 </div>
                 
                 <div class="achievements-section">
-                    <h3>🏆 ${this.localization.t('achievements', 'Achievements')}</h3>
+                    <h3 data-i18n="ui.achievements">🏆 ${this.localization.t('ui.achievements', 'Achievements')}</h3>
                     <div class="achievements-grid">
                         ${this.renderAchievements()}
                     </div>
