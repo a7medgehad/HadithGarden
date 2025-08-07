@@ -162,6 +162,42 @@
                         Clear All Favorites
                     </button>
                 </section>
+
+                <!-- Notifications -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <i data-feather="bell"></i>
+                        <span data-i18n="settings.notifications">Daily Notifications</span>
+                    </h2>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text" data-i18n="notifications.enable">Enable Daily Notifications</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="notificationsEnabled">
+                                <span class="slider"></span>
+                            </div>
+                        </label>
+                        <div class="setting-description">
+                            Get reminded to read your daily hadith at your preferred time
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" id="notificationTimeGroup">
+                        <label class="setting-label">
+                            <span class="label-text" data-i18n="notifications.time">Notification Time</span>
+                        </label>
+                        <input type="time" id="notificationTime" value="09:00" class="time-input">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <button id="testNotificationBtn" class="action-btn secondary">
+                            <i data-feather="bell"></i>
+                            <span data-i18n="notifications.test">Test Notification</span>
+                        </button>
+                        <div class="notification-status" id="notificationStatus"></div>
+                    </div>
+                </section>
             </div>
         </main>
 

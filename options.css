@@ -374,6 +374,54 @@ body {
     font-size: 0.8rem;
 }
 
+/* Notification Settings */
+.time-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: var(--light-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.notification-status {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.notification-status.success {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--primary-green);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    display: block;
+}
+
+.notification-status.error {
+    background: rgba(211, 47, 47, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(211, 47, 47, 0.2);
+    display: block;
+}
+
+.setting-description {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
 /* Notification */
 .notification {
     position: fixed;

@@ -9,7 +9,9 @@ class HadeethGardenTab {
             fontSize: 16,
             theme: 'auto',
             language: 'en',
-            dailyGoal: 5
+            dailyGoal: 5,
+            notificationsEnabled: true,
+            notificationTime: '09:00'
         };
         this.favorites = [];
         this.localization = new HadeethLocalization();
@@ -48,6 +50,9 @@ class HadeethGardenTab {
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
+            
+            // Initialize notification button
+            this.updateNotificationButton();
             
         } catch (error) {
             console.error('Failed to initialize Hadeeth Garden Tab:', error);
@@ -370,6 +375,11 @@ class HadeethGardenTab {
         document.getElementById('favoritesBtn').addEventListener('click', () => {
             this.showFavoritesModal();
         });
+
+        // Notifications toggle button
+        document.getElementById('notificationsBtn').addEventListener('click', () => {
+            this.toggleNotifications();
+        });
         
         // Settings button
         document.getElementById('settingsBtn').addEventListener('click', () => {
@@ -592,6 +602,117 @@ class HadeethGardenTab {
             const modal = document.querySelector('.favorites-modal-overlay');
             if (modal) modal.remove();
         }
+    }
+
+    async toggleNotifications() {
+        try {
+            // Toggle notification settings
+            this.settings.notificationsEnabled = !this.settings.notificationsEnabled;
+            
+            // Save settings
+            await this.saveSettings();
+            
+            // Update UI
+            this.updateNotificationButton();
+            
+            // Schedule or clear notifications
+            if (this.settings.notificationsEnabled) {
+                await this.scheduleNotifications();
+                this.showNotificationStatus('Daily notifications enabled', 'success');
+            } else {
+                await this.clearNotifications();
+                this.showNotificationStatus('Daily notifications disabled', 'info');
+            }
+            
+        } catch (error) {
+            console.error('Failed to toggle notifications:', error);
+            this.showNotificationStatus('Failed to update notifications', 'error');
+        }
+    }
+
+    updateNotificationButton() {
+        const btn = document.getElementById('notificationsBtn');
+        const icon = btn.querySelector('i');
+        
+        if (this.settings.notificationsEnabled) {
+            btn.classList.add('enabled');
+            btn.classList.remove('disabled');
+            icon.setAttribute('data-feather', 'bell');
+        } else {
+            btn.classList.add('disabled');
+            btn.classList.remove('enabled');
+            icon.setAttribute('data-feather', 'bell-off');
+        }
+        
+        // Refresh feather icons
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }
+
+    async scheduleNotifications() {
+        try {
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                await chrome.runtime.sendMessage({
+                    action: 'scheduleNotification',
+                    time: this.settings.notificationTime || '09:00'
+                });
+            }
+        } catch (error) {
+            console.error('Failed to schedule notifications:', error);
+        }
+    }
+
+    async clearNotifications() {
+        try {
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                await chrome.runtime.sendMessage({
+                    action: 'clearNotifications'
+                });
+            }
+        } catch (error) {
+            console.error('Failed to clear notifications:', error);
+        }
+    }
+
+    showNotificationStatus(message, type) {
+        // Create temporary notification
+        const notification = document.createElement('div');
+        notification.className = `notification-toast ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'var(--primary-green)' : type === 'error' ? '#f44336' : 'var(--text-light)'};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove after delay
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
     }
 }
 

@@ -916,3 +916,35 @@ button:focus-visible {
 .close-modal-btn:hover {
     background: var(--primary-green);
 }
+
+/* Notification Toggle Button */
+.notification-toggle.enabled {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--primary-green);
+    border-color: var(--light-green);
+}
+
+.notification-toggle.enabled:hover {
+    background: var(--soft-green);
+}
+
+.notification-toggle.disabled {
+    opacity: 0.6;
+}
+
+/* Notification Status Indicator */
+.notification-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}

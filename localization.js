@@ -66,7 +66,19 @@ class HadeethLocalization {
                 'favorites.title': 'Your Favorite Hadith',
                 'favorites.empty': 'You haven\'t saved any favorites yet.',
                 'favorites.close': 'Close',
-                'favorites.remove': 'Remove from Favorites'
+                'favorites.remove': 'Remove from Favorites',
+                
+                // Notifications
+                'notifications.enable': 'Enable Daily Notifications',
+                'notifications.time': 'Notification Time',
+                'notifications.test': 'Test Notification',
+                'notifications.daily_title': '🌿 Daily Hadith from Riyāḍ al-Ṣāliḥīn',
+                'notifications.daily_message': 'Your daily hadith is ready for reading',
+                'notifications.read_now': 'Read Now',
+                'notifications.remind_later': 'Remind Later',
+                'notifications.streak_bonus': '🔥 Keep your reading streak alive!',
+                'notifications.permission_needed': 'Please enable notifications in your browser settings',
+                'notifications.test_sent': 'Test notification sent!'
             },
             'ar': {
                 // App Title
@@ -131,7 +143,19 @@ class HadeethLocalization {
                 'favorites.title': 'أحاديثك المفضلة',
                 'favorites.empty': 'لم تقم بحفظ أي أحاديث في المفضلة بعد.',
                 'favorites.close': 'إغلاق',
-                'favorites.remove': 'إزالة من المفضلة'
+                'favorites.remove': 'إزالة من المفضلة',
+                
+                // Notifications
+                'notifications.enable': 'تفعيل التذكيرات اليومية',
+                'notifications.time': 'وقت التذكير',
+                'notifications.test': 'اختبار التذكير',
+                'notifications.daily_title': '🌿 حديث اليوم من رياض الصالحين',
+                'notifications.daily_message': 'حديث اليوم جاهز للقراءة',
+                'notifications.read_now': 'اقرأ الآن',
+                'notifications.remind_later': 'ذكّرني لاحقاً',
+                'notifications.streak_bonus': '🔥 حافظ على سلسلة القراءة!',
+                'notifications.permission_needed': 'يرجى تفعيل الإشعارات في إعدادات المتصفح',
+                'notifications.test_sent': 'تم إرسال تذكير تجريبي!'
             }
         };
     }

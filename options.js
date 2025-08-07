@@ -5,7 +5,9 @@ class HadeethGardenOptions {
             showArabic: true,
             showEnglish: true,
             fontSize: 16,
-            theme: 'auto'
+            theme: 'auto',
+            notificationsEnabled: true,
+            notificationTime: '09:00'
         };
         this.favorites = [];
         this.hadithData = [];
@@ -98,6 +100,11 @@ class HadeethGardenOptions {
             input.checked = input.value === this.settings.theme;
         });
 
+        // Update notification settings
+        document.getElementById('notificationsEnabled').checked = this.settings.notificationsEnabled || false;
+        document.getElementById('notificationTime').value = this.settings.notificationTime || '09:00';
+        this.toggleNotificationSettings();
+
         // Apply current theme to options page
         this.applyTheme();
     }
@@ -183,6 +190,21 @@ class HadeethGardenOptions {
             }
         });
 
+        // Notification settings
+        document.getElementById('notificationsEnabled').addEventListener('change', (e) => {
+            this.settings.notificationsEnabled = e.target.checked;
+            this.toggleNotificationSettings();
+            this.updateNotificationPermissions();
+        });
+
+        document.getElementById('notificationTime').addEventListener('change', (e) => {
+            this.settings.notificationTime = e.target.value;
+        });
+
+        document.getElementById('testNotificationBtn').addEventListener('click', async () => {
+            await this.testNotification();
+        });
+
         // Close notification
         document.querySelector('.notification-close').addEventListener('click', () => {
             this.hideNotification();
@@ -211,6 +233,14 @@ class HadeethGardenOptions {
             }
 
             await chrome.storage.local.set({ settings: this.settings });
+            
+            // Schedule notifications if enabled
+            if (this.settings.notificationsEnabled && this.settings.notificationTime) {
+                await this.scheduleNotifications();
+            } else {
+                await this.clearNotifications();
+            }
+            
             this.showNotification('Settings saved successfully!', 'success');
             
             // Add visual feedback to save button
@@ -360,6 +390,99 @@ class HadeethGardenOptions {
     hideNotification() {
         const notification = document.getElementById('notification');
         notification.classList.remove('show');
+    }
+
+    toggleNotificationSettings() {
+        const timeGroup = document.getElementById('notificationTimeGroup');
+        const testBtn = document.getElementById('testNotificationBtn');
+        const enabled = this.settings.notificationsEnabled;
+        
+        timeGroup.style.opacity = enabled ? '1' : '0.5';
+        timeGroup.style.pointerEvents = enabled ? 'auto' : 'none';
+        testBtn.disabled = !enabled;
+    }
+
+    async updateNotificationPermissions() {
+        if (!this.settings.notificationsEnabled) return;
+
+        try {
+            // Check if notifications API is available
+            if (!chrome.notifications) {
+                this.showNotificationStatus('Notifications not supported in this browser', 'error');
+                return;
+            }
+
+            // For Chrome extensions, notifications are automatically granted with permissions
+            this.showNotificationStatus('Notifications enabled successfully', 'success');
+        } catch (error) {
+            console.error('Error checking notification permissions:', error);
+            this.showNotificationStatus('Error checking notification permissions', 'error');
+        }
+    }
+
+    async testNotification() {
+        try {
+            if (!chrome.notifications) {
+                this.showNotificationStatus('Notifications not supported', 'error');
+                return;
+            }
+
+            // Create test notification
+            const notificationId = `test-${Date.now()}`;
+            await chrome.notifications.create(notificationId, {
+                type: 'basic',
+                iconUrl: 'icons/icon-128.svg',
+                title: '🌿 Test Notification',
+                message: 'Daily hadith notifications are working perfectly!',
+                requireInteraction: false,
+                priority: 1
+            });
+
+            this.showNotificationStatus('Test notification sent!', 'success');
+            
+            // Clear test notification after 3 seconds
+            setTimeout(() => {
+                chrome.notifications.clear(notificationId);
+            }, 3000);
+
+        } catch (error) {
+            console.error('Failed to send test notification:', error);
+            this.showNotificationStatus('Failed to send test notification', 'error');
+        }
+    }
+
+    async scheduleNotifications() {
+        try {
+            // Send message to background script to schedule notifications
+            await chrome.runtime.sendMessage({
+                action: 'scheduleNotification',
+                time: this.settings.notificationTime
+            });
+        } catch (error) {
+            console.error('Failed to schedule notifications:', error);
+        }
+    }
+
+    async clearNotifications() {
+        try {
+            // Send message to background script to clear notifications
+            await chrome.runtime.sendMessage({
+                action: 'clearNotifications'
+            });
+        } catch (error) {
+            console.error('Failed to clear notifications:', error);
+        }
+    }
+
+    showNotificationStatus(message, type) {
+        const statusDiv = document.getElementById('notificationStatus');
+        statusDiv.textContent = message;
+        statusDiv.className = `notification-status ${type}`;
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            statusDiv.className = 'notification-status';
+        }, 5000);
     }
 }
 
