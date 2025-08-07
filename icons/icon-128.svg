@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+    <defs>
+        <radialGradient id="radialGrad" cx="50%" cy="30%" r="70%">
+            <stop offset="0%" style="stop-color:#66bb6a;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#4caf50;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2d7d32;stop-opacity:1" />
+        </radialGradient>
+        <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+            <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:0.9" />
+        </linearGradient>
+        <pattern id="islamicPattern" patternUnits="userSpaceOnUse" width="16" height="16">
+            <rect width="16" height="16" fill="none"/>
+            <path d="M0,8 L8,0 L16,8 L8,16 Z" fill="white" fill-opacity="0.08"/>
+            <circle cx="8" cy="8" r="3" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+        </pattern>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#1b5e20" flood-opacity="0.3"/>
+        </filter>
+    </defs>
+    
+    <!-- Background circle with gradient and shadow -->
+    <circle cx="64" cy="64" r="60" fill="url(#radialGrad)" filter="url(#shadow)"/>
+    <circle cx="64" cy="64" r="56" fill="url(#islamicPattern)"/>
+    
+    <!-- Outer decorative ring -->
+    <circle cx="64" cy="64" r="52" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+    <circle cx="64" cy="64" r="48" fill="none" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    
+    <!-- Main leaf design -->
+    <path d="M30 64 Q64 24 98 64 Q64 104 30 64 Z" fill="url(#leafGrad)" stroke="white" stroke-width="1" opacity="0.9"/>
+    
+    <!-- Secondary leaf layer -->
+    <path d="M36 64 Q64 36 92 64 Q64 92 36 64 Z" fill="white" fill-opacity="0.7"/>
+    
+    <!-- Detailed leaf veins -->
+    <path d="M34 64 Q64 34 94 64" stroke="#1b5e20" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M38 66 Q64 42 90 66" stroke="#1b5e20" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M42 68 Q64 48 86 68" stroke="#1b5e20" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M44 70 Q64 52 84 70" stroke="#1b5e20" stroke-width="1" fill="none" opacity="0.4"/>
+    
+    <!-- Central Islamic geometric pattern -->
+    <circle cx="64" cy="64" r="16" fill="none" stroke="white" stroke-width="2" opacity="0.9"/>
+    <circle cx="64" cy="64" r="12" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="64" cy="64" r="8" fill="white" opacity="0.8"/>
+    <circle cx="64" cy="64" r="4" fill="#2d7d32" opacity="0.9"/>
+    
+    <!-- Decorative stars/points -->
+    <path d="M64,44 L66,50 L72,48 L68,54 L74,56 L68,58 L72,64 L66,62 L64,68 L62,62 L56,64 L60,58 L54,56 L60,54 L56,48 L62,50 Z" 
+          fill="white" opacity="0.4"/>
+    
+    <!-- Corner decorative elements -->
+    <circle cx="64" cy="32" r="2.5" fill="white" opacity="0.7"/>
+    <circle cx="64" cy="96" r="2.5" fill="white" opacity="0.7"/>
+    <circle cx="40" cy="64" r="2" fill="white" opacity="0.6"/>
+    <circle cx="88" cy="64" r="2" fill="white" opacity="0.6"/>
+    
+    <!-- Small accent leaves -->
+    <path d="M48 48 Q54 42 60 48 Q54 54 48 48" fill="white" opacity="0.4"/>
+    <path d="M68 48 Q74 42 80 48 Q74 54 68 48" fill="white" opacity="0.4"/>
+    <path d="M48 80 Q54 74 60 80 Q54 86 48 80" fill="white" opacity="0.4"/>
+    <path d="M68 80 Q74 74 80 80 Q74 86 68 80" fill="white" opacity="0.4"/>
+</svg>

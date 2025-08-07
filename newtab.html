@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Garden Tab – Riyāḍ al-Ṣāliḥīn</title>
+    <link rel="stylesheet" href="newtab.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🌿 Garden Tab – Riyāḍ al-Ṣāliḥīn</h1>
+            <button id="nextHadithBtn" class="next-btn" title="Next Hadith">
+                <i data-feather="chevron-right"></i>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <div id="loadingState" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading hadith...</p>
+            </div>
+
+            <div id="errorState" class="error-state" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3>Unable to load hadith</h3>
+                <p>Please check your extension installation and try again.</p>
+                <button id="retryBtn" class="retry-btn">Retry</button>
+            </div>
+
+            <article id="hadithCard" class="hadith-card" style="display: none;">
+                <div class="hadith-meta">
+                    <span id="bookChip" class="chip">Book</span>
+                    <span id="numberChip" class="chip">Hadith</span>
+                </div>
+
+                <div id="arabicText" class="arabic-text" lang="ar" dir="rtl">
+                    <!-- Arabic hadith text will be loaded here -->
+                </div>
+
+                <div id="englishText" class="english-text" lang="en">
+                    <!-- English hadith text will be loaded here -->
+                </div>
+            </article>
+        </main>
+
+        <footer class="footer">
+            <div class="toolbar">
+                <button id="viewOnSunnahBtn" class="toolbar-btn" title="View on sunnah.com">
+                    <i data-feather="book-open"></i>
+                    <span>View on sunnah.com</span>
+                </button>
+                
+                <button id="addToFavoritesBtn" class="toolbar-btn" title="Add to Favorites">
+                    <i data-feather="star"></i>
+                    <span>Add to Favorites</span>
+                </button>
+                
+                <button id="settingsBtn" class="toolbar-btn" title="Settings">
+                    <i data-feather="settings"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js"></script>
+    <script src="newtab.js"></script>
+</body>
+</html>
