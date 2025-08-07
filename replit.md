@@ -4,6 +4,17 @@ Hadeeth Garden Tab is a Chrome Extension (Manifest V3) that replaces the new tab
 
 The application displays hadith in proper sequence (not random), automatically tracking reading progress and providing both Arabic text and English translations. It includes favorites management, customizable display settings, and direct integration with sunnah.com for additional context.
 
+## Recent Changes (August 7, 2025)
+- ✅ **Complete Chrome Extension Built**: Fully functional Manifest V3 extension ready for installation
+- ✅ **Sequential Hadith System**: Proper sequential reading with wraparound functionality  
+- ✅ **Islamic Garden Theme**: Beautiful green-themed UI with geometric patterns and responsive design
+- ✅ **Dual Language Support**: Arabic text (RTL) with Amiri font, English with Inter font
+- ✅ **Settings & Customization**: Theme switcher, font size adjustment, language toggles
+- ✅ **Favorites System**: Add/remove/export/import favorites with JSON file support
+- ✅ **Local Data Storage**: 20 sample hadiths from Riyāḍ al-Ṣāliḥīn with offline functionality
+- ✅ **Cross-Environment Support**: Works in both Chrome extension and development server contexts
+- ✅ **Accessibility Features**: Keyboard shortcuts, reduced motion support, semantic HTML
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
