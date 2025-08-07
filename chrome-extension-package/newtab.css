@@ -1,5 +1,6 @@
 :root {
     --primary-green: #2d7d32;
+    --primary-green-dark: #1b5e20;
     --light-green: #4caf50;
     --soft-green: #e8f5e8;
     --accent-gold: #ffd700;
@@ -862,38 +863,41 @@ button:focus-visible {
 
 .favorite-actions {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-direction: row;
+    gap: 0.75rem;
     margin-left: 1rem;
-}
-
-.view-hadith-btn, .remove-favorite-btn {
-    background: none;
-    border: 2px solid var(--primary-green);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--primary-green);
-    transition: var(--transition);
 }
 
-.view-hadith-btn:hover {
+.jump-to-btn, .remove-favorite-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
     background: var(--primary-green);
     color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 80px;
+    justify-content: center;
+}
+
+.jump-to-btn:hover {
+    background: var(--primary-green-dark);
+    transform: translateY(-1px);
 }
 
 .remove-favorite-btn {
-    border-color: #f44336;
-    color: #f44336;
+    background: #dc3545;
 }
 
 .remove-favorite-btn:hover {
-    background: #f44336;
-    color: white;
+    background: #c82333;
+    transform: translateY(-1px);
 }
 
 .modal-footer {

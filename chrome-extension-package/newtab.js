@@ -815,14 +815,34 @@ class HadeethGardenTab {
     }
 
     async goToHadith(hadithId) {
-        const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
-        if (hadithIndex !== -1) {
-            this.currentHadithIndex = hadithIndex;
-            await this.displayCurrentHadith();
-            
-            // Close modal
-            const modal = document.querySelector('.favorites-modal-overlay');
-            if (modal) modal.remove();
+        try {
+            const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
+            if (hadithIndex !== -1) {
+                this.currentHadith = this.hadithData[hadithIndex];
+                
+                // Save the new index
+                if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                    await chrome.storage.local.set({ currentIndex: hadithIndex });
+                } else {
+                    localStorage.setItem('hadeeth-garden-currentIndex', hadithIndex.toString());
+                }
+                
+                // Display the hadith
+                this.displayHadith();
+                
+                // Close modal
+                const modal = document.querySelector('.favorites-modal-overlay');
+                if (modal) {
+                    modal.style.opacity = '0';
+                    setTimeout(() => modal.remove(), 300);
+                }
+                
+                // Show success message
+                this.showNotificationToast('Jumped to hadith successfully', 'success');
+            }
+        } catch (error) {
+            console.error('Error going to hadith:', error);
+            this.showNotificationToast('Error loading hadith', 'error');
         }
     }
 
