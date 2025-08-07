@@ -365,6 +365,11 @@ class HadeethGardenTab {
         document.getElementById('addToFavoritesBtn').addEventListener('click', async () => {
             await this.toggleFavorite();
         });
+
+        // View Favorites button
+        document.getElementById('favoritesBtn').addEventListener('click', () => {
+            this.showFavoritesModal();
+        });
         
         // Settings button
         document.getElementById('settingsBtn').addEventListener('click', () => {
@@ -484,22 +489,120 @@ class HadeethGardenTab {
                 localStorage.setItem('hadeeth-garden-favorites', JSON.stringify(this.favorites));
             }
             
-            // Update button state
-            this.updateFavoritesButton();
+            // Update button text
+            this.updateFavoriteButton();
             
         } catch (error) {
-            console.error('Error toggling favorite:', error);
+            console.error('Failed to toggle favorite:', error);
+        }
+    }
+
+    showFavoritesModal() {
+        const modal = this.createFavoritesModal();
+        document.body.appendChild(modal);
+        
+        // Animate in
+        setTimeout(() => modal.classList.add('show'), 100);
+    }
+
+    createFavoritesModal() {
+        const modal = document.createElement('div');
+        modal.className = 'favorites-modal-overlay';
+        
+        const favoriteHadith = this.hadithData.filter(hadith => this.favorites.includes(hadith.id));
+        
+        modal.innerHTML = `
+            <div class="favorites-modal">
+                <div class="modal-header">
+                    <h2 data-i18n="favorites.title">${this.localization.t('favorites.title')}</h2>
+                    <button class="close-btn" onclick="this.closest('.favorites-modal-overlay').remove()">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    ${favoriteHadith.length === 0 ? 
+                        `<div class="empty-favorites">
+                            <div class="empty-icon">💫</div>
+                            <p data-i18n="favorites.empty">${this.localization.t('favorites.empty')}</p>
+                        </div>` :
+                        favoriteHadith.map(hadith => `
+                            <div class="favorite-hadith-item" data-id="${hadith.id}">
+                                <div class="hadith-preview">
+                                    <div class="hadith-meta">
+                                        <span class="chip">${this.localization.t('hadith.book')} ${hadith.book}</span>
+                                        <span class="chip">${this.localization.t('hadith.number')} ${hadith.number}</span>
+                                    </div>
+                                    ${this.settings.showArabic ? `<div class="arabic-preview" dir="rtl">${hadith.arabic.substring(0, 100)}...</div>` : ''}
+                                    ${this.settings.showEnglish ? `<div class="english-preview">${hadith.english.substring(0, 100)}...</div>` : ''}
+                                </div>
+                                <div class="favorite-actions">
+                                    <button class="view-hadith-btn" onclick="window.hadeethGarden.goToHadith(${hadith.id})">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                    <button class="remove-favorite-btn" onclick="window.hadeethGarden.removeFavorite(${hadith.id})" data-i18n-title="favorites.remove">
+                                        <i data-feather="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button class="close-modal-btn" onclick="this.closest('.favorites-modal-overlay').remove()" data-i18n="favorites.close">
+                        ${this.localization.t('favorites.close')}
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // Add event listeners
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+        
+        return modal;
+    }
+
+    async removeFavorite(hadithId) {
+        this.favorites = this.favorites.filter(id => id !== hadithId);
+        await this.saveFavorites();
+        
+        // Refresh modal if open
+        const existingModal = document.querySelector('.favorites-modal-overlay');
+        if (existingModal) {
+            existingModal.remove();
+            this.showFavoritesModal();
+        }
+        
+        // Update favorite button if current hadith
+        if (this.currentHadith && this.currentHadith.id === hadithId) {
+            this.updateFavoriteButton();
+        }
+    }
+
+    async goToHadith(hadithId) {
+        const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
+        if (hadithIndex !== -1) {
+            this.currentHadithIndex = hadithIndex;
+            await this.displayCurrentHadith();
+            
+            // Close modal
+            const modal = document.querySelector('.favorites-modal-overlay');
+            if (modal) modal.remove();
         }
     }
 }
 
 // Initialize the application when DOM is loaded
+let hadeethGardenInstance;
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        new HadeethGardenTab();
+        hadeethGardenInstance = new HadeethGardenTab();
+        window.hadeethGarden = hadeethGardenInstance;
     });
 } else {
-    new HadeethGardenTab();
+    hadeethGardenInstance = new HadeethGardenTab();
+    window.hadeethGarden = hadeethGardenInstance;
 }
-
-// Extension is ready for use

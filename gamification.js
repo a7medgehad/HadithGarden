@@ -50,7 +50,7 @@ class HadeethGamification {
     
     async init() {
         await this.loadUserStats();
-        this.updateDailyProgress();
+        await this.updateDailyProgress();
         this.checkAchievements();
     }
     
@@ -90,7 +90,7 @@ class HadeethGamification {
         }
     }
     
-    updateDailyProgress() {
+    async updateDailyProgress() {
         const today = new Date().toDateString();
         const lastRead = this.userStats.lastReadDate ? new Date(this.userStats.lastReadDate).toDateString() : null;
         
@@ -106,6 +106,9 @@ class HadeethGamification {
                 // Gap in reading - reset streak
                 this.userStats.currentStreak = 0;
             }
+            
+            // Save the updated stats
+            await this.saveUserStats();
         }
     }
     
@@ -203,7 +206,15 @@ class HadeethGamification {
         
         const progressText = document.getElementById('progressText');
         if (progressText) {
-            progressText.textContent = `${this.localization.formatNumber(this.userStats.todaysProgress)}/${this.localization.formatNumber(this.userStats.dailyGoal)}`;
+            const current = this.localization.formatNumber(this.userStats.todaysProgress);
+            const goal = this.localization.formatNumber(this.userStats.dailyGoal);
+            
+            // For Arabic, show goal/current (RTL style: 5/1 instead of 1/5)
+            if (this.localization.currentLanguage === 'ar') {
+                progressText.textContent = `${goal}/${current}`;
+            } else {
+                progressText.textContent = `${current}/${goal}`;
+            }
         }
         
         // Update total hadith count

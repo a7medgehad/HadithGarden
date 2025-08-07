@@ -59,7 +59,14 @@ class HadeethLocalization {
                 // Additional UI elements
                 'ui.achievements': 'Achievements',
                 'ui.daily_goal': 'Daily Goal',
-                'ui.hadith_goal': 'hadith'
+                'ui.hadith_goal': 'hadith',
+                
+                // Favorites
+                'favorites.view': 'View Favorites',
+                'favorites.title': 'Your Favorite Hadith',
+                'favorites.empty': 'You haven\'t saved any favorites yet.',
+                'favorites.close': 'Close',
+                'favorites.remove': 'Remove from Favorites'
             },
             'ar': {
                 // App Title
@@ -117,7 +124,14 @@ class HadeethLocalization {
                 // Additional UI elements
                 'ui.achievements': 'الإنجازات',
                 'ui.daily_goal': 'الهدف اليومي',
-                'ui.hadith_goal': 'أحاديث'
+                'ui.hadith_goal': 'أحاديث',
+                
+                // Favorites
+                'favorites.view': 'عرض المفضلة',
+                'favorites.title': 'أحاديثك المفضلة',
+                'favorites.empty': 'لم تقم بحفظ أي أحاديث في المفضلة بعد.',
+                'favorites.close': 'إغلاق',
+                'favorites.remove': 'إزالة من المفضلة'
             }
         };
     }
@@ -166,12 +180,7 @@ class HadeethLocalization {
     }
     
     formatNumber(number) {
-        // Format numbers according to locale
-        if (this.currentLanguage === 'ar') {
-            // Convert to Arabic-Indic numerals
-            const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-            return number.toString().replace(/\d/g, (digit) => arabicNumerals[parseInt(digit)]);
-        }
+        // Always use Western Arabic numerals (1,2,3) even for Arabic interface
         return number.toString();
     }
     
