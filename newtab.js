@@ -252,17 +252,20 @@ class HadeethGardenTab {
     updateHadithContent() {
         const { currentHadith, settings } = this;
         
-        // Update meta information with localization
-        const bookText = `${this.localization.t('hadith.book')} ${this.localization.formatNumber(currentHadith.book)}`;
-        const hadithText = `${this.localization.t('hadith.number')} ${this.localization.formatNumber(currentHadith.number)}`;
+        // Update meta information with localization using correct field names
+        const chapterName = currentHadith.chapter || 'رياض الصالحين';
+        const bookText = this.localization.currentLanguage === 'ar' ? 
+            `${this.localization.t('hadith.book')}: ${chapterName}` :
+            `${this.localization.t('hadith.book')}: ${chapterName}`;
+        const hadithText = `${this.localization.t('hadith.number')} ${this.localization.formatNumber(currentHadith.hadithNumber || currentHadith.id)}`;
         
         document.getElementById('bookChip').textContent = bookText;
         document.getElementById('numberChip').textContent = hadithText;
         
         // Update Arabic text
         const arabicText = document.getElementById('arabicText');
-        if (settings.showArabic && currentHadith.arabic) {
-            arabicText.textContent = currentHadith.arabic;
+        if (settings.showArabic && currentHadith.arabicText) {
+            arabicText.textContent = currentHadith.arabicText;
             arabicText.style.display = 'block';
         } else {
             arabicText.style.display = 'none';
@@ -270,8 +273,8 @@ class HadeethGardenTab {
         
         // Update English text
         const englishText = document.getElementById('englishText');
-        if (settings.showEnglish && currentHadith.english) {
-            englishText.textContent = currentHadith.english;
+        if (settings.showEnglish && currentHadith.englishText) {
+            englishText.textContent = currentHadith.englishText;
             englishText.style.display = 'block';
         } else {
             englishText.style.display = 'none';

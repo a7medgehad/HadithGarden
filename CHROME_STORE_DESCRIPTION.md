@@ -1,15 +1,21 @@
 # Hadith Garden Tab - Chrome Web Store Description
 
 ## Short Description (132 characters max)
-Transform your new tab into a peaceful Islamic reading experience with sequential hadith from Riyāḍ al-Ṣāliḥīn.
+Transform your new tab into a peaceful Islamic reading experience with 1,896 authentic hadith from Riyāḍ al-Ṣāliḥīn.
 
 ## Detailed Description
 
-**🌿 Hadith Garden Tab** replaces your Chrome new tab page with a beautifully designed Islamic reading experience featuring sequential hadith from the renowned collection *Riyāḍ al-Ṣāliḥīn* (The Garden of the Righteous).
+**🌿 Hadith Garden Tab** replaces your Chrome new tab page with a beautifully designed Islamic reading experience featuring the complete collection of 1,896 authentic hadith from the renowned *Riyāḍ al-Ṣāliḥīn* (The Garden of the Righteous) by Imam al-Nawawi.
 
 ### Key Features
 
-**📖 Sequential Reading Experience**
+**📖 Complete Authentic Collection**
+- All 1,896 hadith from Riyāḍ al-Ṣāliḥīn in sequential order
+- Authentic translations sourced from sunnah.com
+- Covers 20 comprehensive chapters including Good Manners, Virtues, Supplication, and more
+- Years of daily spiritual reading material offline
+
+**🔄 Sequential Reading Experience**
 - Read hadith in proper order, not random selection
 - Automatic progress tracking across browser sessions
 - Seamless continuation from where you left off
@@ -55,22 +61,25 @@ Transform your new tab into a peaceful Islamic reading experience with sequentia
 
 ### Privacy & Data
 
-- All data stored locally on your device
+- All 1,896 hadith stored locally on your device for complete offline access
 - No external tracking or data collection
-- Works completely offline after installation
+- Works completely offline after installation  
 - No personal information transmitted
+- Complete hadith collection sourced from verified Islamic databases
 
 ### Technical Details
 
 - Chrome Extension Manifest V3 compliant
-- Lightweight and fast-loading
+- Complete offline hadith database (1,896 authentic hadith)
+- Lightweight and fast-loading despite comprehensive collection
 - Responsive design for all screen sizes
 - Accessibility features included
 - Cross-device synchronization via Chrome sync
+- Sourced from authenticated Islamic databases
 
-Transform your browsing routine into moments of reflection and spiritual growth. Every new tab becomes an opportunity to connect with timeless Islamic wisdom.
+Transform your browsing routine into moments of reflection and spiritual growth. Every new tab becomes an opportunity to connect with timeless Islamic wisdom from the complete Riyāḍ al-Ṣāliḥīn collection.
 
-**Install Hadith Garden Tab today and cultivate daily spiritual habits through the beauty of prophetic teachings.**
+**Install Hadith Garden Tab today and access the complete treasury of 1,896 authentic prophetic teachings for daily spiritual enrichment.**
 
 ---
 
