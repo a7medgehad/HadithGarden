@@ -7,9 +7,13 @@ class HadeethGardenTab {
             showArabic: true,
             showEnglish: true,
             fontSize: 16,
-            theme: 'auto'
+            theme: 'auto',
+            language: 'en',
+            dailyGoal: 5
         };
         this.favorites = [];
+        this.localization = new HadeethLocalization();
+        this.gamification = new HadeethGamification(this.localization);
         this.init();
     }
 
@@ -19,8 +23,17 @@ class HadeethGardenTab {
             await this.loadSettings();
             await this.loadFavorites();
             
+            // Initialize localization
+            this.localization.setLanguage(this.settings.language);
+            
+            // Initialize gamification
+            await this.gamification.init();
+            
             // Apply theme
             this.applyTheme();
+            
+            // Render progress section
+            this.renderProgressSection();
             
             // Load hadith data
             await this.loadHadithData();
@@ -237,9 +250,12 @@ class HadeethGardenTab {
     updateHadithContent() {
         const { currentHadith, settings } = this;
         
-        // Update meta information
-        document.getElementById('bookChip').textContent = `Book ${currentHadith.book}`;
-        document.getElementById('numberChip').textContent = `Hadith ${currentHadith.number}`;
+        // Update meta information with localization
+        const bookText = `${this.localization.t('hadith.book')} ${this.localization.formatNumber(currentHadith.book)}`;
+        const hadithText = `${this.localization.t('hadith.number')} ${this.localization.formatNumber(currentHadith.number)}`;
+        
+        document.getElementById('bookChip').textContent = bookText;
+        document.getElementById('numberChip').textContent = hadithText;
         
         // Update Arabic text
         const arabicText = document.getElementById('arabicText');
@@ -270,10 +286,10 @@ class HadeethGardenTab {
         
         if (isFavorited) {
             favoritesBtn.classList.add('favorited');
-            favoritesBtn.innerHTML = '<i data-feather="star"></i><span>Remove from Favorites</span>';
+            favoritesBtn.innerHTML = `<i data-feather="star"></i><span>${this.localization.t('hadith.removeFromFavorites')}</span>`;
         } else {
             favoritesBtn.classList.remove('favorited');
-            favoritesBtn.innerHTML = '<i data-feather="star"></i><span>Add to Favorites</span>';
+            favoritesBtn.innerHTML = `<i data-feather="star"></i><span>${this.localization.t('hadith.addToFavorites')}</span>`;
         }
         
         // Re-initialize feather icons
@@ -288,10 +304,30 @@ class HadeethGardenTab {
         document.getElementById('errorState').style.display = 'block';
     }
 
+    renderProgressSection() {
+        const progressSection = document.getElementById('progressSection');
+        progressSection.innerHTML = this.gamification.renderProgressCard();
+        this.gamification.updateProgressDisplay();
+    }
+
     setupEventListeners() {
+        // Language selector
+        const languageSelect = document.getElementById('languageSelect');
+        languageSelect.value = this.settings.language;
+        languageSelect.addEventListener('change', (e) => {
+            this.settings.language = e.target.value;
+            this.localization.setLanguage(this.settings.language);
+            this.saveSettings();
+        });
+
         // Next Hadith button
-        document.getElementById('nextHadithBtn').addEventListener('click', () => {
-            this.nextHadith();
+        document.getElementById('nextHadithBtn').addEventListener('click', async () => {
+            await this.nextHadith();
+            // Record hadith read for gamification
+            const result = await this.gamification.recordHadithRead();
+            if (result.dailyGoalMet) {
+                this.showDailyGoalCompletionCelebration();
+            }
         });
         
         // Retry button
@@ -350,6 +386,66 @@ class HadeethGardenTab {
                 this.applyTheme();
             }
         });
+    }
+
+    async saveSettings() {
+        try {
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                await chrome.storage.local.set({ settings: this.settings });
+            } else {
+                localStorage.setItem('hadeeth-garden-settings', JSON.stringify(this.settings));
+            }
+        } catch (error) {
+            console.error('Failed to save settings:', error);
+        }
+    }
+
+    showDailyGoalCompletionCelebration() {
+        const celebration = document.createElement('div');
+        celebration.className = 'daily-goal-celebration';
+        celebration.innerHTML = `
+            <div class="celebration-content">
+                <div class="celebration-icon">🎉</div>
+                <h3 data-i18n="progress.complete">${this.localization.t('progress.complete')}</h3>
+                <p data-i18n="streak.congratulations">${this.localization.t('streak.congratulations')}</p>
+            </div>
+        `;
+        
+        // Add celebration styles
+        celebration.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: var(--card-bg);
+            border: 3px solid var(--accent-gold);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+            z-index: 1001;
+            opacity: 0;
+            transition: all 0.3s ease;
+        `;
+        
+        document.body.appendChild(celebration);
+        
+        // Animate in
+        setTimeout(() => {
+            celebration.style.opacity = '1';
+            celebration.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 100);
+        
+        // Remove after delay
+        setTimeout(() => {
+            celebration.style.opacity = '0';
+            celebration.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            setTimeout(() => {
+                if (document.body.contains(celebration)) {
+                    document.body.removeChild(celebration);
+                }
+            }, 300);
+        }, 3000);
     }
 
     async toggleFavorite() {
