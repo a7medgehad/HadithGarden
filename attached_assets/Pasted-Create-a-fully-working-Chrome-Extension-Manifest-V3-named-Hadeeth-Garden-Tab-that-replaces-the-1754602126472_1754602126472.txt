@@ -1,0 +1,65 @@
+Create a fully working Chrome Extension (Manifest V3) named **Hadeeth Garden Tab** that replaces the New Tab page in Chrome.
+
+📌 Source: https://sunnah.com/riyadussalihin
+
+### Functionality
+1. On each new tab, display **the next hadith in sequence** from *Riyāḍ al-Ṣāliḥīn* (English + Arabic if available) instead of random selection.
+2. Keep track of the current index using `chrome.storage.local`, so that when the user opens the next tab it moves to the next hadith.  
+   - When the end of the collection is reached, wrap back to the start.
+3. Pull hadith text from a local JSON cache preloaded in the extension (to avoid heavy requests to sunnah.com).
+4. Provide a button in the top-right to "Next Hadith" manually.
+5. Include a "Reset to First Hadith" option in settings.
+
+### UI / Design
+- Elegant Islamic “garden” theme with soft green tones and subtle geometric patterns.
+- Centered card layout with:
+  - Arabic text at the top (RTL) in "Amiri" font.
+  - English translation below (LTR) in "Inter" or system font.
+  - Book and Hadith number shown as small decorative chips.
+- Title at the top: “🌿 Garden Tab – Riyāḍ al-Ṣāliḥīn”
+- Bottom toolbar:  
+  - 📖 “View on sunnah.com” button (opens in new tab to exact hadith page).
+  - ⭐ “Add to Favorites” button.
+  - ⚙️ “Settings” button.
+
+### Settings Page
+- Toggle Arabic / English / Both.
+- Font size slider.
+- Theme: Light / Dark / Auto (system theme).
+- Reset reading sequence.
+- Export / Import favorites.
+
+### Technical Details
+- Manifest V3.
+- Files:
+  - manifest.json
+  - newtab.html / newtab.js / newtab.css
+  - options.html / options.js / options.css
+  - data/riyadussalihin.json (preloaded hadith data in correct order with fields: `id`, `book`, `number`, `arabic`, `english`, `url`)
+  - icons/ (128x128, 48x48, 16x16 PNGs)
+- Store:
+  - `currentIndex` (int) in chrome.storage.local.
+  - `favorites` (array of hadith ids).
+- On startup: load currentIndex, display that hadith, increment index after display.
+- Smooth fade-in animation for text (respect prefers-reduced-motion).
+- Fully responsive for all screen sizes.
+
+### Performance & Privacy
+- No analytics, trackers, or remote calls.
+- Lazy load fonts if not installed locally.
+- Optimized for fast load time.
+
+### Deliverables
+- Complete working Chrome extension folder.
+- Ready-to-zip for loading into Chrome (Load unpacked → test).
+- README with:
+  - How to install and load unpacked.
+  - How to add more hadith to `riyadussalihin.json`.
+  - Attribution: “Hadith content from sunnah.com – used for personal educational purposes.”
+
+⚠️ Note:
+- Do not scrape sunnah.com directly in runtime.  
+- Instead, prepare a local JSON file with enough hadith (in correct sequence) for offline usage and smooth experience.
+- Make sure Arabic text is `lang="ar"` and `dir="rtl"`.
+
+Build the project in Replit so I can download it as a ZIP and load it directly into Chrome.
