@@ -5,7 +5,7 @@ class HadeethLocalization {
         this.translations = {
             'en': {
                 // App Title
-                'app.title': '🌿 Garden Tab – Riyāḍ al-Ṣāliḥīn',
+                'app.title': 'Hadith Garden Tab',
                 'app.subtitle': 'Daily Hadith from the Garden of the Righteous',
                 
                 // Loading and Error States
@@ -58,7 +58,7 @@ class HadeethLocalization {
             },
             'ar': {
                 // App Title
-                'app.title': '🌿 تبويبة الحديقة – رياض الصالحين',
+                'app.title': 'حديقة الأحاديث',
                 'app.subtitle': 'أحاديث يومية من رياض الصالحين',
                 
                 // Loading and Error States
@@ -77,7 +77,7 @@ class HadeethLocalization {
                 'hadith.nextHadith': 'الحديث التالي',
                 
                 // Gamification
-                'streak.title': 'سلسلة القراءة',
+                'streak.title': 'أيام القراءة المتواصلة',
                 'streak.days': 'أيام',
                 'streak.today': 'اليوم',
                 'streak.congratulations': 'أحسنت! استمر في سلسلة القراءة!',
@@ -86,10 +86,10 @@ class HadeethLocalization {
                 'progress.read': 'أحاديث قُرئت اليوم',
                 'progress.goal': 'الهدف اليومي',
                 'achievement.title': 'تم فتح إنجاز!',
-                'achievement.firstDay': 'الخطوات الأولى',
-                'achievement.firstWeek': 'محارب الأسبوع',
-                'achievement.firstMonth': 'سيد الشهر',
-                'achievement.hundred': 'عالم القرن',
+                'achievement.firstDay': 'بداية مباركة',
+                'achievement.firstWeek': 'مواظب الأسبوع',
+                'achievement.firstMonth': 'نجم الشهر',
+                'achievement.hundred': 'طالب علم مجتهد',
                 
                 // Settings
                 'settings.title': 'الإعدادات',

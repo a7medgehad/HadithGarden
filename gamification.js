@@ -17,7 +17,7 @@ class HadeethGamification {
                 id: 'first_day',
                 title: 'achievement.firstDay',
                 description: 'Read your first hadith',
-                icon: '🌱',
+                icon: '📖',
                 requirement: 1,
                 type: 'total'
             },
@@ -25,7 +25,7 @@ class HadeethGamification {
                 id: 'week_warrior',
                 title: 'achievement.firstWeek',
                 description: 'Maintain a 7-day reading streak',
-                icon: '🌿',
+                icon: '📗',
                 requirement: 7,
                 type: 'streak'
             },
@@ -33,7 +33,7 @@ class HadeethGamification {
                 id: 'monthly_master',
                 title: 'achievement.firstMonth',
                 description: 'Maintain a 30-day reading streak',
-                icon: '🌳',
+                icon: '📘',
                 requirement: 30,
                 type: 'streak'
             },
@@ -44,14 +44,6 @@ class HadeethGamification {
                 icon: '📚',
                 requirement: 100,
                 type: 'total'
-            },
-            {
-                id: 'dedicated_reader',
-                title: 'Dedicated Reader',
-                description: 'Read hadith for 100 days straight',
-                icon: '⭐',
-                requirement: 100,
-                type: 'streak'
             }
         ];
     }

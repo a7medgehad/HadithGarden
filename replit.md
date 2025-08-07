@@ -15,6 +15,20 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Cross-Environment Support**: Works in both Chrome extension and development server contexts
 - ✅ **Accessibility Features**: Keyboard shortcuts, reduced motion support, semantic HTML
 
+### Latest Updates - Layout & Localization Enhancement
+- ✅ **Enhanced Layout**: Moved hadith content to top, gamification section to bottom for better reading focus
+- ✅ **Beautiful Open Book Logo**: Replaced plant emoji with professional open book SVG logo
+- ✅ **User-Customizable Daily Goals**: Added input control for setting daily reading targets (1-20 hadith)
+- ✅ **Improved Arabic Localization**: 
+  - Changed title to "حديقة الأحاديث" (Hadith Garden)
+  - Updated streak text to "أيام القراءة المتواصلة" (Consecutive Reading Days)
+  - Enhanced achievement names with encouraging Arabic terms:
+    * "بداية مباركة" (Blessed Beginning)
+    * "مواظب الأسبوع" (Week Consistent)
+    * "نجم الشهر" (Star of the Month)
+    * "طالب علم مجتهد" (Diligent Knowledge Seeker)
+- ✅ **Updated English Title**: Changed from "Garden Tab – Riyāḍ al-Ṣāliḥīn" to "Hadith Garden Tab"
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

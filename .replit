@@ -15,16 +15,19 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Chrome Extension Server"
+args = "Extension Demo Server"
 
 [[workflows.workflow]]
-name = "Chrome Extension Server"
+name = "Extension Demo Server"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python3 -m http.server 5000"
 waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
 
 [[ports]]
 localPort = 5000

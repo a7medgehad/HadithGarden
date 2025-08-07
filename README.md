@@ -1,39 +1,37 @@
-# 🌿 Hadeeth Garden Tab
+# Hadith Garden Tab - Chrome Extension
+## حديقة الأحاديث
 
-A beautiful Chrome Extension that replaces your new tab page with sequential hadith from Riyāḍ al-Ṣāliḥīn, featuring an elegant Islamic garden theme.
+A Chrome Extension (Manifest V3) that transforms your new tab page into a beautiful, interactive hadith reader featuring sequential content from Riyāḍ al-Ṣāliḥīn.
 
 ## Features
 
-### 📖 Sequential Hadith Reading
-- Displays hadith from Riyāḍ al-Ṣāliḥīn in proper sequence (not random)
-- Automatically tracks your reading progress using Chrome storage
-- Wraps around to the first hadith when reaching the end
-- Manual "Next Hadith" button for additional navigation
+### 📖 Hadith Reading Experience
+- **Sequential Display**: Proper sequential reading through Riyāḍ al-Ṣāliḥīn (no random selection)
+- **Bilingual Support**: Full Arabic (RTL) and English interface localization
+- **Beautiful Typography**: Amiri font for Arabic, Inter for English
+- **Offline Functionality**: 20 pre-loaded hadith with local storage
 
-### 🎨 Beautiful Islamic Design
-- Elegant garden theme with soft green tones and geometric patterns
-- Responsive design that works on all screen sizes
-- Arabic text displayed in RTL with Amiri font
-- English translation in LTR with Inter font
-- Smooth fade-in animations (respects prefers-reduced-motion)
+### 🎮 Gamification System
+- **Reading Streaks**: Track consecutive days of hadith reading (أيام القراءة المتواصلة)
+- **Customizable Daily Goals**: Set your target (1-20 hadith per day)
+- **Achievement System**: Unlock encouraging milestones:
+  - 📖 **بداية مباركة** (Blessed Beginning) - First hadith read
+  - 📗 **مواظب الأسبوع** (Week Consistent) - 7-day streak
+  - 📘 **نجم الشهر** (Star of the Month) - 30-day streak  
+  - 📚 **طالب علم مجتهد** (Diligent Knowledge Seeker) - 100 total hadith
+- **Progress Tracking**: Visual daily progress bars and statistics
 
-### ⚙️ Customizable Settings
-- Toggle Arabic/English text display
-- Adjustable font size slider
-- Theme options: Light, Dark, or Auto (system preference)
-- Reset reading progress to start over
-- Export/import favorites functionality
+### 🌿 Islamic Garden Theme
+- **Elegant Design**: Green gradient themes with Islamic aesthetics
+- **Open Book Logo**: Professional SVG logo representing knowledge
+- **Smooth Animations**: Respectful of reduced-motion preferences
+- **Responsive Layout**: Works perfectly on all screen sizes
 
-### ⭐ Favorites Management
-- Add hadiths to favorites with one click
-- Export favorites as JSON file
-- Import previously saved favorites
-- Clear all favorites option
-
-### 🔗 Integration
-- Direct links to view each hadith on sunnah.com
-- Keyboard shortcuts for navigation
-- Accessible design with proper focus management
+### ⚙️ Customization Options
+- **Language Toggle**: Switch between English and Arabic (العربية) interfaces
+- **Theme Selection**: Light, dark, and auto modes
+- **Font Size Control**: Adjust text size for comfortable reading
+- **Favorites System**: Save, export, and import your favorite hadith
 
 ## Installation
 

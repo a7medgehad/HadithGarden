@@ -320,6 +320,20 @@ class HadeethGardenTab {
             this.saveSettings();
         });
 
+        // Daily goal input
+        const dailyGoalInput = document.getElementById('dailyGoalInput');
+        dailyGoalInput.value = this.settings.dailyGoal;
+        dailyGoalInput.addEventListener('change', async (e) => {
+            const newGoal = parseInt(e.target.value);
+            if (newGoal >= 1 && newGoal <= 20) {
+                this.settings.dailyGoal = newGoal;
+                this.gamification.userStats.dailyGoal = newGoal;
+                await this.saveSettings();
+                await this.gamification.saveUserStats();
+                this.renderProgressSection();
+            }
+        });
+
         // Next Hadith button
         document.getElementById('nextHadithBtn').addEventListener('click', async () => {
             await this.nextHadith();

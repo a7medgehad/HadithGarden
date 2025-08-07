@@ -64,9 +64,10 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Progress Section */
+/* Progress Section - Now at bottom */
 .progress-section {
-    margin-bottom: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 .progress-card {
@@ -273,13 +274,13 @@ body {
     width: 64px;
     height: 64px;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(45, 125, 50, 0.2);
     transition: var(--transition);
+    filter: drop-shadow(0 4px 8px rgba(45, 125, 50, 0.2));
 }
 
 .header-logo:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 24px rgba(45, 125, 50, 0.3);
+    filter: drop-shadow(0 6px 12px rgba(45, 125, 50, 0.3));
 }
 
 .title-group {
@@ -326,6 +327,53 @@ body {
     border-color: var(--light-green);
     outline: none;
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Daily Goal Controls */
+.daily-goal-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.goal-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-align: center;
+}
+
+.goal-input {
+    background: var(--card-bg);
+    border: 2px solid rgba(76, 175, 80, 0.2);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    width: 60px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.goal-input:hover,
+.goal-input:focus {
+    border-color: var(--light-green);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Header Logo Styles */
+.header-logo {
+    transition: var(--transition);
+    filter: drop-shadow(0 4px 8px rgba(45, 125, 50, 0.2));
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 12px rgba(45, 125, 50, 0.3));
 }
 
 .next-btn {

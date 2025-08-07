@@ -1,112 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="64" height="64" rx="12" fill="url(#logoGradient)"/>
+    <!-- Open Book Base -->
+    <path d="M12 20h40v4H12V20z" fill="white" opacity="0.9" rx="2"/>
+    <!-- Book Pages -->
+    <path d="M12 26h36v2H12v-2z" fill="white" opacity="0.8"/>
+    <path d="M12 30h38v2H12v-2z" fill="white" opacity="0.7"/>
+    <path d="M12 34h34v2H12v-2z" fill="white" opacity="0.6"/>
+    <path d="M12 38h32v2H12v-2z" fill="white" opacity="0.5"/>
+    <path d="M12 42h28v2H12v-2z" fill="white" opacity="0.4"/>
+    <!-- Book Cover -->
+    <path d="M16 16h32v6H16V16z" fill="white" opacity="0.9" rx="2"/>
+    <!-- Islamic Pattern -->
+    <circle cx="32" cy="19" r="1.5" fill="url(#logoGradient)" opacity="0.8"/>
     <defs>
-        <!-- Gradients for depth and beauty -->
-        <radialGradient id="mainGradient" cx="50%" cy="30%" r="80%">
-            <stop offset="0%" style="stop-color:#81c784;stop-opacity:1" />
-            <stop offset="30%" style="stop-color:#66bb6a;stop-opacity:1" />
-            <stop offset="70%" style="stop-color:#4caf50;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#2d7d32;stop-opacity:1" />
-        </radialGradient>
-        
-        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
-            <stop offset="50%" style="stop-color:#f1f8e9;stop-opacity:0.8" />
-            <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:0.9" />
+        <linearGradient id="logoGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4CAF50"/>
+            <stop offset="1" stop-color="#2E7D32"/>
         </linearGradient>
-        
-        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#1b5e20;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#2d7d32;stop-opacity:1" />
-        </linearGradient>
-        
-        <!-- Islamic geometric pattern -->
-        <pattern id="geometricPattern" patternUnits="userSpaceOnUse" width="20" height="20">
-            <rect width="20" height="20" fill="none"/>
-            <path d="M0,10 L10,0 L20,10 L10,20 Z" fill="white" fill-opacity="0.06"/>
-            <circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="0.5" opacity="0.08"/>
-        </pattern>
-        
-        <!-- Subtle shadow filter -->
-        <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#1b5e20" flood-opacity="0.3"/>
-        </filter>
-        
-        <filter id="leafShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#1b5e20" flood-opacity="0.2"/>
-        </filter>
     </defs>
-    
-    <!-- Background circle with gradient -->
-    <circle cx="128" cy="128" r="120" fill="url(#mainGradient)" stroke="#1b5e20" stroke-width="2"/>
-    <circle cx="128" cy="128" r="115" fill="url(#geometricPattern)" opacity="0.3"/>
-    
-    <!-- Decorative border rings -->
-    <circle cx="128" cy="128" r="110" fill="none" stroke="white" stroke-width="1.5" opacity="0.4"/>
-    <circle cx="128" cy="128" r="105" fill="none" stroke="white" stroke-width="1" opacity="0.2"/>
-    
-    <!-- Main decorative leaf/garden elements -->
-    <g filter="url(#leafShadow)">
-        <!-- Large central leaf -->
-        <path d="M70 128 Q128 70 186 128 Q128 186 70 128 Z" fill="url(#leafGradient)" stroke="white" stroke-width="1.5" opacity="0.9"/>
-        
-        <!-- Secondary leaf layer -->
-        <path d="M80 128 Q128 85 176 128 Q128 171 80 128 Z" fill="white" fill-opacity="0.6"/>
-        
-        <!-- Leaf veins for detail -->
-        <path d="M75 128 Q128 80 181 128" stroke="#2d7d32" stroke-width="2" fill="none" opacity="0.6"/>
-        <path d="M85 132 Q128 95 171 132" stroke="#2d7d32" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <path d="M90 135 Q128 105 166 135" stroke="#2d7d32" stroke-width="1" fill="none" opacity="0.3"/>
-    </g>
-    
-    <!-- Arabic text "حديث" (Hadith) -->
-    <g filter="url(#textShadow)">
-        <!-- Arabic text styled beautifully -->
-        <text x="128" y="140" font-family="Amiri, Arabic Typesetting, Times New Roman" font-size="32" 
-              font-weight="bold" text-anchor="middle" fill="url(#textGradient)" 
-              direction="rtl" dominant-baseline="central">حديث</text>
-    </g>
-    
-    <!-- Central Islamic geometric star -->
-    <g transform="translate(128, 90)">
-        <circle r="18" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
-        <circle r="12" fill="white" opacity="0.9"/>
-        <circle r="6" fill="#2d7d32" opacity="0.8"/>
-        
-        <!-- Eight-pointed star -->
-        <path d="M0,-15 L3,-3 L15,0 L3,3 L0,15 L-3,3 L-15,0 L-3,-3 Z" 
-              fill="white" opacity="0.7" transform="scale(0.7)"/>
-    </g>
-    
-    <!-- Bottom decorative element -->
-    <g transform="translate(128, 175)">
-        <circle r="8" fill="white" opacity="0.8"/>
-        <circle r="5" fill="#4caf50" opacity="0.9"/>
-        
-        <!-- Small decorative leaves around bottom -->
-        <path d="M-12,-8 Q-8,-12 -4,-8 Q-8,-4 -12,-8" fill="white" opacity="0.5"/>
-        <path d="M12,-8 Q8,-12 4,-8 Q8,-4 12,-8" fill="white" opacity="0.5"/>
-        <path d="M-8,10 Q-4,6 0,10 Q-4,14 -8,10" fill="white" opacity="0.5"/>
-        <path d="M8,10 Q4,6 0,10 Q4,14 8,10" fill="white" opacity="0.5"/>
-    </g>
-    
-    <!-- Corner accent elements -->
-    <g opacity="0.6">
-        <!-- Top decorative elements -->
-        <circle cx="128" cy="40" r="4" fill="white" opacity="0.8"/>
-        <circle cx="110" cy="50" r="2.5" fill="white" opacity="0.6"/>
-        <circle cx="146" cy="50" r="2.5" fill="white" opacity="0.6"/>
-        
-        <!-- Side decorative elements -->
-        <circle cx="50" cy="128" r="3" fill="white" opacity="0.7"/>
-        <circle cx="206" cy="128" r="3" fill="white" opacity="0.7"/>
-        
-        <!-- Small accent leaves in corners -->
-        <path d="M60,60 Q66,54 72,60 Q66,66 60,60" fill="white" opacity="0.4"/>
-        <path d="M184,60 Q190,54 196,60 Q190,66 184,60" fill="white" opacity="0.4"/>
-        <path d="M60,196 Q66,190 72,196 Q66,202 60,196" fill="white" opacity="0.4"/>
-        <path d="M184,196 Q190,190 196,196 Q190,202 184,196" fill="white" opacity="0.4"/>
-    </g>
-    
-    <!-- Subtle outer glow -->
-    <circle cx="128" cy="128" r="120" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/>
 </svg>
