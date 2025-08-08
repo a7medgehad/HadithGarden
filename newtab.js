@@ -252,11 +252,13 @@ class HadeethGardenTab {
     updateHadithContent() {
         const { currentHadith, settings } = this;
         
-        // Update meta information with localization using correct field names
+        // Update meta information with proper Arabic chapter names
         const chapterName = currentHadith.chapter || 'رياض الصالحين';
-        const bookText = this.localization.currentLanguage === 'ar' ? 
-            `${this.localization.t('hadith.book')}: ${chapterName}` :
-            `${this.localization.t('hadith.book')}: ${chapterName}`;
+        const displayChapterName = this.localization.currentLanguage === 'ar' ? 
+            this.localization.getArabicChapterName(chapterName) : 
+            chapterName;
+        
+        const bookText = `${displayChapterName}`;
         const hadithText = `${this.localization.t('hadith.number')} ${this.localization.formatNumber(currentHadith.hadithNumber || currentHadith.id)}`;
         
         document.getElementById('bookChip').textContent = bookText;

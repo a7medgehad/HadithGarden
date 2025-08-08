@@ -43,6 +43,9 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Fixed Favorites Modal**: Resolved "Go to" and "Remove" button functionality issues  
 - ✅ **Improved Button Styling**: Enhanced visual appearance of action buttons in favorites modal
 - ✅ **Arabic Font Integration**: Proper Amiri font loading for authentic Arabic text display
+- ✅ **Authentic Arabic Chapter Names**: Fixed display to show actual Arabic book names instead of generic "الكتاب" labels
+- ✅ **Arabic Chapter Mapping**: Added comprehensive mapping of all 20 chapter names to authentic Arabic titles
+- ✅ **Enhanced Arabic Numbers**: Improved hadith number display with proper "الحديث رقم" prefix
 - ✅ **Comprehensive Testing**: All Arabic functionality verified and working correctly
 - ✅ **Updated Chrome Package**: Extension zip file includes all Arabic improvements (631KB)
 

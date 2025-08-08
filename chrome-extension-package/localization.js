@@ -93,7 +93,7 @@ class HadeethLocalization {
                 
                 // Hadith Display
                 'hadith.book': 'الكتاب',
-                'hadith.number': 'الحديث',
+                'hadith.number': 'الحديث رقم',
                 'hadith.viewOnSunnah': 'عرض على موقع السنة',
                 'hadith.addToFavorites': 'إضافة إلى المفضلة',
                 'hadith.removeFromFavorites': 'إزالة من المفضلة',
@@ -221,6 +221,34 @@ class HadeethLocalization {
             month: 'long',
             day: 'numeric'
         }).format(date);
+    }
+
+    // Arabic chapter name mappings for authentic display
+    getArabicChapterName(englishChapter) {
+        const chapterMap = {
+            'The Book of Good Manners': 'كتاب الأدب',
+            'The Book About the Etiquette of Eating': 'كتاب آداب الطعام',
+            'The Book of Dress': 'كتاب اللباس',
+            'The Book of Du\'a (Supplications)': 'كتاب الدعوات',
+            'The Book of Etiquette of Traveling': 'كتاب آداب السفر',
+            'The Book of Forgiveness': 'كتاب الاستغفار',
+            'The Book of Greetings': 'كتاب السلام',
+            'The Book of Hajj': 'كتاب الحج',
+            'The Book of I\'tikaf': 'كتاب الاعتكاف',
+            'The Book of Jihad': 'كتاب الجهاد',
+            'The Book of Knowledge': 'كتاب العلم',
+            'The Book of Miscellaneous ahadith of Significant Values': 'كتاب المنثورات والملح',
+            'The Book of Miscellany': 'كتاب المنثورات والملح',
+            'The Book of Praise and Gratitude to Allah': 'كتاب الحمد والشكر لله تعالى',
+            'The Book of Supplicating Allah to Exalt the Mention of Allah\'s Messenger': 'كتاب الصلاة على رسول الله صلى الله عليه وسلم',
+            'The Book of the Etiquette of Sleeping, Lying and Sitting etc': 'كتاب آداب النوم والاضطجاع والجلوس',
+            'The Book of the Prohibited actions': 'كتاب المنهيات',
+            'The Book of the Remembrance of Allah': 'كتاب الأذكار',
+            'The Book of Virtues': 'كتاب الفضائل',
+            'The Book of Visiting the Sick': 'كتاب عيادة المريض واتباع الجنائز'
+        };
+        
+        return chapterMap[englishChapter] || englishChapter;
     }
 }
 
