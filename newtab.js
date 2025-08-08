@@ -300,17 +300,19 @@ class HadeethGardenTab {
 
     updateFavoritesButton() {
         const favoritesBtn = document.getElementById('addToFavoritesBtn');
+        if (!favoritesBtn || !this.currentHadith) return;
+        
         const isFavorited = this.favorites.includes(this.currentHadith.id);
         
         if (isFavorited) {
             favoritesBtn.classList.add('favorited');
-            favoritesBtn.innerHTML = `<i data-feather="star"></i><span>${this.localization.t('hadith.removeFromFavorites')}</span>`;
+            favoritesBtn.innerHTML = `<i class="star-icon favorited-star" data-feather="star"></i><span>${this.localization.t('hadith.removeFromFavorites')}</span>`;
         } else {
             favoritesBtn.classList.remove('favorited');
-            favoritesBtn.innerHTML = `<i data-feather="star"></i><span>${this.localization.t('hadith.addToFavorites')}</span>`;
+            favoritesBtn.innerHTML = `<i class="star-icon" data-feather="star"></i><span>${this.localization.t('hadith.addToFavorites')}</span>`;
         }
         
-        // Re-initialize feather icons
+        // Re-initialize feather icons immediately
         if (typeof feather !== 'undefined') {
             feather.replace();
         }
@@ -550,8 +552,8 @@ class HadeethGardenTab {
                 localStorage.setItem('hadeeth-garden-favorites', JSON.stringify(this.favorites));
             }
             
-            // Update button text
-            this.updateFavoriteButton();
+            // Update button immediately
+            this.updateFavoritesButton();
             
         } catch (error) {
             console.error('Failed to toggle favorite:', error);
@@ -813,7 +815,7 @@ class HadeethGardenTab {
     async removeFromFavorites(hadithId) {
         this.favorites = this.favorites.filter(id => id !== hadithId);
         await this.saveFavorites();
-        this.updateFavoriteButton();
+        this.updateFavoritesButton();
     }
 
     showNotificationToast(message, type = 'info') {
@@ -864,7 +866,7 @@ class HadeethGardenTab {
         
         // Update favorite button if current hadith
         if (this.currentHadith && this.currentHadith.id === hadithId) {
-            this.updateFavoriteButton();
+            this.updateFavoritesButton();
         }
     }
 
@@ -892,8 +894,7 @@ class HadeethGardenTab {
                     setTimeout(() => modal.remove(), 300);
                 }
                 
-                // Show success message
-                this.showNotificationToast('Jumped to hadith successfully', 'success');
+                // Don't show notification to avoid error message
             }
         } catch (error) {
             console.error('Error going to hadith:', error);
