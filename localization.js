@@ -277,7 +277,7 @@ class HadeethLocalization {
             'The Book of Jihad': 'كتاب الجهاد',
             'The Book of Knowledge': 'كتاب العلم',
             'The Book of Miscellaneous ahadith of Significant Values': 'كتاب المنثورات والملح',
-            'The Book of Miscellany': 'كتاب المنثورات والملح',
+            'The Book of Miscellany': 'كتاب المقدمات',
             'The Book of Praise and Gratitude to Allah': 'كتاب الحمد والشكر لله تعالى',
             'The Book of Supplicating Allah to Exalt the Mention of Allah\'s Messenger': 'كتاب الصلاة على رسول الله صلى الله عليه وسلم',
             'The Book of the Etiquette of Sleeping, Lying and Sitting etc': 'كتاب آداب النوم والاضطجاع والجلوس',

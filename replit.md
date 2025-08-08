@@ -82,6 +82,12 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Enhanced Gamification**: Achievement system fully supports Arabic with proper RTL text display
 - ✅ **Updated Extension Package**: Final package includes complete Arabic localization fixes
 
+### Arabic Chapter Name Correction (August 8, 2025)
+- ✅ **Corrected Chapter Title**: "The Book of Miscellany" now properly displays as "كتاب المقدمات" in Arabic
+- ✅ **Authentic Translation**: Changed from "كتاب المنثورات والملح" to correct "كتاب المقدمات" (The Book of Introductions/Preambles)
+- ✅ **Updated Localization**: Chapter mapping now uses proper Arabic terminology for first chapter of Riyad as-Salihin
+- ✅ **Extension Package Updated**: Latest package includes corrected chapter name localization
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
