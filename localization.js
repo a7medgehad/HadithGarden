@@ -5,7 +5,7 @@ class HadeethLocalization {
         this.translations = {
             'en': {
                 // App Title
-                'app.title': 'Hadith Garden Tab',
+                'app.title': 'Hadith Garden',
                 'app.subtitle': 'Daily Hadith from the Garden of the Righteous',
                 
                 // Loading and Error States

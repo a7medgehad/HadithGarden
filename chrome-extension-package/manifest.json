@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Hadith Garden Tab",
+  "name": "Hadith Garden",
   "version": "1.0.0",
   "description": "Replace your new tab with sequential hadith from Riyāḍ al-Ṣāliḥīn in an elegant Islamic garden theme",
   "permissions": [

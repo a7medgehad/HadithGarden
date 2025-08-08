@@ -1,6 +1,6 @@
 # Overview
 
-Hadeeth Garden Tab is a Chrome Extension (Manifest V3) that replaces the new tab page with sequential hadith from Riyāḍ al-Ṣāliḥīn. The extension features an elegant Islamic garden theme and provides a focused, peaceful reading experience for users wanting to incorporate Islamic teachings into their daily browsing routine.
+Hadith Garden is a Chrome Extension (Manifest V3) that replaces the new tab page with sequential hadith from Riyāḍ al-Ṣāliḥīn. The extension features an elegant Islamic garden theme and provides a focused, peaceful reading experience for users wanting to incorporate Islamic teachings into their daily browsing routine.
 
 The application displays hadith in proper sequence (not random), automatically tracking reading progress and providing both Arabic text and English translations. It includes favorites management, customizable display settings, and direct integration with sunnah.com for additional context.
 
@@ -27,7 +27,7 @@ The application displays hadith in proper sequence (not random), automatically t
     * "مواظب الأسبوع" (Week Consistent)
     * "نجم الشهر" (Star of the Month)
     * "طالب علم مجتهد" (Diligent Knowledge Seeker)
-- ✅ **Updated English Title**: Changed from "Garden Tab – Riyāḍ al-Ṣāliḥīn" to "Hadith Garden Tab"
+- ✅ **Updated English Title**: Changed from "Garden Tab – Riyāḍ al-Ṣāliḥīn" to "Hadith Garden"
 - ✅ **Daily Progress Persistence**: Fixed browser restart issues with proper async data management
 - ✅ **Western Arabic Numerals**: Changed to standard numerals (1,2,3) for better readability
 - ✅ **Fixed Favorites System**: Complete modal functionality with working close button, remove hadith, and jump-to features

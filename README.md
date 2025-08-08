@@ -1,4 +1,4 @@
-# 🌿 Hadith Garden Tab - Chrome Extension
+# 🌿 Hadith Garden - Chrome Extension
 
 A Chrome Extension (Manifest V3) that transforms your New Tab page into a peaceful Islamic garden experience, featuring the complete collection of 1,896 authentic hadith from Riyāḍ al-Ṣāliḥīn (The Gardens of the Righteous) with full Arabic/English support, advanced search functionality, and comprehensive offline capabilities.
 

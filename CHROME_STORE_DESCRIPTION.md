@@ -1,14 +1,14 @@
-# Hadith Garden Tab - Chrome Web Store Description
+# Hadith Garden - Chrome Web Store Description
 
 ## Title
-Hadith Garden Tab - Riyāḍ al-Ṣāliḥīn Daily Hadith Reader
+Hadith Garden - Riyāḍ al-Ṣāliḥīn Daily Hadith Reader
 
 ## Short Description
 Transform your new tab into a peaceful Islamic garden featuring sequential hadith from the complete Riyāḍ al-Ṣāliḥīn collection with Arabic/English support.
 
 ## Detailed Description
 
-**Experience Islamic Wisdom Daily with Hadith Garden Tab**
+**Experience Islamic Wisdom Daily with Hadith Garden**
 
 Transform every new tab into a moment of spiritual reflection with our beautiful Islamic garden-themed extension. Featuring the complete authentic collection of 1,896 hadith from Riyāḍ al-Ṣāliḥīn (The Gardens of the Righteous), this extension creates a peaceful reading experience that integrates seamlessly into your daily browsing routine.
 

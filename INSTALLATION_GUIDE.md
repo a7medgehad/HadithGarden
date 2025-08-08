@@ -1,17 +1,17 @@
-# 🚀 Hadith Garden Tab - Installation Guide
+# 🚀 Hadith Garden - Installation Guide
 
 ## Quick Installation (Chrome Web Store)
 
 1. **Visit Chrome Web Store** (when published)
-   - Search for "Hadith Garden Tab"
+   - Search for "Hadith Garden"
    - Click "Add to Chrome"
    - Extension will immediately replace your new tab page
 
 ## Manual Installation (Developer Mode)
 
 ### Step 1: Download Extension
-- Download `hadith-garden-tab-chrome-extension.zip` from the releases
-- Extract the ZIP file to a folder (e.g., `hadith-garden-tab/`)
+- Download `hadith-garden-chrome-extension.zip` from the releases
+- Extract the ZIP file to a folder (e.g., `hadith-garden/`)
 
 ### Step 2: Enable Developer Mode
 1. Open Chrome browser
