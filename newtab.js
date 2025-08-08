@@ -317,26 +317,38 @@ class HadeethGardenTab {
             feather.replace();
         }
         
-        // Force apply star color after feather replace with multiple attempts
+        // Force apply star color immediately and with retries
         const applyStarColor = (attempt = 0) => {
-            const starIcon = favoritesBtn.querySelector('svg');
-            if (starIcon) {
+            const starIcons = favoritesBtn.querySelectorAll('svg, .star-icon');
+            let iconFound = false;
+            
+            starIcons.forEach(icon => {
+                iconFound = true;
                 if (isFavorited) {
-                    starIcon.style.setProperty('color', '#FFD700', 'important');
-                    starIcon.style.setProperty('fill', '#FFD700', 'important');
-                    starIcon.classList.add('favorited-star');
+                    // Force gold color for favorited state
+                    icon.style.setProperty('color', '#FFD700', 'important');
+                    icon.style.setProperty('fill', '#FFD700', 'important');
+                    icon.style.setProperty('stroke', '#FFD700', 'important');
+                    icon.classList.add('favorited-star');
                 } else {
-                    starIcon.style.removeProperty('color');
-                    starIcon.style.removeProperty('fill');
-                    starIcon.classList.remove('favorited-star');
+                    // Remove custom styling for non-favorited state
+                    icon.style.removeProperty('color');
+                    icon.style.removeProperty('fill');
+                    icon.style.removeProperty('stroke');
+                    icon.classList.remove('favorited-star');
                 }
-            } else if (attempt < 3) {
-                // Retry if star icon not found yet
-                setTimeout(() => applyStarColor(attempt + 1), 50);
+            });
+            
+            // Retry if no icons found and attempts remaining
+            if (!iconFound && attempt < 5) {
+                setTimeout(() => applyStarColor(attempt + 1), 100);
             }
         };
         
-        setTimeout(() => applyStarColor(), 50);
+        // Apply immediately and with delay
+        applyStarColor();
+        setTimeout(() => applyStarColor(), 100);
+        setTimeout(() => applyStarColor(), 300);
     }
 
     showErrorState() {

@@ -13,9 +13,9 @@
         <header class="header">
             <h1 class="title">
                 <span class="icon">🌿</span>
-                Hadith Garden Settings
+                <span data-i18n="settings.title">Hadith Garden Settings</span>
             </h1>
-            <p class="subtitle">Customize your Islamic garden experience</p>
+            <p class="subtitle" data-i18n="settings.subtitle">Customize your Islamic garden experience</p>
         </header>
 
         <main class="main-content">
@@ -24,12 +24,12 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="eye"></i>
-                        Display Settings
+                        <span data-i18n="settings.display">Display Settings</span>
                     </h2>
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Show Arabic Text</span>
+                            <span class="label-text" data-i18n="settings.showArabic">Show Arabic Text</span>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="showArabic" checked>
                                 <span class="slider"></span>
@@ -39,7 +39,7 @@
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Show English Translation</span>
+                            <span class="label-text" data-i18n="settings.showEnglish">Show English Translation</span>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="showEnglish" checked>
                                 <span class="slider"></span>
@@ -49,13 +49,13 @@
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Font Size</span>
+                            <span class="label-text" data-i18n="settings.fontSize">Font Size</span>
                             <span class="font-size-value" id="fontSizeValue">16px</span>
                         </label>
                         <input type="range" id="fontSize" min="12" max="24" value="16" class="slider-range">
                         <div class="range-labels">
-                            <span>Small</span>
-                            <span>Large</span>
+                            <span data-i18n="settings.fontSmall">Small</span>
+                            <span data-i18n="settings.fontLarge">Large</span>
                         </div>
                     </div>
                 </section>
@@ -64,33 +64,33 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="palette"></i>
-                        Theme Settings
+                        <span data-i18n="settings.theme">Theme Settings</span>
                     </h2>
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Theme</span>
+                            <span class="label-text" data-i18n="settings.themeLabel">Theme</span>
                         </label>
                         <div class="theme-options">
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="auto" checked>
                                 <span class="theme-card">
                                     <i data-feather="monitor"></i>
-                                    <span>Auto</span>
+                                    <span data-i18n="settings.themeAuto">Auto</span>
                                 </span>
                             </label>
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="light">
                                 <span class="theme-card">
                                     <i data-feather="sun"></i>
-                                    <span>Light</span>
+                                    <span data-i18n="settings.themeLight">Light</span>
                                 </span>
                             </label>
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="dark">
                                 <span class="theme-card">
                                     <i data-feather="moon"></i>
-                                    <span>Dark</span>
+                                    <span data-i18n="settings.themeDark">Dark</span>
                                 </span>
                             </label>
                         </div>
@@ -101,20 +101,20 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="book-open"></i>
-                        Reading Progress
+                        <span data-i18n="settings.progress">Reading Progress</span>
                     </h2>
                     
                     <div class="progress-info">
                         <div class="progress-stat">
-                            <span class="stat-label">Current Hadith:</span>
+                            <span class="stat-label" data-i18n="settings.currentHadith">Current Hadith:</span>
                             <span class="stat-value" id="currentHadithNumber">Loading...</span>
                         </div>
                         <div class="progress-stat">
-                            <span class="stat-label">Total Hadiths:</span>
+                            <span class="stat-label" data-i18n="settings.totalHadiths">Total Hadiths:</span>
                             <span class="stat-value" id="totalHadiths">Loading...</span>
                         </div>
                         <div class="progress-stat">
-                            <span class="stat-label">Progress:</span>
+                            <span class="stat-label" data-i18n="settings.progressLabel">Progress:</span>
                             <span class="stat-value" id="progressPercentage">Loading...</span>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                     
                     <button id="resetProgressBtn" class="action-btn secondary">
                         <i data-feather="refresh-cw"></i>
-                        Reset to First Hadith
+                        <span data-i18n="settings.resetProgress">Reset to First Hadith</span>
                     </button>
                 </section>
 
@@ -133,12 +133,12 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="star"></i>
-                        Favorites Management
+                        <span data-i18n="settings.favorites">Favorites Management</span>
                     </h2>
                     
                     <div class="favorites-info">
                         <div class="favorites-stat">
-                            <span class="stat-label">Favorited Hadiths:</span>
+                            <span class="stat-label" data-i18n="settings.favoritedHadiths">Favorited Hadiths:</span>
                             <span class="stat-value" id="favoritesCount">Loading...</span>
                         </div>
                     </div>
@@ -146,18 +146,18 @@
                     <div class="favorites-actions">
                         <button id="exportFavoritesBtn" class="action-btn secondary">
                             <i data-feather="download"></i>
-                            Export Favorites
+                            <span data-i18n="settings.exportFavorites">Export Favorites</span>
                         </button>
                         <button id="importFavoritesBtn" class="action-btn secondary">
                             <i data-feather="upload"></i>
-                            Import Favorites
+                            <span data-i18n="settings.importFavorites">Import Favorites</span>
                         </button>
                         <input type="file" id="importFile" accept=".json" style="display: none;">
                     </div>
                     
                     <button id="clearFavoritesBtn" class="action-btn danger">
                         <i data-feather="trash-2"></i>
-                        Clear All Favorites
+                        <span data-i18n="settings.clearFavorites">Clear All Favorites</span>
                     </button>
                 </section>
 
