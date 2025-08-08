@@ -529,13 +529,16 @@ body {
 
 .footer {
     margin-top: 2rem;
+    display: block !important;
+    visibility: visible !important;
 }
 
 .toolbar {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    visibility: visible !important;
 }
 
 .toolbar-btn {
@@ -546,11 +549,12 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 500;
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
     font-size: 0.9rem;
+    visibility: visible !important;
 }
 
 .toolbar-btn:hover {
