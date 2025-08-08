@@ -227,6 +227,11 @@ class HadeethLocalization {
             const key = element.getAttribute('data-i18n-title');
             element.title = this.t(key);
         });
+        
+        // Trigger custom event for language change
+        window.dispatchEvent(new CustomEvent('languageChanged', { 
+            detail: { language: this.currentLanguage }
+        }));
     }
     
     formatNumber(number) {

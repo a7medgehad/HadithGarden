@@ -338,6 +338,9 @@ class HadeethGardenTab {
             this.settings.language = e.target.value;
             this.localization.setLanguage(this.settings.language);
             this.saveSettings();
+            
+            // Update favorites button text immediately when language changes
+            this.updateFavoritesButton();
         });
 
         // Daily goal input
@@ -467,6 +470,11 @@ class HadeethGardenTab {
             if (this.settings.theme === 'auto') {
                 this.applyTheme();
             }
+        });
+        
+        // Listen for language changes to update favorites button
+        window.addEventListener('languageChanged', () => {
+            this.updateFavoritesButton();
         });
     }
 

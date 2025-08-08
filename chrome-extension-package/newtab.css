@@ -569,7 +569,7 @@ body {
     height: 16px;
 }
 
-/* Responsive design */
+/* Responsive design - only stack on mobile for Arabic or very small screens */
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
@@ -584,6 +584,20 @@ body {
         margin-bottom: 2rem;
     }
     
+    /* Only stack buttons on very small screens or when in Arabic */
+    [dir="rtl"] .toolbar,
+    .toolbar {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .hadith-meta {
+        justify-content: center;
+    }
+}
+
+/* Stack buttons only on very small screens */
+@media (max-width: 480px) {
     .toolbar {
         flex-direction: column;
         align-items: center;
@@ -593,10 +607,6 @@ body {
         width: 100%;
         justify-content: center;
         max-width: 300px;
-    }
-    
-    .hadith-meta {
-        justify-content: center;
     }
 }
 

@@ -43,8 +43,11 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Removed Navigation Error Messages**: Eliminated error notifications when jumping to favorite hadith
 - ✅ **Fixed Arabic Favorites Modal**: Complete Arabic localization for favorites modal including title, buttons, and text display
 - ✅ **Enhanced RTL Support**: Proper text direction and alignment for Arabic content in favorites modal
+- ✅ **Fixed Button Layout**: English interface keeps buttons in one row, better responsive design
+- ✅ **Fixed Language Switching**: Favorites button text updates immediately when switching languages
+- ✅ **Enhanced Language System**: Added custom events for real-time UI updates on language change
 - ✅ **GitHub Repository Integration**: Connected to https://github.com/a7medgehad/HadithGarden.git
-- ✅ **Updated Extension Package**: Fresh zip file with all bug fixes and Arabic localization included
+- ✅ **Updated Extension Package**: Fresh zip file with all UI and localization fixes included
 - ✅ **Enhanced CSS Specificity**: Added !important rules for star icon coloring to prevent override
 
 ### Latest Complete Feature Implementation (August 8, 2025)
