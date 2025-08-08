@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Hadeeth Garden Tab",
+  "name": "Hadith Garden Tab",
   "version": "1.0.0",
   "description": "Replace your new tab with sequential hadith from Riyāḍ al-Ṣāliḥīn in an elegant Islamic garden theme",
   "permissions": [
@@ -18,7 +18,7 @@
   },
   "action": {
     "default_popup": "options.html",
-    "default_title": "Hadeeth Garden Tab Settings",
+    "default_title": "Hadith Garden Tab Settings",
     "default_icon": {
       "16": "icons/icon-16.svg",
       "48": "icons/icon-48.svg",

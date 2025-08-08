@@ -5,7 +5,8 @@ class HadeethGardenOptions {
             showArabic: true,
             showEnglish: true,
             fontSize: 16,
-            theme: 'auto'
+            theme: 'auto',
+            language: 'en'
         };
         this.favorites = [];
         this.hadithData = [];
@@ -98,7 +99,11 @@ class HadeethGardenOptions {
             input.checked = input.value === this.settings.theme;
         });
 
-
+        // Update language settings
+        const languageInputs = document.querySelectorAll('input[name="language"]');
+        languageInputs.forEach(input => {
+            input.checked = input.value === this.settings.language;
+        });
 
         // Apply current theme to options page
         this.applyTheme();
@@ -145,6 +150,17 @@ class HadeethGardenOptions {
                 if (e.target.checked) {
                     this.settings.theme = e.target.value;
                     this.applyTheme();
+                }
+            });
+        });
+
+        // Language settings
+        const languageInputs = document.querySelectorAll('input[name="language"]');
+        languageInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.settings.language = e.target.value;
+                    this.updateLanguage();
                 }
             });
         });
@@ -204,6 +220,22 @@ class HadeethGardenOptions {
             }
         });
         observer.observe(notification, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    updateLanguage() {
+        // Set document direction and language
+        const isRTL = this.settings.language === 'ar';
+        document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+        document.documentElement.lang = this.settings.language;
+        
+        // Initialize localization if not already done
+        if (!window.localization) {
+            window.localization = new HadeethLocalization();
+        }
+        
+        // Update localization and save settings
+        window.localization.setLanguage(this.settings.language);
+        this.saveSettings();
     }
 
     async saveSettings() {
