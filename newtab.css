@@ -657,6 +657,22 @@ button:focus-visible {
     fill: var(--accent-gold) !important;
 }
 
+/* Additional specificity for star icon when favorited */
+.toolbar-btn.favorited svg {
+    color: var(--accent-gold) !important;
+    fill: var(--accent-gold) !important;
+}
+
+.toolbar-btn .favorited-star {
+    color: var(--accent-gold) !important;
+    fill: var(--accent-gold) !important;
+}
+
+.toolbar-btn svg.favorited-star {
+    color: var(--accent-gold) !important;
+    fill: var(--accent-gold) !important;
+}
+
 @keyframes starPulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }

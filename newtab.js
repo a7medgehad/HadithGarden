@@ -316,6 +316,24 @@ class HadeethGardenTab {
         if (typeof feather !== 'undefined') {
             feather.replace();
         }
+        
+        // Force apply star color after feather replace
+        setTimeout(() => {
+            const starIcon = favoritesBtn.querySelector('.star-icon');
+            if (starIcon && isFavorited) {
+                starIcon.style.color = 'var(--accent-gold)';
+                starIcon.style.fill = 'var(--accent-gold)';
+            }
+        }, 50);
+        
+        // Force apply star color after feather replace
+        setTimeout(() => {
+            const starIcon = favoritesBtn.querySelector('.star-icon');
+            if (starIcon && isFavorited) {
+                starIcon.style.color = 'var(--accent-gold)';
+                starIcon.style.fill = 'var(--accent-gold)';
+            }
+        }, 50);
     }
 
     showErrorState() {
