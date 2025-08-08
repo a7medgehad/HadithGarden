@@ -24,5 +24,15 @@
       "48": "icons/icon-48.svg",
       "128": "icons/icon-128.svg"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "data/riyadussalihin.json", 
+        "icons/*.svg",
+        "libs/feather.min.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

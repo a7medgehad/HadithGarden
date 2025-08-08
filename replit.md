@@ -47,7 +47,9 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Arabic Chapter Mapping**: Added comprehensive mapping of all 20 chapter names to authentic Arabic titles
 - ✅ **Enhanced Arabic Numbers**: Improved hadith number display with proper "الحديث رقم" prefix
 - ✅ **Comprehensive Testing**: All Arabic functionality verified and working correctly
-- ✅ **Updated Chrome Package**: Extension zip file includes all Arabic improvements (631KB)
+- ✅ **Fixed CSP Errors**: Resolved Content Security Policy violations by downloading Feather Icons locally
+- ✅ **Enhanced Security**: Removed external CDN dependencies to comply with Chrome extension security standards
+- ✅ **Updated Chrome Package**: Extension zip file includes all improvements with local assets (707KB)
 
 # User Preferences
 
