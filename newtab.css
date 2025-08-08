@@ -647,30 +647,29 @@ button:focus-visible {
 
 /* Animation for favorites button when added */
 .toolbar-btn .star-icon.favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
+    color: #FFD700 !important;
+    fill: #FFD700 !important;
     animation: starPulse 0.6s ease-out;
 }
 
 .toolbar-btn.favorited .star-icon {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
+    color: #FFD700 !important;
+    fill: #FFD700 !important;
 }
 
-/* Additional specificity for star icon when favorited */
 .toolbar-btn.favorited svg {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-}
-
-.toolbar-btn .favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
+    color: #FFD700 !important;
+    fill: #FFD700 !important;
 }
 
 .toolbar-btn svg.favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
+    color: #FFD700 !important;
+    fill: #FFD700 !important;
+}
+
+.favorited-star {
+    color: #FFD700 !important;
+    fill: #FFD700 !important;
 }
 
 @keyframes starPulse {

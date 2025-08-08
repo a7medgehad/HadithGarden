@@ -317,23 +317,26 @@ class HadeethGardenTab {
             feather.replace();
         }
         
-        // Force apply star color after feather replace
-        setTimeout(() => {
-            const starIcon = favoritesBtn.querySelector('.star-icon');
-            if (starIcon && isFavorited) {
-                starIcon.style.color = 'var(--accent-gold)';
-                starIcon.style.fill = 'var(--accent-gold)';
+        // Force apply star color after feather replace with multiple attempts
+        const applyStarColor = (attempt = 0) => {
+            const starIcon = favoritesBtn.querySelector('svg');
+            if (starIcon) {
+                if (isFavorited) {
+                    starIcon.style.setProperty('color', '#FFD700', 'important');
+                    starIcon.style.setProperty('fill', '#FFD700', 'important');
+                    starIcon.classList.add('favorited-star');
+                } else {
+                    starIcon.style.removeProperty('color');
+                    starIcon.style.removeProperty('fill');
+                    starIcon.classList.remove('favorited-star');
+                }
+            } else if (attempt < 3) {
+                // Retry if star icon not found yet
+                setTimeout(() => applyStarColor(attempt + 1), 50);
             }
-        }, 50);
+        };
         
-        // Force apply star color after feather replace
-        setTimeout(() => {
-            const starIcon = favoritesBtn.querySelector('.star-icon');
-            if (starIcon && isFavorited) {
-                starIcon.style.color = 'var(--accent-gold)';
-                starIcon.style.fill = 'var(--accent-gold)';
-            }
-        }, 50);
+        setTimeout(() => applyStarColor(), 50);
     }
 
     showErrorState() {
