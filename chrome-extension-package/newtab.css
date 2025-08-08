@@ -29,7 +29,7 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
     background: var(--background);
     color: var(--text-dark);
     min-height: 100vh;
@@ -507,7 +507,7 @@ body {
 }
 
 .arabic-text {
-    font-family: 'Amiri', serif;
+    font-family: 'Arabic Typesetting', 'Times New Roman', serif;
     font-size: clamp(1.25rem, 3vw, 1.75rem);
     line-height: 2;
     color: var(--text-dark);
@@ -847,7 +847,7 @@ button:focus-visible {
 }
 
 .arabic-preview {
-    font-family: 'Amiri', serif;
+    font-family: 'Arabic Typesetting', 'Times New Roman', serif;
     font-size: 1rem;
     line-height: 1.8;
     color: var(--text-dark);

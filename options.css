@@ -585,7 +585,7 @@ input:focus-visible {
 .language-native {
     font-size: 0.875rem;
     opacity: 0.8;
-    font-family: 'Amiri', serif;
+    font-family: 'Arabic Typesetting', 'Times New Roman', serif;
 }
 
 /* RTL Support for Options */
