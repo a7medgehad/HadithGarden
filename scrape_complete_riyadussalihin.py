@@ -13,7 +13,7 @@ import re
 def scrape_riyadussalihin_complete():
     """Scrape all hadith from Riyad as-Salihin with proper organization"""
     
-    # Chapter mapping with correct Arabic names and hadith ranges
+    # Chapter mapping with correct Arabic names and hadith ranges (20 chapters total)
     chapters = [
         {
             "chapterNumber": 0,
