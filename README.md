@@ -5,9 +5,9 @@ Transform your new tab into a peaceful Islamic garden experience featuring the c
 ## ✨ Features
 
 ### 📖 Complete Authentic Collection
-- **1,896 Hadith** from Imam An-Nawawi's Riyāḍ al-Ṣāliḥīn
+- **1,896 Hadith** scraped directly from sunnah.com
 - **Sequential Reading** that remembers your exact position
-- **Authentic Sources** with direct links to sunnah.com
+- **Authentic Sources** with direct links using format `riyadussalihin:1` through `:1896`
 - **Offline Capability** - works without internet connection
 
 ### 🌍 Bilingual Support
