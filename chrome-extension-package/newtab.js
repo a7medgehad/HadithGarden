@@ -568,7 +568,7 @@ class HadeethGardenTab {
         }
 
         if (this.favorites.length === 0) {
-            this.showNotificationToast('No favorites saved yet. Add some hadith to your favorites first!', 'info');
+            this.showNotificationToast(this.localization.t('favorites.empty'), 'info');
             return;
         }
 
@@ -593,6 +593,7 @@ class HadeethGardenTab {
         // Create modal content
         const modalContent = document.createElement('div');
         modalContent.className = 'favorites-modal-content';
+        const isArabic = this.settings.language === 'ar';
         modalContent.style.cssText = `
             background: var(--surface-color);
             border-radius: 16px;
@@ -603,6 +604,7 @@ class HadeethGardenTab {
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             transform: scale(0.8);
             transition: transform 0.3s ease;
+            direction: ${isArabic ? 'rtl' : 'ltr'};
         `;
         
         // Modal header
@@ -617,7 +619,7 @@ class HadeethGardenTab {
             background: var(--header-bg);
         `;
         modalHeader.innerHTML = `
-            <h2 style="margin: 0; color: var(--text-primary); font-size: 1.5rem;">My Favorite Hadith</h2>
+            <h2 style="margin: 0; color: var(--text-primary); font-size: 1.5rem;">${this.localization.t('favorites.title')}</h2>
             <button class="close-modal-btn" style="
                 background: none;
                 border: none;
@@ -626,7 +628,7 @@ class HadeethGardenTab {
                 padding: 8px;
                 border-radius: 6px;
                 transition: all 0.2s ease;
-            " aria-label="Close">
+            " aria-label="${this.localization.t('favorites.close')}">
                 <i data-feather="x" style="width: 20px; height: 20px;"></i>
             </button>
         `;
@@ -667,6 +669,25 @@ class HadeethGardenTab {
                 transition: all 0.2s ease;
             `;
             
+            // Get display text based on language and settings
+            const isArabic = this.settings.language === 'ar';
+            const showArabicText = this.settings.showArabic && hadith.arabicText;
+            const showEnglishText = this.settings.showEnglish && hadith.englishText;
+            
+            let displayText = '';
+            if (isArabic && showArabicText) {
+                displayText = hadith.arabicText.substring(0, 150) + (hadith.arabicText.length > 150 ? '...' : '');
+            } else if (showEnglishText) {
+                displayText = hadith.englishText.substring(0, 150) + (hadith.englishText.length > 150 ? '...' : '');
+            } else if (showArabicText) {
+                displayText = hadith.arabicText.substring(0, 150) + (hadith.arabicText.length > 150 ? '...' : '');
+            } else {
+                displayText = hadith.englishText.substring(0, 150) + (hadith.englishText.length > 150 ? '...' : '');
+            }
+            
+            const hadithNumberText = isArabic ? `${this.localization.t('hadith.number')} ${hadith.id}` : `Hadith ${hadith.id}`;
+            const bookName = isArabic ? 'رياض الصالحين' : 'Riyāḍ al-Ṣāliḥīn';
+            
             favoriteItem.innerHTML = `
                 <div class="favorite-content" style="flex: 1; min-width: 0;">
                     <div class="favorite-hadith-info" style="
@@ -675,6 +696,7 @@ class HadeethGardenTab {
                         margin-bottom: 0.75rem;
                         font-size: 0.875rem;
                         color: var(--text-secondary);
+                        direction: ${isArabic ? 'rtl' : 'ltr'};
                     ">
                         <span class="hadith-number" style="
                             background: var(--primary-green);
@@ -682,15 +704,18 @@ class HadeethGardenTab {
                             padding: 0.25rem 0.75rem;
                             border-radius: 20px;
                             font-weight: 500;
-                        ">Hadith ${hadith.id}</span>
-                        <span class="hadith-book">Riyāḍ al-Ṣāliḥīn</span>
+                        ">${hadithNumberText}</span>
+                        <span class="hadith-book">${bookName}</span>
                     </div>
                     <div class="favorite-text" style="
                         color: var(--text-primary);
                         line-height: 1.6;
                         font-size: 0.95rem;
+                        direction: ${isArabic && showArabicText ? 'rtl' : 'ltr'};
+                        text-align: ${isArabic && showArabicText ? 'right' : 'left'};
+                        font-family: ${isArabic && showArabicText ? 'Arabic Typesetting, Times New Roman, serif' : 'Inter, system-ui, sans-serif'};
                     ">
-                        ${hadith.englishText.substring(0, 150)}${hadith.englishText.length > 150 ? '...' : ''}
+                        ${displayText}
                     </div>
                 </div>
                 <div class="favorite-actions" style="
@@ -711,9 +736,9 @@ class HadeethGardenTab {
                         align-items: center;
                         gap: 0.5rem;
                         transition: all 0.2s ease;
-                    " title="Jump to this hadith">
+                    " title="${this.localization.t('favorites.goto')}">
                         <i data-feather="external-link" style="width: 16px; height: 16px;"></i>
-                        Go to
+                        ${this.localization.t('favorites.goto')}
                     </button>
                     <button class="action-btn remove-favorite-btn" data-hadith-id="${hadith.id}" style="
                         background: #dc3545;
@@ -727,9 +752,9 @@ class HadeethGardenTab {
                         align-items: center;
                         gap: 0.5rem;
                         transition: all 0.2s ease;
-                    " title="Remove from favorites">
+                    " title="${this.localization.t('favorites.remove')}">
                         <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
-                        Remove
+                        ${this.localization.t('favorites.remove')}
                     </button>
                 </div>
             `;

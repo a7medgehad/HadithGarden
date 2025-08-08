@@ -63,10 +63,11 @@ class HadeethLocalization {
                 
                 // Favorites
                 'favorites.view': 'View Favorites',
-                'favorites.title': 'Your Favorite Hadith',
+                'favorites.title': 'My Favorite Hadith',
                 'favorites.empty': 'You haven\'t saved any favorites yet.',
                 'favorites.close': 'Close',
-                'favorites.remove': 'Remove from Favorites',
+                'favorites.remove': 'Remove',
+                'favorites.goto': 'Go to',
                 
                 // Buttons
                 'button.next': 'Next',
@@ -152,10 +153,11 @@ class HadeethLocalization {
                 
                 // Favorites
                 'favorites.view': 'عرض المفضلة',
-                'favorites.title': 'أحاديثك المفضلة',
+                'favorites.title': 'أحاديثي المفضلة',
                 'favorites.empty': 'لم تقم بحفظ أي أحاديث في المفضلة بعد.',
                 'favorites.close': 'إغلاق',
-                'favorites.remove': 'إزالة من المفضلة',
+                'favorites.remove': 'إزالة',
+                'favorites.goto': 'الانتقال إلى',
                 
                 // Buttons Arabic
                 'button.next': 'التالي',
