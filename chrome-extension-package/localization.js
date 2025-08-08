@@ -68,6 +68,18 @@ class HadeethLocalization {
                 'favorites.close': 'Close',
                 'favorites.remove': 'Remove from Favorites',
                 
+                // Buttons
+                'button.next': 'Next',
+                'button.previous': 'Previous',
+                
+                // Search
+                'search.title': 'Search Hadith',
+                'search.placeholder': 'Search in Arabic or English text...',
+                'search.all': 'All Languages',
+                'search.arabic': 'Arabic Only',
+                'search.english': 'English Only',
+                'search.noResults': 'No hadith found matching your search.',
+                
                 // Notifications
                 'notifications.enable': 'Enable Daily Notifications',
                 'notifications.time': 'Notification Time',
@@ -144,6 +156,18 @@ class HadeethLocalization {
                 'favorites.empty': 'لم تقم بحفظ أي أحاديث في المفضلة بعد.',
                 'favorites.close': 'إغلاق',
                 'favorites.remove': 'إزالة من المفضلة',
+                
+                // Buttons Arabic
+                'button.next': 'التالي',
+                'button.previous': 'السابق',
+                
+                // Search Arabic
+                'search.title': 'البحث في الأحاديث',
+                'search.placeholder': 'ابحث في النص العربي أو الإنجليزي...',
+                'search.all': 'جميع اللغات',
+                'search.arabic': 'العربية فقط',
+                'search.english': 'الإنجليزية فقط',
+                'search.noResults': 'لم يتم العثور على أحاديث تطابق البحث.',
                 
                 // Notifications
                 'notifications.enable': 'تفعيل التذكيرات اليومية',

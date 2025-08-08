@@ -3,6 +3,7 @@ class HadeethGardenTab {
     constructor() {
         this.currentHadith = null;
         this.hadithData = [];
+        this.currentIndex = 0;
         this.settings = {
             showArabic: true,
             showEnglish: true,
@@ -14,6 +15,7 @@ class HadeethGardenTab {
         this.favorites = [];
         this.localization = new HadeethLocalization();
         this.gamification = new HadeethGamification(this.localization);
+        this.filteredHadithData = [];
         this.init();
     }
 
@@ -141,7 +143,7 @@ class HadeethGardenTab {
         try {
             let currentIndex = 0;
             
-            // Get current index from storage
+            // Get current index from storage - DON'T auto-increment on load
             if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
                 const result = await chrome.storage.local.get(['currentIndex']);
                 currentIndex = result.currentIndex || 0;
@@ -156,18 +158,9 @@ class HadeethGardenTab {
                 currentIndex = 0;
             }
             
-            // Get the hadith at current index
+            // Get the hadith at current index (DO NOT increment here)
             this.currentHadith = this.hadithData[currentIndex];
-            
-            // Increment index for next time, with wraparound
-            const nextIndex = (currentIndex + 1) % this.hadithData.length;
-            
-            // Save next index
-            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-                await chrome.storage.local.set({ currentIndex: nextIndex });
-            } else {
-                localStorage.setItem('hadeeth-garden-currentIndex', nextIndex.toString());
-            }
+            this.currentIndex = currentIndex;
             
             // Display the hadith
             this.displayHadith();
@@ -180,24 +173,14 @@ class HadeethGardenTab {
 
     async nextHadith() {
         try {
-            let currentIndex = 0;
+            // Increment to next hadith
+            const nextIndex = (this.currentIndex + 1) % this.hadithData.length;
             
-            // Get current index and increment manually
-            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-                const result = await chrome.storage.local.get(['currentIndex']);
-                currentIndex = result.currentIndex || 0;
-            } else {
-                const savedIndex = localStorage.getItem('hadeeth-garden-currentIndex');
-                currentIndex = savedIndex ? parseInt(savedIndex) : 0;
-            }
+            // Update current hadith and index
+            this.currentHadith = this.hadithData[nextIndex];
+            this.currentIndex = nextIndex;
             
-            // Get the hadith at current index
-            this.currentHadith = this.hadithData[currentIndex];
-            
-            // Increment index for next time
-            const nextIndex = (currentIndex + 1) % this.hadithData.length;
-            
-            // Save next index
+            // Save new index
             if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
                 await chrome.storage.local.set({ currentIndex: nextIndex });
             } else {
@@ -207,8 +190,36 @@ class HadeethGardenTab {
             // Display the hadith with animation
             this.displayHadith(true);
             
+            // Update gamification progress
+            await this.gamification.markHadithRead();
+            this.renderProgressSection();
+            
         } catch (error) {
             console.error('Error loading next hadith:', error);
+        }
+    }
+
+    async previousHadith() {
+        try {
+            // Decrement to previous hadith with wraparound
+            const prevIndex = this.currentIndex === 0 ? this.hadithData.length - 1 : this.currentIndex - 1;
+            
+            // Update current hadith and index
+            this.currentHadith = this.hadithData[prevIndex];
+            this.currentIndex = prevIndex;
+            
+            // Save new index
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                await chrome.storage.local.set({ currentIndex: prevIndex });
+            } else {
+                localStorage.setItem('hadeeth-garden-currentIndex', prevIndex.toString());
+            }
+            
+            // Display the hadith with animation
+            this.displayHadith(true);
+            
+        } catch (error) {
+            console.error('Error loading previous hadith:', error);
         }
     }
 
@@ -378,7 +389,20 @@ class HadeethGardenTab {
             this.showFavoritesModal();
         });
 
+        // Search button
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            this.showSearchModal();
+        });
 
+        // Previous button
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            this.previousHadith();
+        });
+
+        // Next button (explicit handler)
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            this.nextHadith();
+        });
         
         // Settings button
         document.getElementById('settingsBtn').addEventListener('click', () => {
@@ -392,9 +416,18 @@ class HadeethGardenTab {
         
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
+            // Skip if user is typing in an input field or search is open
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || 
+                document.getElementById('searchModal').style.display === 'block') {
+                return;
+            }
+            
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 this.nextHadith();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                this.previousHadith();
             } else if (e.key === 's' || e.key === 'S') {
                 e.preventDefault();
                 if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.openOptionsPage) {
@@ -405,6 +438,12 @@ class HadeethGardenTab {
             } else if (e.key === 'f' || e.key === 'F') {
                 e.preventDefault();
                 this.toggleFavorite();
+            } else if (e.key === '/' || (e.ctrlKey && e.key === 'k')) {
+                e.preventDefault();
+                this.showSearchModal();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                this.hideSearchModal();
             }
         });
 
@@ -821,6 +860,7 @@ class HadeethGardenTab {
             const hadithIndex = this.hadithData.findIndex(h => h.id === hadithId);
             if (hadithIndex !== -1) {
                 this.currentHadith = this.hadithData[hadithIndex];
+                this.currentIndex = hadithIndex;
                 
                 // Save the new index
                 if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
@@ -845,6 +885,137 @@ class HadeethGardenTab {
         } catch (error) {
             console.error('Error going to hadith:', error);
             this.showNotificationToast('Error loading hadith', 'error');
+        }
+    }
+
+    // Search functionality
+    showSearchModal() {
+        const modal = document.getElementById('searchModal');
+        const searchInput = document.getElementById('searchInput');
+        modal.style.display = 'block';
+        searchInput.focus();
+        
+        // Set up search event listeners if not already done
+        if (!searchInput.hasAttribute('data-listeners-added')) {
+            searchInput.addEventListener('input', (e) => {
+                this.performSearch(e.target.value);
+            });
+            
+            // Search filters
+            const filterInputs = document.querySelectorAll('input[name="searchLanguage"]');
+            filterInputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    this.performSearch(searchInput.value);
+                });
+            });
+            
+            // Modal close
+            modal.querySelector('.modal-close').addEventListener('click', () => {
+                this.hideSearchModal();
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.hideSearchModal();
+                }
+            });
+            
+            searchInput.setAttribute('data-listeners-added', 'true');
+        }
+    }
+
+    hideSearchModal() {
+        const modal = document.getElementById('searchModal');
+        modal.style.display = 'none';
+        document.getElementById('searchInput').value = '';
+        document.getElementById('searchResults').innerHTML = '';
+    }
+
+    performSearch(query) {
+        const resultsContainer = document.getElementById('searchResults');
+        
+        if (!query.trim()) {
+            resultsContainer.innerHTML = '';
+            return;
+        }
+
+        // Get selected language filter
+        const selectedFilter = document.querySelector('input[name="searchLanguage"]:checked').value;
+        
+        // Search through hadith data
+        const results = this.hadithData.filter((hadith, index) => {
+            const arabicMatch = hadith.arabicText && hadith.arabicText.toLowerCase().includes(query.toLowerCase());
+            const englishMatch = hadith.englishText && hadith.englishText.toLowerCase().includes(query.toLowerCase());
+            
+            switch (selectedFilter) {
+                case 'arabic':
+                    return arabicMatch;
+                case 'english':
+                    return englishMatch;
+                default:
+                    return arabicMatch || englishMatch;
+            }
+        });
+
+        // Display results
+        if (results.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="no-results">
+                    <p data-i18n="search.noResults">No hadith found matching your search.</p>
+                </div>
+            `;
+        } else {
+            resultsContainer.innerHTML = results.slice(0, 10).map((hadith, index) => {
+                const actualIndex = this.hadithData.indexOf(hadith);
+                return `
+                    <div class="search-result" data-index="${actualIndex}">
+                        <div class="search-result-meta">
+                            <span class="search-result-book">${this.localization.getArabicChapterName(hadith.chapter || 'رياض الصالحين')}</span>
+                            <span class="search-result-number">${this.localization.t('hadith.number')} ${this.localization.formatNumber(hadith.hadithNumber || hadith.id)}</span>
+                        </div>
+                        <div class="search-result-preview">
+                            ${hadith.arabicText ? `<div class="arabic-preview" dir="rtl">${this.truncateText(hadith.arabicText, 100)}</div>` : ''}
+                            ${hadith.englishText ? `<div class="english-preview">${this.truncateText(hadith.englishText, 150)}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click handlers to search results
+            resultsContainer.querySelectorAll('.search-result').forEach(result => {
+                result.addEventListener('click', () => {
+                    const index = parseInt(result.dataset.index);
+                    this.goToHadithByIndex(index);
+                    this.hideSearchModal();
+                });
+            });
+        }
+    }
+
+    truncateText(text, maxLength) {
+        if (text.length <= maxLength) return text;
+        return text.substring(0, maxLength) + '...';
+    }
+
+    async goToHadithByIndex(index) {
+        try {
+            // Update current hadith and index
+            this.currentHadith = this.hadithData[index];
+            this.currentIndex = index;
+            
+            // Save new index
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                await chrome.storage.local.set({ currentIndex: index });
+            } else {
+                localStorage.setItem('hadeeth-garden-currentIndex', index.toString());
+            }
+            
+            // Display the hadith with animation
+            this.displayHadith(true);
+            
+        } catch (error) {
+            console.error('Error navigating to hadith:', error);
         }
     }
 

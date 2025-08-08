@@ -75,11 +75,25 @@
                     <span data-i18n="hadith.addToFavorites">Add to Favorites</span>
                 </button>
                 
+                <button id="searchBtn" class="toolbar-btn" data-i18n-title="search.title">
+                    <i data-feather="search"></i>
+                    <span data-i18n="search.title">Search</span>
+                </button>
+                
+                <button id="prevBtn" class="toolbar-btn" data-i18n-title="button.previous">
+                    <i data-feather="chevron-left"></i>
+                    <span data-i18n="button.previous">Previous</span>
+                </button>
+                
+                <button id="nextBtn" class="toolbar-btn" data-i18n-title="button.next">
+                    <i data-feather="chevron-right"></i>
+                    <span data-i18n="button.next">Next</span>
+                </button>
+                
                 <button id="favoritesBtn" class="toolbar-btn" data-i18n-title="favorites.view">
                     <i data-feather="heart"></i>
                     <span data-i18n="favorites.view">View Favorites</span>
                 </button>
-                
 
                 <button id="settingsBtn" class="toolbar-btn" data-i18n-title="hadith.settings">
                     <i data-feather="settings"></i>
@@ -91,6 +105,42 @@
         <!-- Progress/Gamification Section moved to bottom -->
         <div id="progressSection" class="progress-section">
             <!-- This will be populated by gamification system -->
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="search.title">Search Hadith</h3>
+                <button class="modal-close" data-i18n-title="modal.close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" placeholder="Search in Arabic or English text..." 
+                           data-i18n-placeholder="search.placeholder">
+                    <i data-feather="search" class="search-icon"></i>
+                </div>
+                <div class="search-filters">
+                    <label class="search-filter">
+                        <input type="radio" name="searchLanguage" value="all" checked>
+                        <span data-i18n="search.all">All Languages</span>
+                    </label>
+                    <label class="search-filter">
+                        <input type="radio" name="searchLanguage" value="arabic">
+                        <span data-i18n="search.arabic">Arabic Only</span>
+                    </label>
+                    <label class="search-filter">
+                        <input type="radio" name="searchLanguage" value="english">
+                        <span data-i18n="search.english">English Only</span>
+                    </label>
+                </div>
+                <div id="searchResults" class="search-results">
+                    <!-- Search results will be populated here -->
+                </div>
+            </div>
         </div>
     </div>
 
