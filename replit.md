@@ -88,6 +88,12 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Updated Localization**: Chapter mapping now uses proper Arabic terminology for first chapter of Riyad as-Salihin
 - ✅ **Extension Package Updated**: Latest package includes corrected chapter name localization
 
+### Sunnah.com URL Format Fix (August 8, 2025)
+- ✅ **Fixed URL Format**: "View on Sunnah" button now uses correct colon format
+- ✅ **Corrected URLs**: Changed from `riyadussalihin/{number}` to `riyadussalihin:{number}`
+- ✅ **Proper Link Structure**: URLs now follow `https://sunnah.com/riyadussalihin:1` through `:1896` format
+- ✅ **Updated Extension Package**: Final package includes all URL format corrections
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

@@ -378,16 +378,16 @@ class HadeethGardenTab {
                 // Ensure URL is correct format
                 let url = this.currentHadith.url;
                 
-                // Fix any malformed URLs that might have : instead of /
-                if (url.includes('riyadussalihin:')) {
-                    url = url.replace('riyadussalihin:', 'riyadussalihin/');
+                // Fix any malformed URLs that might have / instead of :
+                if (url.includes('riyadussalihin/')) {
+                    url = url.replace('riyadussalihin/', 'riyadussalihin:');
                 }
                 
-                // Ensure proper https format
-                if (!url.startsWith('https://sunnah.com/riyadussalihin/')) {
+                // Ensure proper https format with colon
+                if (!url.startsWith('https://sunnah.com/riyadussalihin:')) {
                     // Construct proper URL from hadith number
                     const hadithNum = this.currentHadith.hadithNumber || this.currentHadith.id;
-                    url = `https://sunnah.com/riyadussalihin/${hadithNum}`;
+                    url = `https://sunnah.com/riyadussalihin:${hadithNum}`;
                 }
                 
                 if (typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.create) {
