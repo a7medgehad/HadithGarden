@@ -400,8 +400,14 @@ class HadeethGardenTab {
         });
 
         // Next button (explicit handler)
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            this.nextHadith();
+        document.getElementById('nextBtn').addEventListener('click', async () => {
+            await this.nextHadith();
+            // Record hadith read for gamification
+            const result = await this.gamification.recordHadithRead();
+            if (result.dailyGoalMet) {
+                this.showDailyGoalCompletionCelebration();
+            }
+            this.renderProgressSection();
         });
         
         // Settings button
@@ -425,6 +431,13 @@ class HadeethGardenTab {
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 this.nextHadith();
+                // Record hadith read for gamification when using keyboard
+                this.gamification.recordHadithRead().then(result => {
+                    if (result.dailyGoalMet) {
+                        this.showDailyGoalCompletionCelebration();
+                    }
+                    this.renderProgressSection();
+                });
             } else if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 this.previousHadith();
