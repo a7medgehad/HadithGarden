@@ -16,7 +16,7 @@ class HadeethGamification {
             {
                 id: 'first_day',
                 title: 'achievement.firstDay',
-                description: 'Read your first hadith',
+                description: 'achievement.firstDay.desc',
                 icon: '📖',
                 requirement: 1,
                 type: 'total'
@@ -24,7 +24,7 @@ class HadeethGamification {
             {
                 id: 'week_warrior',
                 title: 'achievement.firstWeek',
-                description: 'Maintain a 7-day reading streak',
+                description: 'achievement.firstWeek.desc',
                 icon: '📗',
                 requirement: 7,
                 type: 'streak'
@@ -32,7 +32,7 @@ class HadeethGamification {
             {
                 id: 'monthly_master',
                 title: 'achievement.firstMonth',
-                description: 'Maintain a 30-day reading streak',
+                description: 'achievement.firstMonth.desc',
                 icon: '📘',
                 requirement: 30,
                 type: 'streak'
@@ -40,7 +40,7 @@ class HadeethGamification {
             {
                 id: 'century_scholar',
                 title: 'achievement.hundred',
-                description: 'Read 100 hadith in total',
+                description: 'achievement.hundred.desc',
                 icon: '📚',
                 requirement: 100,
                 type: 'total'
@@ -240,7 +240,7 @@ class HadeethGamification {
             <div class="achievement-content">
                 <h3 data-i18n="achievement.title">${this.localization.t('achievement.title')}</h3>
                 <p class="achievement-name" data-i18n="${achievement.title}">${this.localization.t(achievement.title)}</p>
-                <p class="achievement-desc">${achievement.description}</p>
+                <p class="achievement-desc" data-i18n="${achievement.description}">${this.localization.t(achievement.description)}</p>
             </div>
         `;
         

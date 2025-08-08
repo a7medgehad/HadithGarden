@@ -37,6 +37,10 @@ class HadeethLocalization {
                 'achievement.firstWeek': 'Week Warrior',
                 'achievement.firstMonth': 'Monthly Master',
                 'achievement.hundred': 'Century Scholar',
+                'achievement.firstDay.desc': 'Read your first hadith',
+                'achievement.firstWeek.desc': 'Maintain a 7-day reading streak',
+                'achievement.firstMonth.desc': 'Maintain a 30-day reading streak',
+                'achievement.hundred.desc': 'Read 100 hadith in total',
                 
                 // Settings
                 'settings.title': 'Settings',
@@ -127,6 +131,10 @@ class HadeethLocalization {
                 'achievement.firstWeek': 'مواظب الأسبوع',
                 'achievement.firstMonth': 'نجم الشهر',
                 'achievement.hundred': 'طالب علم مجتهد',
+                'achievement.firstDay.desc': 'قراءة أول حديث لك',
+                'achievement.firstWeek.desc': 'المحافظة على القراءة لمدة 7 أيام متواصلة',
+                'achievement.firstMonth.desc': 'المحافظة على القراءة لمدة 30 يوماً متواصلاً',
+                'achievement.hundred.desc': 'قراءة 100 حديث إجمالاً',
                 
                 // Settings
                 'settings.title': 'الإعدادات',
