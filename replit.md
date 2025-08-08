@@ -46,8 +46,9 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Fixed Button Layout**: English interface keeps buttons in one row, better responsive design
 - ✅ **Fixed Language Switching**: Favorites button text updates immediately when switching languages
 - ✅ **Enhanced Language System**: Added custom events for real-time UI updates on language change
+- ✅ **Fixed "View on Sunnah" URL**: Robust URL validation and correction for proper sunnah.com navigation
 - ✅ **GitHub Repository Integration**: Connected to https://github.com/a7medgehad/HadithGarden.git
-- ✅ **Updated Extension Package**: Fresh zip file with all UI and localization fixes included
+- ✅ **Updated Extension Package**: Fresh zip file with all UI, localization, and URL fixes included
 - ✅ **Enhanced CSS Specificity**: Added !important rules for star icon coloring to prevent override
 
 ### Latest Complete Feature Implementation (August 8, 2025)
