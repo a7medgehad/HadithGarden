@@ -1,0 +1,43 @@
+# Build artifacts
+*.zip
+dist/
+build/
+
+# Chrome extension package (generated)
+chrome-extension-package/
+
+# Development files
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.tmp
+
+# Node modules (if added later)
+node_modules/
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Replit specific
+.replit
+.replit.nix
+replit.nix
+
+# OS generated files
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+temp/
+tmp/
