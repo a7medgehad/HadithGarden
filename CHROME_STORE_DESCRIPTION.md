@@ -1,106 +1,93 @@
 # Hadith Garden Tab - Chrome Web Store Description
 
-## Short Description (132 characters max)
-Transform your new tab into a peaceful Islamic reading experience with 1,896 authentic hadith from Riyāḍ al-Ṣāliḥīn.
+## Title
+Hadith Garden Tab - Riyāḍ al-Ṣāliḥīn Daily Hadith Reader
+
+## Short Description
+Transform your new tab into a peaceful Islamic garden featuring sequential hadith from the complete Riyāḍ al-Ṣāliḥīn collection with Arabic/English support.
 
 ## Detailed Description
 
-**🌿 Hadith Garden Tab** replaces your Chrome new tab page with a beautifully designed Islamic reading experience featuring the complete collection of 1,896 authentic hadith from the renowned *Riyāḍ al-Ṣāliḥīn* (The Garden of the Righteous) by Imam al-Nawawi.
+**Experience Islamic Wisdom Daily with Hadith Garden Tab**
 
-### Key Features
+Transform every new tab into a moment of spiritual reflection with our beautiful Islamic garden-themed extension. Featuring the complete authentic collection of 1,896 hadith from Riyāḍ al-Ṣāliḥīn (The Gardens of the Righteous), this extension creates a peaceful reading experience that integrates seamlessly into your daily browsing routine.
 
 **📖 Complete Authentic Collection**
-- All 1,896 hadith from Riyāḍ al-Ṣāliḥīn in sequential order
-- Authentic translations sourced from sunnah.com
-- Covers 20 comprehensive chapters including Good Manners, Virtues, Supplication, and more
-- Years of daily spiritual reading material offline
+• All 1,896 authentic hadith from Imam An-Nawawi's renowned Riyāḍ al-Ṣāliḥīn
+• Sequential reading system that remembers your exact position
+• Authentic Arabic book names and proper hadith numbering
+• Direct links to sunnah.com for extended study
 
-**🔄 Sequential Reading Experience**
-- Read hadith in proper order, not random selection
-- Automatic progress tracking across browser sessions
-- Seamless continuation from where you left off
+**🌿 Beautiful Islamic Garden Theme**
+• Elegant green color palette inspired by Islamic gardens
+• Geometric patterns and authentic Islamic design elements
+• Responsive design that works perfectly on all screen sizes
+• Dark and light theme options with automatic system detection
 
-**🌍 Dual Language Support**
-- Beautiful Arabic text with proper RTL layout using Amiri font
-- Clear English translations using Inter font
-- Toggle between languages or show both simultaneously
+**🔤 Complete Bilingual Support**
+• Full Arabic text with authentic Arabic Typesetting font
+• English translations for comprehensive understanding
+• Complete interface localization (Arabic/English)
+• Right-to-left (RTL) text support for authentic Arabic reading
+• Proper Arabic chapter names and hadith numbering
 
-**🎨 Islamic Garden Theme**
-- Elegant green color palette inspired by Islamic gardens
-- Geometric patterns and peaceful design elements
-- Light and dark theme support with system preference detection
+**⚡ Advanced Features**
+• **Smart Search**: Full-text search across all 1,896 hadith in both Arabic and English
+• **Favorites Management**: Save, organize, export/import your favorite hadith
+• **Keyboard Navigation**: Space bar for next, left arrow for previous hadith
+• **Reading Progress**: Daily goals, streaks, and achievement system
+• **Customizable Display**: Font sizes, language preferences, theme selection
+• **Offline Capable**: Works completely offline with no internet dependencies
 
-**⭐ Favorites Management**
-- Save meaningful hadith to your personal collection
-- Export/import favorites as JSON files for backup
-- Quick access to your most cherished teachings
+**🎯 Gamification & Progress Tracking**
+• Daily reading goals (1-20 hadith per day)
+• Reading streak tracking to maintain consistency
+• Achievement system with Islamic-themed rewards
+• Progress visualization to encourage regular reading
+• Celebration animations for milestone achievements
 
-**🎯 Gamification & Progress**
-- Daily reading streak tracking
-- Achievement system with Islamic-themed rewards
-- Customizable daily reading goals (1-20 hadith)
-- Visual progress indicators
+**🔒 Privacy & Security**
+• Completely offline - no data sent to external servers
+• All settings stored locally in your browser
+• No tracking, no ads, no external dependencies
+• Manifest V3 compliant for maximum security
 
-**⚙️ Customizable Settings**
-- Adjustable font sizes for comfortable reading
-- Theme preferences (light, dark, auto)
-- Language display options
-- Daily goal customization
+**⌨️ Keyboard Shortcuts**
+• Space bar: Next hadith
+• Left arrow: Previous hadith
+• / or Ctrl+K: Open search
+• F: Toggle favorites
+• S: Open settings
 
-**🔗 Sunnah.com Integration**
-- Direct links to detailed hadith commentary
-- Access to additional context and scholarly notes
-- Seamless connection to trusted Islamic resources
+**🎨 Customization Options**
+• Adjustable font sizes for comfortable reading
+• Show/hide Arabic or English text independently
+• Light, dark, or automatic theme switching
+• Customizable daily reading goals
+• Language interface switching (Arabic/English)
 
-### Perfect For
+**Perfect For:**
+• Muslims seeking daily spiritual enrichment
+• Students of Islamic knowledge
+• Anyone interested in authentic Islamic wisdom
+• Readers who want to maintain consistent hadith study
+• Those seeking peaceful moments during browsing
 
-- Muslims seeking daily spiritual enrichment
-- Students of Islamic knowledge
-- Anyone wanting to incorporate hadith into their daily routine
-- Users who prefer meaningful content over generic new tab pages
+This extension replaces your new tab page with a serene, focused environment for reading authentic Islamic teachings. Whether you're a beginner or advanced student, the sequential reading system ensures you experience the complete wisdom of Riyāḍ al-Ṣāliḥīn in its intended order.
 
-### Privacy & Data
+**Technical Excellence:**
+• Fast loading with optimized performance
+• Cross-platform compatibility (Windows, Mac, Linux, Chromebook)
+• Regular updates with user feedback integration
+• Comprehensive accessibility features
+• Professional development with Islamic values
 
-- All 1,896 hadith stored locally on your device for complete offline access
-- No external tracking or data collection
-- Works completely offline after installation  
-- No personal information transmitted
-- Complete hadith collection sourced from verified Islamic databases
-
-### Technical Details
-
-- Chrome Extension Manifest V3 compliant
-- Complete offline hadith database (1,896 authentic hadith)
-- Lightweight and fast-loading despite comprehensive collection
-- Responsive design for all screen sizes
-- Accessibility features included
-- Cross-device synchronization via Chrome sync
-- Sourced from authenticated Islamic databases
-
-Transform your browsing routine into moments of reflection and spiritual growth. Every new tab becomes an opportunity to connect with timeless Islamic wisdom from the complete Riyāḍ al-Ṣāliḥīn collection.
-
-**Install Hadith Garden Tab today and access the complete treasury of 1,896 authentic prophetic teachings for daily spiritual enrichment.**
+Start your journey through the Garden of the Righteous today. Each new tab becomes an opportunity for spiritual growth and connection with authentic Islamic teachings.
 
 ---
 
-*Hadith Garden Tab - Where every new tab nurtures the soul*
+**Keywords:** hadith, islam, islamic, riyad, riyadussalihin, arabic, quran, sunnah, religion, spiritual, muslim, daily, nawawi, authentic, garden, righteous, new tab, extension, bilingual, offline, search, favorites, progress, gamification
 
-## Keywords
-hadith, islam, islamic, riyad, salihin, righteous, garden, quran, sunnah, arabic, muslim, daily, spiritual, prophet, muhammad, new tab, chrome extension
-
-## Category
-Productivity
-
-## Screenshots Required
-1. Main interface showing Arabic and English hadith
-2. Favorites modal with saved hadith
-3. Settings page with customization options
-4. Progress tracking and achievements section
-5. Dark theme view
-6. Mobile/responsive design view
-
-## Privacy Policy URL
-(To be provided - simple statement about local data storage only)
-
-## Support URL
-(To be provided - GitHub repository or support email)
+**Category:** Productivity
+**Website:** [Your Website URL]
+**Support Email:** [Your Support Email]

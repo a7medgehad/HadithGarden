@@ -1,172 +1,234 @@
-# Hadith Garden Tab - Chrome Extension
-## حديقة الأحاديث
+# 🌿 Hadith Garden Tab - Chrome Extension
 
-A Chrome Extension (Manifest V3) that transforms your new tab page into a beautiful, interactive hadith reader featuring sequential content from Riyāḍ al-Ṣāliḥīn.
+A Chrome Extension (Manifest V3) that transforms your New Tab page into a peaceful Islamic garden experience, featuring the complete collection of 1,896 authentic hadith from Riyāḍ al-Ṣāliḥīn (The Gardens of the Righteous) with full Arabic/English support, advanced search functionality, and comprehensive offline capabilities.
 
-## Features
+## ✨ Key Features
 
-### 📖 Hadith Reading Experience
-- **Sequential Display**: Proper sequential reading through Riyāḍ al-Ṣāliḥīn (no random selection)
-- **Bilingual Support**: Full Arabic (RTL) and English interface localization
-- **Beautiful Typography**: Amiri font for Arabic, Inter for English
-- **Offline Functionality**: 20 pre-loaded hadith with local storage
+### 📖 Complete Authentic Collection
+- **1,896 Authentic Hadith** from Imam An-Nawawi's renowned Riyāḍ al-Ṣāliḥīn
+- **Sequential Reading System** that remembers your exact position across browser sessions
+- **Authentic Arabic Book Names** with proper chapter organization
+- **Direct Integration** with sunnah.com for extended study
 
-### 🎮 Gamification System
-- **Reading Streaks**: Track consecutive days of hadith reading (أيام القراءة المتواصلة)
-- **Customizable Daily Goals**: Set your target (1-20 hadith per day)
-- **Achievement System**: Unlock encouraging milestones:
-  - 📖 **بداية مباركة** (Blessed Beginning) - First hadith read
-  - 📗 **مواظب الأسبوع** (Week Consistent) - 7-day streak
-  - 📘 **نجم الشهر** (Star of the Month) - 30-day streak  
-  - 📚 **طالب علم مجتهد** (Diligent Knowledge Seeker) - 100 total hadith
-- **Progress Tracking**: Visual daily progress bars and statistics
+### 🌍 Full Bilingual Support
+- **Arabic Text**: Authentic Arabic Typesetting with proper RTL support
+- **English Translations**: Complete English text for comprehensive understanding
+- **Interface Localization**: Complete Arabic/English interface switching
+- **Cultural Authenticity**: Proper Arabic numbering and chapter names
 
-### 🌿 Islamic Garden Theme
-- **Elegant Design**: Green gradient themes with Islamic aesthetics
-- **Open Book Logo**: Professional SVG logo representing knowledge
-- **Smooth Animations**: Respectful of reduced-motion preferences
-- **Responsive Layout**: Works perfectly on all screen sizes
+### 🔍 Advanced Search & Navigation
+- **Full-Text Search**: Search across all 1,896 hadith in both Arabic and English
+- **Smart Filtering**: Search by language (Arabic only, English only, or both)
+- **Keyboard Navigation**: Space bar (next), Left arrow (previous), / (search)
+- **Instant Results**: Real-time search with preview text
 
-### ⚙️ Customization Options
-- **Language Toggle**: Switch between English and Arabic (العربية) interfaces
-- **Theme Selection**: Light, dark, and auto modes
-- **Font Size Control**: Adjust text size for comfortable reading
-- **Favorites System**: Save, export, and import your favorite hadith
+### 🎯 Gamification & Progress Tracking
+- **Daily Reading Goals**: Customizable goals (1-20 hadith per day)
+- **Reading Streaks**: Track consecutive days of reading
+- **Achievement System**: Islamic-themed achievements and celebrations
+- **Progress Visualization**: Beautiful progress cards and statistics
 
-## Installation
+### 🎨 Beautiful Islamic Design
+- **Garden Theme**: Elegant green palette inspired by Islamic gardens
+- **Geometric Patterns**: Authentic Islamic design elements
+- **Responsive Design**: Perfect on desktop, tablet, and mobile
+- **Theme Options**: Light, dark, and automatic system-based themes
 
-### Method 1: Load Unpacked Extension (Recommended)
+### ⚡ Smart Features
+- **Favorites Management**: Save, organize, export/import favorite hadith
+- **Offline Capable**: Complete functionality without internet connection
+- **Chrome Storage**: All data synced across your devices
+- **Customizable Display**: Font sizes, language preferences, display options
 
-1. **Download this project** as a ZIP file from your preferred source
-2. **Extract the ZIP** to a folder on your computer
-3. **Open Chrome** and navigate to `chrome://extensions/`
-4. **Enable "Developer mode"** by clicking the toggle in the top-right corner
-5. **Click "Load unpacked"** and select the extracted folder
-6. **Open a new tab** to see Hadeeth Garden Tab in action!
+## 🚀 Installation
 
-### Method 2: Manual Setup
+### From Chrome Web Store (Recommended)
+1. Visit the [Chrome Web Store page](https://chrome.google.com/webstore)
+2. Click "Add to Chrome"
+3. Enjoy your new Islamic garden new tab experience
 
-1. **Clone or download** this repository
-2. **Follow steps 3-6** from Method 1 above
+### Manual Installation (Developer Mode)
+1. Download the latest `hadith-garden-tab-chrome-extension.zip`
+2. Extract the contents to a folder
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode" in the top right
+5. Click "Load unpacked" and select the extracted folder
+6. The extension will replace your new tab page immediately
 
-## File Structure
+## 🎯 Usage
 
+### Basic Navigation
+- **New Tab**: Automatically loads with a hadith from your current reading position
+- **Next Hadith**: Click the next button or press Space bar
+- **Previous Hadith**: Click the previous button or press Left arrow
+- **Search**: Click the search icon or press `/` to open search modal
+
+### Keyboard Shortcuts
+- `Space` - Next hadith
+- `Left Arrow` - Previous hadith
+- `/` or `Ctrl+K` - Open search
+- `F` - Toggle favorites
+- `S` - Open settings
+- `Escape` - Close modals
+
+### Search Functionality
+1. Click the search button or press `/`
+2. Type your search query in Arabic or English
+3. Select language filter (All, Arabic only, English only)
+4. Click any result to jump directly to that hadith
+
+### Favorites Management
+1. Click the star button to add current hadith to favorites
+2. Click the heart button to view all favorites
+3. Export favorites as JSON file for backup
+4. Import favorites from previously exported file
+
+### Customization
+- **Language**: Switch between English and Arabic interface
+- **Theme**: Choose light, dark, or automatic
+- **Font Size**: Adjust text size for comfortable reading
+- **Display Options**: Show/hide Arabic or English text
+- **Daily Goals**: Set reading targets (1-20 hadith per day)
+
+## 📊 Progress Tracking
+
+### Daily Goals
+- Set customizable daily reading goals
+- Track progress with visual indicators
+- Celebrate when daily goals are completed
+
+### Reading Streaks
+- Monitor consecutive days of reading
+- Islamic-themed achievements for milestones
+- Motivational progress visualization
+
+### Achievements
+- **Blessed Beginning** - First hadith read
+- **Week Consistent** - 7-day reading streak
+- **Star of the Month** - 30-day reading streak
+- **Diligent Knowledge Seeker** - 100+ hadith read
+
+## 🛠️ Technical Features
+
+### Chrome Storage Integration
+- **Persistent Data**: All settings, favorites, and progress saved locally
+- **Cross-Device Sync**: Data syncs across your Chrome installations
+- **Privacy-First**: No data sent to external servers
+- **Offline Ready**: Complete functionality without internet
+
+### Performance Optimized
+- **Fast Loading**: Optimized for instant new tab loading
+- **Local Assets**: All fonts and icons stored locally
+- **Minimal Memory**: Efficient resource usage
+- **CSP Compliant**: Manifest V3 security standards
+
+### Accessibility Features
+- **Keyboard Navigation**: Full keyboard support
+- **Screen Readers**: Semantic HTML structure
+- **High Contrast**: Support for accessibility preferences
+- **Reduced Motion**: Respects user motion preferences
+
+## 🔧 Development
+
+### Project Structure
 ```
-hadeeth-garden-tab/
-├── manifest.json              # Extension manifest (Manifest V3)
-├── newtab.html                # New tab page layout
-├── newtab.css                 # Styling for new tab page
-├── newtab.js                  # Main functionality script
-├── options.html               # Settings page layout
-├── options.css                # Styling for settings page
-├── options.js                 # Settings page functionality
+├── manifest.json          # Extension configuration
+├── newtab.html            # Main new tab page
+├── newtab.css             # Styling and themes
+├── newtab.js              # Core functionality
+├── options.html           # Settings page
+├── options.css            # Settings styling
+├── options.js             # Settings functionality
+├── localization.js        # Arabic/English translations
+├── gamification.js        # Progress tracking system
 ├── data/
-│   └── riyadussalihin.json    # Hadith collection (20 sample hadiths)
+│   └── riyadussalihin.json # Complete hadith collection
 ├── icons/
-│   ├── icon-16.svg           # Extension icon (16x16)
-│   ├── icon-48.svg           # Extension icon (48x48)
-│   └── icon-128.svg          # Extension icon (128x128)
-└── README.md                 # This file
+│   ├── icon-16.svg        # Extension icon (16px)
+│   ├── icon-48.svg        # Extension icon (48px)
+│   ├── icon-128.svg       # Extension icon (128px)
+│   └── logo.svg           # Main application logo
+└── libs/
+    └── feather.min.js     # Icon library
 ```
 
-## Keyboard Shortcuts
-
-- **Spacebar** or **Right Arrow**: Next hadith
-- **F**: Toggle favorite
-- **S**: Open settings
-
-## Data Storage
-
-The extension stores data locally in Chrome's storage:
-- **Reading Progress**: Current hadith index
-- **Settings**: Theme, language preferences, font size
-- **Favorites**: List of favorited hadith IDs
-
-## Adding More Hadiths
-
-To add more hadiths to the `data/riyadussalihin.json` file:
-
-1. Open the JSON file in a text editor
-2. Follow the existing format:
-   ```json
-   {
-     "id": 21,
-     "book": 2,
-     "number": 21,
-     "arabic": "Arabic text here...",
-     "english": "English translation here...",
-     "url": "https://sunnah.com/riyadussalihin:21"
-   }
-   ```
-3. Ensure proper JSON formatting with commas between entries
-4. Reload the extension to see new hadiths
-
-## Privacy & Performance
-
-- ✅ **No Analytics**: Extension doesn't track or collect user data
-- ✅ **No Remote Calls**: All hadith data is stored locally
-- ✅ **Fast Loading**: Optimized for quick new tab opening
-- ✅ **Offline Ready**: Works without internet connection
-
-## Browser Compatibility
-
-- Chrome (Manifest V3)
-- Edge (Chromium-based)
-- Brave Browser
-- Other Chromium-based browsers
-
-## Technical Details
-
-### Architecture
-- **Pure JavaScript**: No external frameworks
+### Key Technologies
 - **Manifest V3**: Latest Chrome extension standard
-- **Local Storage**: Chrome Storage API + localStorage fallback
-- **Progressive Enhancement**: Graceful degradation for older browsers
+- **Vanilla JavaScript**: No external frameworks for performance
+- **CSS Grid/Flexbox**: Modern responsive layouts
+- **Chrome Storage API**: Local data persistence
+- **Feather Icons**: Beautiful icon library
+- **System Fonts**: Arabic Typesetting, Times New Roman for reliability
 
-### Accessibility
-- Semantic HTML structure
-- Proper ARIA labels
-- Keyboard navigation support
-- Reduced motion support
-- High contrast mode compatibility
+### Data Source
+- **Authentic Collection**: Hadith data from verified Islamic sources
+- **Proper Attribution**: All hadith properly numbered and categorized
+- **Quality Assurance**: Verified translations and Arabic text
+- **Offline Storage**: Complete collection stored locally
 
-### Performance Optimizations
-- SVG icons for crisp display at all sizes
-- CSS Grid and Flexbox for efficient layouts
-- Preloaded Google Fonts with fallbacks
-- Minimal JavaScript footprint
+## 📜 License & Attribution
 
-## Development
+### Hadith Content
+- Source: Riyāḍ al-Ṣāliḥīn by Imam An-Nawawi
+- Translations: Authentic Islamic sources
+- Attribution: Proper Islamic scholarly traditions maintained
 
-To modify or develop this extension:
+### Code License
+MIT License - See LICENSE file for details
 
-1. **Load the extension** using the installation steps above
-2. **Make changes** to any files
-3. **Reload the extension** in `chrome://extensions/`
-4. **Test changes** by opening a new tab
+### Third-Party Assets
+- **Feather Icons**: MIT License
+- **Google Fonts**: SIL Open Font License
+- **Islamic Design Elements**: Original creation inspired by traditional patterns
 
-### Development Server
-For testing outside of Chrome:
-```bash
-python3 -m http.server 5000
-# Visit http://localhost:5000/newtab.html
-```
+## 🤝 Contributing
 
-## Attribution
+We welcome contributions that align with Islamic values and improve the user experience:
 
-Hadith content sourced from [sunnah.com](https://sunnah.com/riyadussalihin) – used for personal educational purposes under fair use.
+1. **Bug Reports**: Submit detailed issues with steps to reproduce
+2. **Feature Requests**: Suggest improvements that enhance Islamic learning
+3. **Translations**: Help improve Arabic/English localization
+4. **Documentation**: Improve setup and usage instructions
 
-## Version History
+### Development Setup
+1. Clone the repository
+2. Load extension in Chrome developer mode
+3. Make changes and test thoroughly
+4. Ensure all Arabic text displays correctly
+5. Submit pull request with detailed description
 
-### v1.0.0
-- Sequential hadith reading from Riyāḍ al-Ṣāliḥīn
-- Islamic garden theme with responsive design
-- Arabic (RTL) and English (LTR) text display
-- Comprehensive settings and customization
-- Favorites management with export/import
-- Local data storage for offline use
+## 🆘 Support
 
-## Support
+### Common Issues
+- **Toolbar Not Visible**: Clear browser cache and reload
+- **Arabic Text Issues**: Ensure system has Arabic font support
+- **Search Not Working**: Check if extension is properly loaded
+- **Progress Not Saving**: Verify Chrome storage permissions
 
-This is an educational project. For issues or suggestions, please check the code and modify as needed for your personal use.
+### Contact
+- **GitHub Issues**: Report bugs and request features
+- **Email Support**: [Your support email]
+- **Community**: [Your community forum/Discord]
 
+## 🔄 Version History
+
+### Latest Version Features
+- Complete search functionality across all 1,896 hadith
+- Enhanced keyboard navigation with progress tracking
+- Fixed toolbar visibility issues
+- Improved Chrome storage implementation
+- Updated Arabic localization and numbering
+- Enhanced favorites management system
+
+### Roadmap
+- Additional hadith collections
+- Advanced search filters
+- Community sharing features
+- Enhanced accessibility options
+- Mobile app companion
+
+---
+
+**Experience the Garden of the Righteous daily. Transform your browsing into moments of spiritual reflection and Islamic learning.**
+
+*"The example of a believer who recites the Quran is like that of a citron; its taste is good and its scent is good." - Prophet Muhammad (ﷺ)*
