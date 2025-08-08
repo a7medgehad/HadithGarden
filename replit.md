@@ -37,6 +37,15 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Arabic Number Localization**: Fixed Arabic interface to properly display chapter and hadith numbers
 - ✅ **Updated Store Description**: Highlighted complete collection of 1,896 hadith in Chrome Web Store listing
 
+### Latest Arabic Support Enhancement (August 8, 2025)
+- ✅ **Complete Language Switcher**: Added Arabic/English language selection in settings page
+- ✅ **Enhanced Arabic Interface**: Full RTL support with proper text direction switching
+- ✅ **Fixed Favorites Modal**: Resolved "Go to" and "Remove" button functionality issues  
+- ✅ **Improved Button Styling**: Enhanced visual appearance of action buttons in favorites modal
+- ✅ **Arabic Font Integration**: Proper Amiri font loading for authentic Arabic text display
+- ✅ **Comprehensive Testing**: All Arabic functionality verified and working correctly
+- ✅ **Updated Chrome Package**: Extension zip file includes all Arabic improvements (631KB)
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
