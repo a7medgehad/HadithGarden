@@ -77,6 +77,19 @@ class HadeethLocalization {
                 'button.next': 'Next',
                 'button.previous': 'Previous',
                 
+                // Collections
+                'collections.title': 'Hadith Collections',
+                'collections.riyadussalihin': 'Riyāḍ al-Ṣāliḥīn',
+                'collections.bukhari': 'Sahih al-Bukhari',
+                'collections.muslim': 'Sahih Muslim',
+                'collections.tirmidhi': 'Jami\' at-Tirmidhi',
+                'collections.abudawud': 'Sunan Abu Dawud',
+                'collections.nasai': 'Sunan an-Nasa\'i',
+                'collections.majah': 'Sunan Ibn Majah',
+                'collections.current': 'Current Collection',
+                'collections.available': 'Available Collections',
+                'collections.comingSoon': 'Coming Soon',
+                
                 // Search
                 'search.title': 'Search Hadith',
                 'search.placeholder': 'Search in Arabic or English text...',
@@ -170,6 +183,19 @@ class HadeethLocalization {
                 // Buttons Arabic
                 'button.next': 'التالي',
                 'button.previous': 'السابق',
+                
+                // Collections Arabic
+                'collections.title': 'مجموعات الأحاديث',
+                'collections.riyadussalihin': 'رياض الصالحين',
+                'collections.bukhari': 'صحيح البخاري',
+                'collections.muslim': 'صحيح مسلم',
+                'collections.tirmidhi': 'جامع الترمذي',
+                'collections.abudawud': 'سنن أبي داود',
+                'collections.nasai': 'سنن النسائي',
+                'collections.majah': 'سنن ابن ماجه',
+                'collections.current': 'المجموعة الحالية',
+                'collections.available': 'المجموعات المتاحة',
+                'collections.comingSoon': 'قريباً',
                 
                 // Search Arabic
                 'search.title': 'البحث في الأحاديث',

@@ -374,21 +374,12 @@ class HadeethGardenTab {
         
         // View on Sunnah button
         document.getElementById('viewOnSunnahBtn').addEventListener('click', () => {
-            if (this.currentHadith && this.currentHadith.url) {
-                // Ensure URL is correct format
-                let url = this.currentHadith.url;
+            if (this.currentHadith) {
+                // Always construct the URL with correct format using hadith number
+                const hadithNum = this.currentHadith.hadithNumber || this.currentHadith.id;
+                const url = `https://sunnah.com/riyadussalihin:${hadithNum}`;
                 
-                // Fix any malformed URLs that might have / instead of :
-                if (url.includes('riyadussalihin/')) {
-                    url = url.replace('riyadussalihin/', 'riyadussalihin:');
-                }
-                
-                // Ensure proper https format with colon
-                if (!url.startsWith('https://sunnah.com/riyadussalihin:')) {
-                    // Construct proper URL from hadith number
-                    const hadithNum = this.currentHadith.hadithNumber || this.currentHadith.id;
-                    url = `https://sunnah.com/riyadussalihin:${hadithNum}`;
-                }
+                console.log('Opening URL:', url); // Debug log
                 
                 if (typeof chrome !== 'undefined' && chrome.tabs && chrome.tabs.create) {
                     chrome.tabs.create({ url: url });
@@ -402,6 +393,11 @@ class HadeethGardenTab {
         // Add to Favorites button
         document.getElementById('addToFavoritesBtn').addEventListener('click', async () => {
             await this.toggleFavorite();
+        });
+
+        // Collections button
+        document.getElementById('collectionsBtn').addEventListener('click', () => {
+            this.showCollectionsModal();
         });
 
         // View Favorites button
@@ -1079,6 +1075,275 @@ class HadeethGardenTab {
         } catch (error) {
             console.error('Error navigating to hadith:', error);
         }
+    }
+
+    showCollectionsModal() {
+        // Remove any existing modal
+        const existingModal = document.querySelector('.collections-modal-overlay');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        // Create modal overlay
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'collections-modal-overlay';
+        modalOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+        
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.className = 'collections-modal-content';
+        const isArabic = this.settings.language === 'ar';
+        modalContent.style.cssText = `
+            background: var(--surface-color);
+            border-radius: 16px;
+            max-width: 90vw;
+            max-height: 80vh;
+            width: 800px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            direction: ${isArabic ? 'rtl' : 'ltr'};
+        `;
+        
+        // Collections data
+        const collections = [
+            {
+                id: 'riyadussalihin',
+                nameKey: 'collections.riyadussalihin',
+                status: 'available',
+                description: isArabic ? 'مجموعة من أفضل الأحاديث في الأخلاق والآداب' : 'A collection of the finest hadith on ethics and manners',
+                count: 1896,
+                icon: '🌿'
+            },
+            {
+                id: 'bukhari',
+                nameKey: 'collections.bukhari',
+                status: 'coming-soon',
+                description: isArabic ? 'أصح كتاب بعد القرآن الكريم' : 'The most authentic book after the Quran',
+                count: 7563,
+                icon: '📖'
+            },
+            {
+                id: 'muslim',
+                nameKey: 'collections.muslim',
+                status: 'coming-soon',
+                description: isArabic ? 'ثاني أصح الكتب بعد البخاري' : 'Second most authentic after Bukhari',
+                count: 7500,
+                icon: '📗'
+            },
+            {
+                id: 'tirmidhi',
+                nameKey: 'collections.tirmidhi',
+                status: 'coming-soon',
+                description: isArabic ? 'مع شروحات فقهية مفيدة' : 'With useful jurisprudential explanations',
+                count: 3956,
+                icon: '📘'
+            },
+            {
+                id: 'abudawud',
+                nameKey: 'collections.abudawud',
+                status: 'coming-soon',
+                description: isArabic ? 'متخصص في الأحكام الفقهية' : 'Specialized in jurisprudential rulings',
+                count: 4800,
+                icon: '📙'
+            },
+            {
+                id: 'nasai',
+                nameKey: 'collections.nasai',
+                status: 'coming-soon',
+                description: isArabic ? 'من أدق كتب السنن' : 'One of the most precise Sunan books',
+                count: 5270,
+                icon: '📕'
+            }
+        ];
+        
+        // Modal header
+        const modalHeader = document.createElement('div');
+        modalHeader.className = 'modal-header';
+        modalHeader.style.cssText = `
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--header-bg);
+        `;
+        modalHeader.innerHTML = `
+            <h2 style="margin: 0; color: var(--text-primary); font-size: 1.5rem;">${this.localization.t('collections.title')}</h2>
+            <button class="close-modal-btn" style="
+                background: none;
+                border: none;
+                color: var(--text-secondary);
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+            " aria-label="Close">
+                <i data-feather="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        `;
+        
+        // Modal body
+        const modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+        modalBody.style.cssText = `
+            padding: 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        `;
+        
+        // Current collection section
+        const currentSection = document.createElement('div');
+        currentSection.style.cssText = `
+            margin-bottom: 2rem;
+        `;
+        currentSection.innerHTML = `
+            <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                ${this.localization.t('collections.current')}
+            </h3>
+            <div style="
+                background: var(--primary-green);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            ">
+                <span style="font-size: 1.5rem;">🌿</span>
+                <div>
+                    <h4 style="margin: 0; font-size: 1rem;">${this.localization.t('collections.riyadussalihin')}</h4>
+                    <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">
+                        ${isArabic ? `${this.localization.formatNumber(1896)} حديث` : `${this.localization.formatNumber(1896)} hadith`}
+                    </p>
+                </div>
+            </div>
+        `;
+        
+        // Available collections section
+        const availableSection = document.createElement('div');
+        availableSection.innerHTML = `
+            <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                ${this.localization.t('collections.available')}
+            </h3>
+        `;
+        
+        // Collections grid
+        const collectionsGrid = document.createElement('div');
+        collectionsGrid.style.cssText = `
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        `;
+        
+        collections.slice(1).forEach(collection => {
+            const collectionCard = document.createElement('div');
+            collectionCard.className = 'collection-card';
+            collectionCard.style.cssText = `
+                background: var(--card-bg);
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                padding: 1.5rem;
+                transition: all 0.2s ease;
+                cursor: ${collection.status === 'available' ? 'pointer' : 'not-allowed'};
+                opacity: ${collection.status === 'available' ? '1' : '0.6'};
+                position: relative;
+            `;
+            
+            collectionCard.innerHTML = `
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="font-size: 2rem; flex-shrink: 0;">${collection.icon}</span>
+                    <div style="flex: 1; min-width: 0;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1rem;">
+                            ${this.localization.t(collection.nameKey)}
+                        </h4>
+                        <p style="margin: 0 0 0.75rem 0; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.4;">
+                            ${collection.description}
+                        </p>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="color: var(--text-secondary); font-size: 0.875rem;">
+                                ${isArabic ? `${this.localization.formatNumber(collection.count)} حديث` : `${this.localization.formatNumber(collection.count)} hadith`}
+                            </span>
+                            <span style="
+                                background: var(--orange-light);
+                                color: var(--orange-dark);
+                                padding: 0.25rem 0.75rem;
+                                border-radius: 20px;
+                                font-size: 0.75rem;
+                                font-weight: 500;
+                            ">
+                                ${this.localization.t('collections.comingSoon')}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            collectionsGrid.appendChild(collectionCard);
+        });
+        
+        availableSection.appendChild(collectionsGrid);
+        modalBody.appendChild(currentSection);
+        modalBody.appendChild(availableSection);
+        
+        // Assemble modal
+        modalContent.appendChild(modalHeader);
+        modalContent.appendChild(modalBody);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+        
+        // Refresh feather icons
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+        
+        // Add event listeners
+        const closeBtn = modalOverlay.querySelector('.close-modal-btn');
+        closeBtn.addEventListener('click', () => {
+            modalOverlay.style.opacity = '0';
+            modalContent.style.transform = 'scale(0.8)';
+            setTimeout(() => modalOverlay.remove(), 300);
+        });
+        
+        // Close on overlay click
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => modalOverlay.remove(), 300);
+            }
+        });
+        
+        // Close on Escape key
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                modalOverlay.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                setTimeout(() => modalOverlay.remove(), 300);
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+        
+        // Animate in
+        setTimeout(() => {
+            modalOverlay.style.opacity = '1';
+            modalContent.style.transform = 'scale(1)';
+        }, 10);
     }
 
 

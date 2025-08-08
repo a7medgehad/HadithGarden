@@ -144,6 +144,15 @@
                     </button>
 
                     <button
+                        id="collectionsBtn"
+                        class="toolbar-btn"
+                        data-i18n-title="collections.title"
+                    >
+                        <i data-feather="library"></i>
+                        <span data-i18n="collections.title">Collections</span>
+                    </button>
+
+                    <button
                         id="searchBtn"
                         class="toolbar-btn"
                         data-i18n-title="search.title"
@@ -193,6 +202,23 @@
             <!-- Progress/Gamification Section moved to bottom -->
             <div id="progressSection" class="progress-section">
                 <!-- This will be populated by gamification system -->
+            </div>
+        </div>
+
+        <!-- Collections Modal -->
+        <div id="collectionsModal" class="modal" style="display: none">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-i18n="collections.title">Hadith Collections</h3>
+                    <button class="modal-close" data-i18n-title="modal.close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="collections-grid">
+                        <!-- Collections will be populated here -->
+                    </div>
+                </div>
             </div>
         </div>
 

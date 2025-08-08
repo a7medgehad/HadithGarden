@@ -1132,4 +1132,43 @@ button:focus-visible {
     font-size: 1rem;
 }
 
+/* Collections Modal Styles */
+.collections-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.collections-modal-content {
+    background: var(--surface-color);
+    border-radius: 16px;
+    max-width: 90vw;
+    max-height: 80vh;
+    width: 800px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.collection-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.collection-card:hover {
+    border-color: var(--primary-green) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+}
+
 

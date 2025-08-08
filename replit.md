@@ -94,6 +94,28 @@ The application displays hadith in proper sequence (not random), automatically t
 - ✅ **Proper Link Structure**: URLs now follow `https://sunnah.com/riyadussalihin:1` through `:1896` format
 - ✅ **Updated Extension Package**: Final package includes all URL format corrections
 
+### Achievement Localization & URL Fixes (August 8, 2025)
+- ✅ **Fixed Achievement Arabic Text**: Achievement descriptions now properly display in Arabic for all notifications
+- ✅ **Improved URL Construction**: "View on Sunnah" button now always constructs correct colon format URLs
+- ✅ **Removed URL Data Dependency**: Direct construction using hadith number ensures consistent format
+- ✅ **Enhanced Translation System**: Achievement notifications use forced fresh translations for current language
+- ✅ **Updated Extension Package**: Final package includes achievement localization and URL construction fixes
+
+### Multiple Hadith Collections Feature (August 8, 2025)
+- ✅ **Collections Button Added**: New toolbar button to access hadith collections with library icon
+- ✅ **Six Major Collections**: Implemented modal showcasing all six canonical hadith books (Kutub al-Sittah)
+- ✅ **Current Collection**: Riyāḍ al-Ṣāliḥīn (1,896 hadith) marked as available with green highlighting
+- ✅ **Coming Soon Collections**: 
+  * Sahih al-Bukhari (7,563 hadith) - Most authentic book after Quran
+  * Sahih Muslim (7,500 hadith) - Second most authentic collection
+  * Jami' at-Tirmidhi (3,956 hadith) - With jurisprudential explanations
+  * Sunan Abu Dawud (4,800 hadith) - Specialized in jurisprudential rulings
+  * Sunan an-Nasa'i (5,270 hadith) - One of the most precise Sunan books
+- ✅ **Full Localization**: Complete Arabic/English translations for all collection names and descriptions
+- ✅ **Professional UI**: Responsive grid layout, hover effects, and proper modal functionality
+- ✅ **Keyboard Support**: ESC key closes modal, accessible design with proper ARIA labels
+- ✅ **Updated Extension Package**: Complete collections feature ready for Chrome Web Store
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

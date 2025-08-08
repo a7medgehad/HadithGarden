@@ -233,14 +233,19 @@ class HadeethGamification {
     }
     
     createAchievementNotification(achievement) {
+        // Force fresh translation for current language
+        const achievementTitle = this.localization.t('achievement.title');
+        const achievementName = this.localization.t(achievement.title);
+        const achievementDesc = this.localization.t(achievement.description);
+        
         const notification = document.createElement('div');
         notification.className = 'achievement-notification';
         notification.innerHTML = `
             <div class="achievement-icon">${achievement.icon}</div>
             <div class="achievement-content">
-                <h3 data-i18n="achievement.title">${this.localization.t('achievement.title')}</h3>
-                <p class="achievement-name" data-i18n="${achievement.title}">${this.localization.t(achievement.title)}</p>
-                <p class="achievement-desc" data-i18n="${achievement.description}">${this.localization.t(achievement.description)}</p>
+                <h3>${achievementTitle}</h3>
+                <p class="achievement-name">${achievementName}</p>
+                <p class="achievement-desc">${achievementDesc}</p>
             </div>
         `;
         
@@ -252,7 +257,11 @@ class HadeethGamification {
         // Remove after delay
         setTimeout(() => {
             notification.classList.remove('show');
-            setTimeout(() => document.body.removeChild(notification), 300);
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
         }, 4000);
     }
     
