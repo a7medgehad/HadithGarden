@@ -317,40 +317,23 @@ class HadeethGardenTab {
             feather.replace();
         }
         
-        // Force apply star color immediately and with retries
-        const applyStarColor = (attempt = 0) => {
-            const starIcons = favoritesBtn.querySelectorAll('svg, .star-icon');
-            let iconFound = false;
-            
-            starIcons.forEach(icon => {
-                iconFound = true;
-                if (isFavorited) {
-                    // Force gold color for favorited state
-                    icon.style.setProperty('color', '#FFD700', 'important');
-                    icon.style.setProperty('fill', '#FFD700', 'important');
-                    icon.style.setProperty('stroke', '#FFD700', 'important');
-                    icon.classList.add('favorited-star');
-                } else {
-                    // Remove custom styling for non-favorited state
-                    icon.style.removeProperty('color');
-                    icon.style.removeProperty('fill');
-                    icon.style.removeProperty('stroke');
-                    icon.classList.remove('favorited-star');
-                }
-            });
-            
-            // Retry if no icons found and attempts remaining
-            if (!iconFound && attempt < 5) {
-                setTimeout(() => applyStarColor(attempt + 1), 100);
+        // Force apply star color after feather replace
+        setTimeout(() => {
+            const starIcon = favoritesBtn.querySelector('.star-icon');
+            if (starIcon && isFavorited) {
+                starIcon.style.color = 'var(--accent-gold)';
+                starIcon.style.fill = 'var(--accent-gold)';
             }
-        };
+        }, 50);
         
-        // Apply immediately and with multiple retries to ensure it works
-        applyStarColor();
-        setTimeout(() => applyStarColor(), 50);
-        setTimeout(() => applyStarColor(), 150);
-        setTimeout(() => applyStarColor(), 300);
-        setTimeout(() => applyStarColor(), 500);
+        // Force apply star color after feather replace
+        setTimeout(() => {
+            const starIcon = favoritesBtn.querySelector('.star-icon');
+            if (starIcon && isFavorited) {
+                starIcon.style.color = 'var(--accent-gold)';
+                starIcon.style.fill = 'var(--accent-gold)';
+            }
+        }, 50);
     }
 
     showErrorState() {

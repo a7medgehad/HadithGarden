@@ -150,29 +150,15 @@ class HadeethLocalization {
                 'achievement.hundred.desc': 'قراءة 100 حديث إجمالاً',
                 
                 // Settings
-                'settings.title': 'إعدادات حديقة الأحاديث',
-                'settings.subtitle': 'تخصيص تجربة حديقتك الإسلامية',
-                'settings.display': 'إعدادات العرض',
+                'settings.title': 'الإعدادات',
+                'settings.display': 'خيارات العرض',
                 'settings.showArabic': 'عرض النص العربي',
-                'settings.showEnglish': 'عرض الترجمة الإنجليزية',
+                'settings.showEnglish': 'عرض النص الإنجليزي',
                 'settings.fontSize': 'حجم الخط',
-                'settings.fontSmall': 'صغير',
-                'settings.fontLarge': 'كبير',
-                'settings.theme': 'إعدادات المظهر',
-                'settings.themeLabel': 'المظهر',
-                'settings.themeAuto': 'تلقائي',
-                'settings.themeLight': 'فاتح',
-                'settings.themeDark': 'داكن',
-                'settings.progress': 'تقدم القراءة',
-                'settings.currentHadith': 'الحديث الحالي:',
-                'settings.totalHadiths': 'إجمالي الأحاديث:',
-                'settings.progressLabel': 'التقدم:',
-                'settings.resetProgress': 'إعادة تعيين إلى الحديث الأول',
-                'settings.favorites': 'إدارة المفضلة',
-                'settings.favoritedHadiths': 'الأحاديث المفضلة:',
-                'settings.exportFavorites': 'تصدير المفضلة',
-                'settings.importFavorites': 'استيراد المفضلة',
-                'settings.clearFavorites': 'مسح جميع المفضلة',
+                'settings.theme': 'المظهر',
+                'settings.theme.light': 'فاتح',
+                'settings.theme.dark': 'داكن',
+                'settings.theme.auto': 'تلقائي',
                 'settings.language': 'لغة الواجهة',
                 'settings.gamification': 'التحفيز التفاعلي',
                 'settings.dailyGoal': 'هدف القراءة اليومي',
@@ -276,16 +262,6 @@ class HadeethLocalization {
             element.title = this.t(key);
         });
         
-        // Update select options text (for settings page)
-        const selectOptions = document.querySelectorAll('option[data-i18n]');
-        selectOptions.forEach(option => {
-            const key = option.getAttribute('data-i18n');
-            option.textContent = this.t(key);
-        });
-        
-        // Update non-attributed text elements that need translation
-        this.updateSettingsPageText();
-        
         // Trigger custom event for language change
         window.dispatchEvent(new CustomEvent('languageChanged', { 
             detail: { language: this.currentLanguage }
@@ -338,45 +314,6 @@ class HadeethLocalization {
         };
         
         return chapterMap[englishChapter] || englishChapter;
-    }
-    
-    updateSettingsPageText() {
-        // Update settings page text elements that don't have data-i18n attributes
-        if (window.location.href.includes('options.html')) {
-            const textMappings = {
-                'Display Settings': this.t('settings.display'),
-                'Show Arabic Text': this.t('settings.showArabic'),
-                'Show English Translation': this.t('settings.showEnglish'),
-                'Font Size': this.t('settings.fontSize'),
-                'Theme Settings': this.t('settings.theme'),
-                'Theme': this.t('settings.themeLabel'),
-                'Auto': this.t('settings.themeAuto'),
-                'Light': this.t('settings.themeLight'),
-                'Dark': this.t('settings.themeDark'),
-                'Reading Progress': this.t('settings.progress'),
-                'Current Hadith:': this.t('settings.currentHadith'),
-                'Total Hadiths:': this.t('settings.totalHadiths'),
-                'Progress:': this.t('settings.progressLabel'),
-                'Favorites Management': this.t('settings.favorites'),
-                'Export Favorites': this.t('settings.exportFavorites'),
-                'Import Favorites': this.t('settings.importFavorites'),
-                'Reset All Data': this.t('settings.resetData'),
-                'Small': this.t('settings.fontSmall'),
-                'Large': this.t('settings.fontLarge')
-            };
-            
-            // Update text content for elements without data-i18n
-            Object.keys(textMappings).forEach(originalText => {
-                const elements = Array.from(document.querySelectorAll('*')).filter(el => 
-                    el.textContent.trim() === originalText && 
-                    !el.getAttribute('data-i18n') &&
-                    el.children.length === 0
-                );
-                elements.forEach(el => {
-                    el.textContent = textMappings[originalText];
-                });
-            });
-        }
     }
 }
 

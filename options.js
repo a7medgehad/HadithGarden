@@ -10,7 +10,6 @@ class HadeethGardenOptions {
         };
         this.favorites = [];
         this.hadithData = [];
-        this.localization = new HadeethLocalization();
         this.init();
     }
 
@@ -19,10 +18,6 @@ class HadeethGardenOptions {
             await this.loadHadithData();
             await this.loadSettings();
             await this.loadFavorites();
-            
-            // Initialize localization with current language
-            this.localization.setLanguage(this.settings.language);
-            
             await this.updateProgressInfo();
             this.setupEventListeners();
             this.updateUI();
@@ -159,13 +154,12 @@ class HadeethGardenOptions {
             });
         });
 
-        // Language settings  
+        // Language settings
         const languageInputs = document.querySelectorAll('input[name="language"]');
         languageInputs.forEach(input => {
             input.addEventListener('change', (e) => {
                 if (e.target.checked) {
                     this.settings.language = e.target.value;
-                    this.localization.setLanguage(this.settings.language);
                     this.updateLanguage();
                 }
             });
@@ -234,12 +228,13 @@ class HadeethGardenOptions {
         document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
         document.documentElement.lang = this.settings.language;
         
-        // Use the localization instance from constructor
-        if (this.localization) {
-            this.localization.setLanguage(this.settings.language);
+        // Initialize localization if not already done
+        if (!window.localization) {
+            window.localization = new HadeethLocalization();
         }
         
-        // Save settings
+        // Update localization and save settings
+        window.localization.setLanguage(this.settings.language);
         this.saveSettings();
     }
 
