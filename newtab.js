@@ -345,10 +345,12 @@ class HadeethGardenTab {
             }
         };
         
-        // Apply immediately and with delay
+        // Apply immediately and with multiple retries to ensure it works
         applyStarColor();
-        setTimeout(() => applyStarColor(), 100);
+        setTimeout(() => applyStarColor(), 50);
+        setTimeout(() => applyStarColor(), 150);
         setTimeout(() => applyStarColor(), 300);
+        setTimeout(() => applyStarColor(), 500);
     }
 
     showErrorState() {

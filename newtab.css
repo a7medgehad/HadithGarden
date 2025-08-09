@@ -645,29 +645,29 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
-/* Animation for favorites button when added */
-.toolbar-btn .star-icon.favorited-star {
+/* Enhanced star icon styling with maximum specificity */
+#addToFavoritesBtn.favorited svg,
+#addToFavoritesBtn.favorited i,
+#addToFavoritesBtn svg.favorited-star,
+#addToFavoritesBtn i.favorited-star,
+.toolbar-btn.favorited svg,
+.toolbar-btn.favorited i,
+.toolbar-btn svg.favorited-star,
+.toolbar-btn i.favorited-star,
+.favorited-star {
     color: #FFD700 !important;
     fill: #FFD700 !important;
+    stroke: #FFD700 !important;
+}
+
+/* Animation for favorites button when added */
+.favorited-star {
     animation: starPulse 0.6s ease-out;
 }
 
-.toolbar-btn.favorited .star-icon {
-    color: #FFD700 !important;
-    fill: #FFD700 !important;
-}
-
-.toolbar-btn.favorited svg {
-    color: #FFD700 !important;
-    fill: #FFD700 !important;
-}
-
-.toolbar-btn svg.favorited-star {
-    color: #FFD700 !important;
-    fill: #FFD700 !important;
-}
-
-.favorited-star {
+/* Additional specificity for direct style application */
+[style*="color: rgb(255, 215, 0)"],
+[style*="fill: rgb(255, 215, 0)"] {
     color: #FFD700 !important;
     fill: #FFD700 !important;
 }
