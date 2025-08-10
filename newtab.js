@@ -392,6 +392,7 @@ class HadeethGardenTab {
         
         // View on Sunnah button
         document.getElementById('viewOnSunnahBtn').addEventListener('click', () => {
+            this.addButtonPressEffect('viewOnSunnahBtn');
             if (this.currentHadith) {
                 // Always construct the URL with correct format using hadith number
                 const hadithNum = this.currentHadith.hadithNumber || this.currentHadith.id;
@@ -415,26 +416,31 @@ class HadeethGardenTab {
 
         // Collections button
         document.getElementById('collectionsBtn').addEventListener('click', () => {
+            this.toggleCollectionsButton();
             this.showCollectionsModal();
         });
 
         // View Favorites button
         document.getElementById('favoritesBtn').addEventListener('click', () => {
+            this.toggleFavoritesButton();
             this.showFavoritesModal();
         });
 
         // Search button
         document.getElementById('searchBtn').addEventListener('click', () => {
+            this.toggleSearchButton();
             this.showSearchModal();
         });
 
         // Previous button
         document.getElementById('prevBtn').addEventListener('click', () => {
+            this.addButtonPressEffect('prevBtn');
             this.previousHadith();
         });
 
         // Next button (explicit handler)
         document.getElementById('nextBtn').addEventListener('click', async () => {
+            this.addButtonPressEffect('nextBtn');
             await this.nextHadith();
             // Record hadith read for gamification
             const result = await this.gamification.recordHadithRead();
@@ -1095,6 +1101,36 @@ class HadeethGardenTab {
         }
     }
 
+    toggleSearchButton() {
+        const searchBtn = document.getElementById('searchBtn');
+        searchBtn.classList.add('search-active');
+        
+        // Remove active state after modal closes
+        setTimeout(() => {
+            searchBtn.classList.remove('search-active');
+        }, 300);
+    }
+    
+    toggleCollectionsButton() {
+        const collectionsBtn = document.getElementById('collectionsBtn');
+        collectionsBtn.classList.add('active');
+        
+        // Remove active state after modal interaction
+        setTimeout(() => {
+            collectionsBtn.classList.remove('active');
+        }, 300);
+    }
+    
+    toggleFavoritesButton() {
+        const favoritesBtn = document.getElementById('favoritesBtn');
+        favoritesBtn.classList.add('active');
+        
+        // Remove active state after modal closes
+        setTimeout(() => {
+            favoritesBtn.classList.remove('active');
+        }, 300);
+    }
+
     showCollectionsModal() {
         // Remove any existing modal
         const existingModal = document.querySelector('.collections-modal-overlay');
@@ -1362,6 +1398,26 @@ class HadeethGardenTab {
             modalOverlay.style.opacity = '1';
             modalContent.style.transform = 'scale(1)';
         }, 10);
+    }
+    
+    closeCollectionsModal(modalOverlay, modalContent) {
+        modalOverlay.style.opacity = '0';
+        modalContent.style.transform = 'scale(0.8)';
+        setTimeout(() => modalOverlay.remove(), 300);
+        
+        // Remove active state from collections button
+        const collectionsBtn = document.getElementById('collectionsBtn');
+        collectionsBtn.classList.remove('active');
+    }
+    
+    addButtonPressEffect(buttonId) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            button.classList.add('active');
+            setTimeout(() => {
+                button.classList.remove('active');
+            }, 200);
+        }
     }
 
 

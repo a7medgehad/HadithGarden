@@ -645,6 +645,41 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
+/* Enhanced Button States and Icon Colors */
+.toolbar-btn {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toolbar-btn:hover {
+    background: var(--primary-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.toolbar-btn:hover i,
+.toolbar-btn:hover svg {
+    color: white !important;
+}
+
+.toolbar-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* Active/Selected button states */
+.toolbar-btn.active {
+    background: var(--primary-green);
+    color: white;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.toolbar-btn.active i,
+.toolbar-btn.active svg {
+    color: white !important;
+}
+
 /* Animation for favorites button when added */
 .toolbar-btn .star-icon.favorited-star {
     color: var(--accent-gold) !important;
@@ -657,10 +692,20 @@ button:focus-visible {
     fill: var(--accent-gold) !important;
 }
 
+.toolbar-btn.favorited:hover .star-icon {
+    color: white !important;
+    fill: white !important;
+}
+
 /* Additional specificity for star icon when favorited */
 .toolbar-btn.favorited svg {
     color: var(--accent-gold) !important;
     fill: var(--accent-gold) !important;
+}
+
+.toolbar-btn.favorited:hover svg {
+    color: white !important;
+    fill: white !important;
 }
 
 .toolbar-btn .favorited-star {
@@ -671,6 +716,17 @@ button:focus-visible {
 .toolbar-btn svg.favorited-star {
     color: var(--accent-gold) !important;
     fill: var(--accent-gold) !important;
+}
+
+/* Search button active state */
+.toolbar-btn.search-active {
+    background: var(--primary-green);
+    color: white;
+}
+
+.toolbar-btn.search-active i,
+.toolbar-btn.search-active svg {
+    color: white !important;
 }
 
 @keyframes starPulse {
