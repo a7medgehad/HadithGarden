@@ -651,6 +651,16 @@ button:focus-visible {
     transition: all 0.3s ease;
 }
 
+/* SVG Icon Styling */
+.toolbar-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
 .toolbar-btn:hover {
     background: var(--primary-green);
     color: white;
