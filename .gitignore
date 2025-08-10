@@ -6,6 +6,9 @@ build/
 # Chrome extension package (generated)
 chrome-extension-package/
 
+# Attached assets (user uploads)
+attached_assets/
+
 # Development files
 .DS_Store
 .vscode/
@@ -27,6 +30,17 @@ package-lock.json
 .replit
 .replit.nix
 replit.nix
+.pythonlibs/
+.cache/
+.local/
+.upm/
+
+# Documentation files (not needed in git)
+CHROME_STORE_DESCRIPTION.md
+CHROME_WEB_STORE_UPLOAD_INSTRUCTIONS.md
+CONTRIBUTING.md
+INSTALLATION_GUIDE.md
+GIT_SETUP_COMMANDS.md
 
 # OS generated files
 Thumbs.db
