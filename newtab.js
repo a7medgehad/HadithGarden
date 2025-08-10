@@ -1196,7 +1196,7 @@ class HadeethGardenTab {
                 nameKey: 'collections.muslim',
                 status: 'coming-soon',
                 description: isArabic ? 'ثاني أصح الكتب بعد البخاري' : 'Second most authentic after Bukhari',
-                count: 7500,
+                count: 3033,
                 icon: '📗'
             },
             {
@@ -1212,7 +1212,7 @@ class HadeethGardenTab {
                 nameKey: 'collections.abudawud',
                 status: 'coming-soon',
                 description: isArabic ? 'متخصص في الأحكام الفقهية' : 'Specialized in jurisprudential rulings',
-                count: 4800,
+                count: 5274,
                 icon: '📙'
             },
             {
@@ -1220,7 +1220,7 @@ class HadeethGardenTab {
                 nameKey: 'collections.nasai',
                 status: 'coming-soon',
                 description: isArabic ? 'من أدق كتب السنن' : 'One of the most precise Sunan books',
-                count: 5270,
+                count: 5758,
                 icon: '📕'
             }
         ];
