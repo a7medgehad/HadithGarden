@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadith Garden - Settings</title>
+    <title data-i18n="options.title">Hadith Garden - Settings</title>
     <link rel="stylesheet" href="options.css">
-
-    <!-- Feather icons CSS is embedded in main CSS file -->
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1 class="title">
                 <span class="icon">🌿</span>
-                Hadith Garden Settings
+                <span data-i18n="options.title">Hadith Garden Settings</span>
             </h1>
-            <p class="subtitle">Customize your Islamic garden experience</p>
+            <p class="subtitle" data-i18n="options.subtitle">Customize your Islamic garden experience</p>
         </header>
 
         <main class="main-content">
@@ -23,13 +21,16 @@
                 <!-- Display Settings -->
                 <section class="settings-section">
                     <h2 class="section-title">
-                        <i data-feather="eye"></i>
-                        Display Settings
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span data-i18n="options.display">Display Settings</span>
                     </h2>
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Show Arabic Text</span>
+                            <span class="label-text" data-i18n="options.showArabic">Show Arabic Text</span>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="showArabic" checked>
                                 <span class="slider"></span>
@@ -39,7 +40,7 @@
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Show English Translation</span>
+                            <span class="label-text" data-i18n="options.showEnglish">Show English Translation</span>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="showEnglish" checked>
                                 <span class="slider"></span>
@@ -49,7 +50,7 @@
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Font Size</span>
+                            <span class="label-text" data-i18n="options.fontSize">Font Size</span>
                             <span class="font-size-value" id="fontSizeValue">16px</span>
                         </label>
                         <input type="range" id="fontSize" min="12" max="24" value="16" class="slider-range">
@@ -63,8 +64,14 @@
                 <!-- Theme Settings -->
                 <section class="settings-section">
                     <h2 class="section-title">
-                        <i data-feather="palette"></i>
-                        Theme Settings
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="13.5" cy="6.5" r=".5"></circle>
+                            <circle cx="17.5" cy="10.5" r=".5"></circle>
+                            <circle cx="8.5" cy="7.5" r=".5"></circle>
+                            <circle cx="6.5" cy="12.5" r=".5"></circle>
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+                        </svg>
+                        <span data-i18n="options.theme">Theme Settings</span>
                     </h2>
                     
                     <div class="setting-group">

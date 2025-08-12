@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Hadith Garden",
   "version": "1.0.0",
-  "description": "Replace your new tab with sequential hadith from Riyāḍ al-Ṣāliḥīn in an elegant Islamic garden theme",
+  "description": "Transform your new tab into a peaceful Islamic garden featuring authentic hadith from Riyāḍ al-Ṣāliḥīn. Experience daily spiritual enrichment with bilingual Arabic-English text, progress tracking, and a serene design inspired by Islamic art.",
   "permissions": [
     "storage",
     "activeTab"
@@ -32,8 +32,7 @@
     {
       "resources": [
         "data/riyadussalihin.json", 
-        "icons/*.svg",
-        "libs/feather.min.js"
+        "icons/*.svg"
       ],
       "matches": ["<all_urls>"]
     }
