@@ -190,8 +190,7 @@ class HadeethGardenTab {
             // Display the hadith with animation
             this.displayHadith(true);
             
-            // Update gamification progress
-            await this.gamification.markHadithRead();
+            // Update gamification progress (no need to call recordHadithRead here as it's called from button handlers)
             this.renderProgressSection();
             
         } catch (error) {
@@ -875,7 +874,7 @@ class HadeethGardenTab {
         }
     }
 
-    showNotificationToast(message, type = 'info') {
+    showNotificationToast(message, type = 'info', hadithId = null) {
         // Create temporary notification
         const notification = document.createElement('div');
         notification.className = `notification-toast ${type}`;
@@ -922,7 +921,7 @@ class HadeethGardenTab {
         }
         
         // Update favorite button if current hadith
-        if (this.currentHadith && this.currentHadith.id === hadithId) {
+        if (hadithId && this.currentHadith && this.currentHadith.id === hadithId) {
             this.updateFavoritesButton();
         }
     }
