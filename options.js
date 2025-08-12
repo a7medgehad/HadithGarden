@@ -17,6 +17,12 @@ class HadeethGardenOptions {
         try {
             await this.loadHadithData();
             await this.loadSettings();
+            
+            // Initialize localization
+            this.localization = new HadeethLocalization();
+            this.localization.setLanguage(this.settings.language);
+            this.localization.updateAllTranslations();
+            
             await this.loadFavorites();
             await this.updateProgressInfo();
             this.setupEventListeners();
@@ -223,18 +229,8 @@ class HadeethGardenOptions {
     }
 
     updateLanguage() {
-        // Set document direction and language
-        const isRTL = this.settings.language === 'ar';
-        document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-        document.documentElement.lang = this.settings.language;
-        
-        // Initialize localization if not already done
-        if (!window.localization) {
-            window.localization = new HadeethLocalization();
-        }
-        
-        // Update localization and save settings
-        window.localization.setLanguage(this.settings.language);
+        // Use the shared localization instance to handle language change
+        this.localization.setLanguage(this.settings.language);
         this.saveSettings();
     }
 

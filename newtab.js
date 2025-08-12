@@ -305,35 +305,12 @@ class HadeethGardenTab {
         const isFavorited = this.favorites.includes(this.currentHadith.id);
         
         if (isFavorited) {
-            favoritesBtn.classList.add('favorited');
-            favoritesBtn.innerHTML = `<i class="star-icon favorited-star" data-feather="star"></i><span>${this.localization.t('hadith.removeFromFavorites')}</span>`;
+            favoritesBtn.classList.add('favorite-active');
+            favoritesBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg><span>${this.localization.t('hadith.removeFromFavorites')}</span>`;
         } else {
-            favoritesBtn.classList.remove('favorited');
-            favoritesBtn.innerHTML = `<i class="star-icon" data-feather="star"></i><span>${this.localization.t('hadith.addToFavorites')}</span>`;
+            favoritesBtn.classList.remove('favorite-active');
+            favoritesBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg><span>${this.localization.t('hadith.addToFavorites')}</span>`;
         }
-        
-        // Re-initialize feather icons immediately
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-        
-        // Force apply star color after feather replace
-        setTimeout(() => {
-            const starIcon = favoritesBtn.querySelector('.star-icon');
-            if (starIcon && isFavorited) {
-                starIcon.style.color = 'var(--accent-gold)';
-                starIcon.style.fill = 'var(--accent-gold)';
-            }
-        }, 50);
-        
-        // Force apply star color after feather replace
-        setTimeout(() => {
-            const starIcon = favoritesBtn.querySelector('.star-icon');
-            if (starIcon && isFavorited) {
-                starIcon.style.color = 'var(--accent-gold)';
-                starIcon.style.fill = 'var(--accent-gold)';
-            }
-        }, 50);
     }
 
     showErrorState() {
@@ -884,6 +861,18 @@ class HadeethGardenTab {
         this.favorites = this.favorites.filter(id => id !== hadithId);
         await this.saveFavorites();
         this.updateFavoritesButton();
+    }
+
+    async saveFavorites() {
+        try {
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                await chrome.storage.local.set({ favorites: this.favorites });
+            } else {
+                localStorage.setItem('hadeeth-garden-favorites', JSON.stringify(this.favorites));
+            }
+        } catch (error) {
+            console.error('Failed to save favorites:', error);
+        }
     }
 
     showNotificationToast(message, type = 'info') {

@@ -665,7 +665,7 @@ button:focus-visible {
 /* Special styling for star icon to make it visible */
 .toolbar-btn .star-icon {
     fill: currentColor;
-    stroke: currentColor;
+    stroke: none;   /* ensures filled star shows */
 }
 
 .toolbar-btn:hover {
@@ -697,49 +697,33 @@ button:focus-visible {
     color: white !important;
 }
 
+/* Favorite star states - using favorite-active class */
+.toolbar-btn.favorite-active .star-icon {
+    fill: #f6c344;
+    stroke: none;
+}
+
+.toolbar-btn.favorite-active:hover .star-icon {
+    fill: white;
+    stroke: none;
+}
+
 /* Animation for favorites button when added */
 .toolbar-btn .star-icon.favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-    stroke: var(--accent-gold) !important;
+    fill: #f6c344;
+    stroke: none;
     animation: starPulse 0.6s ease-out;
 }
 
+/* Legacy support for existing favorited class */
 .toolbar-btn.favorited .star-icon {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-    stroke: var(--accent-gold) !important;
+    fill: #f6c344;
+    stroke: none;
 }
 
 .toolbar-btn.favorited:hover .star-icon {
-    color: white !important;
-    fill: white !important;
-    stroke: white !important;
-}
-
-/* Additional specificity for star icon when favorited */
-.toolbar-btn.favorited svg.star-icon {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-    stroke: var(--accent-gold) !important;
-}
-
-.toolbar-btn.favorited:hover svg.star-icon {
-    color: white !important;
-    fill: white !important;
-    stroke: white !important;
-}
-
-.toolbar-btn .favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-    stroke: var(--accent-gold) !important;
-}
-
-.toolbar-btn svg.favorited-star {
-    color: var(--accent-gold) !important;
-    fill: var(--accent-gold) !important;
-    stroke: var(--accent-gold) !important;
+    fill: white;
+    stroke: none;
 }
 
 /* Search button active state */
