@@ -4,8 +4,7 @@
   "version": "1.0.1",
   "description": "Replaces your new tab with a serene Islamic theme featuring daily hadith from Riyāḍ al-Ṣāliḥīn, bilingual text & progress tracking.",
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self';"
