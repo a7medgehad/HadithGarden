@@ -8,6 +8,10 @@ class HadeethGardenOptions {
             theme: 'auto',
             language: 'en'
         };
+        this.notificationSettings = {
+            enabled: false,
+            time: '09:00'
+        };
         this.favorites = [];
         this.hadithData = [];
         this.init();
@@ -20,6 +24,7 @@ class HadeethGardenOptions {
             
             await this.loadHadithData();
             await this.loadSettings();
+            await this.loadNotificationSettings();
             
             // Set language after loading settings
             this.localization.setLanguage(this.settings.language);
@@ -77,6 +82,17 @@ class HadeethGardenOptions {
         }
     }
 
+    async loadNotificationSettings() {
+        try {
+            const result = await chrome.storage.local.get(['notificationSettings']);
+            if (result.notificationSettings) {
+                this.notificationSettings = { ...this.notificationSettings, ...result.notificationSettings };
+            }
+        } catch (error) {
+            console.error('Failed to load notification settings:', error);
+        }
+    }
+
     async updateProgressInfo() {
         try {
             const result = await chrome.storage.local.get(['currentIndex']);
@@ -115,6 +131,14 @@ class HadeethGardenOptions {
         languageInputs.forEach(input => {
             input.checked = input.value === this.settings.language;
         });
+
+        // Update notification settings
+        document.getElementById('notificationsEnabled').checked = this.notificationSettings.enabled;
+        document.getElementById('notificationTime').value = this.notificationSettings.time;
+        
+        // Show/hide notification time based on enabled state
+        const timeGroup = document.getElementById('notificationTimeGroup');
+        timeGroup.style.display = this.notificationSettings.enabled ? 'block' : 'none';
 
         // Apply current theme to options page
         this.applyTheme();
@@ -200,6 +224,21 @@ class HadeethGardenOptions {
             await this.clearFavorites();
         });
 
+        // Notification settings
+        document.getElementById('notificationsEnabled').addEventListener('change', (e) => {
+            this.notificationSettings.enabled = e.target.checked;
+            const timeGroup = document.getElementById('notificationTimeGroup');
+            timeGroup.style.display = this.notificationSettings.enabled ? 'block' : 'none';
+        });
+
+        document.getElementById('notificationTime').addEventListener('change', (e) => {
+            this.notificationSettings.time = e.target.value;
+        });
+
+        document.getElementById('testNotificationBtn').addEventListener('click', async () => {
+            await this.testNotification();
+        });
+
         // Save settings
         document.getElementById('saveSettingsBtn').addEventListener('click', async () => {
             await this.saveSettings();
@@ -248,8 +287,7 @@ class HadeethGardenOptions {
             }
 
             await chrome.storage.local.set({ settings: this.settings });
-            
-
+            await this.saveNotificationSettings();
             
             this.showNotification(this.localization.t('messages.success.settingsSaved'), 'success');
             
@@ -402,7 +440,79 @@ class HadeethGardenOptions {
         notification.classList.remove('show');
     }
 
+    async saveNotificationSettings() {
+        try {
+            // Save to storage
+            await chrome.storage.local.set({
+                notificationSettings: this.notificationSettings
+            });
 
+            // Update background script schedule
+            await this.updateNotificationSchedule();
+        } catch (error) {
+            console.error('Failed to save notification settings:', error);
+        }
+    }
+
+    async updateNotificationSchedule() {
+        try {
+            // Send message to background script to update schedule
+            await chrome.runtime.sendMessage({
+                action: 'updateNotificationSchedule',
+                enabled: this.notificationSettings.enabled,
+                time: this.notificationSettings.time
+            });
+        } catch (error) {
+            // Background script might not be ready, try direct call
+            try {
+                const backgroundPage = chrome.extension.getBackgroundPage();
+                if (backgroundPage && backgroundPage.notificationManager) {
+                    await backgroundPage.notificationManager.updateNotificationSchedule(
+                        this.notificationSettings.enabled,
+                        this.notificationSettings.time
+                    );
+                }
+            } catch (directError) {
+                console.error('Failed to update notification schedule:', error);
+            }
+        }
+    }
+
+    async testNotification() {
+        try {
+            // Send message to background script to show test notification
+            const response = await chrome.runtime.sendMessage({
+                action: 'testNotification'
+            });
+            
+            if (response && response.success) {
+                // Show status message
+                const statusElement = document.getElementById('notificationStatus');
+                statusElement.textContent = this.localization.t('notifications.test_sent');
+                statusElement.className = 'notification-status success';
+                
+                // Clear status after 3 seconds
+                setTimeout(() => {
+                    statusElement.textContent = '';
+                    statusElement.className = 'notification-status';
+                }, 3000);
+            } else {
+                throw new Error(response?.error || 'Unknown error');
+            }
+            
+        } catch (error) {
+            console.error('Failed to test notification:', error);
+            const statusElement = document.getElementById('notificationStatus');
+            statusElement.textContent = this.localization.t('notifications.permission_needed');
+            statusElement.className = 'notification-status error';
+            
+            // Clear status after 5 seconds
+            setTimeout(() => {
+                statusElement.textContent = '';
+                statusElement.className = 'notification-status';
+            }, 5000);
+        }
+    }
 }
 
 // Initialize the options page when DOM is loaded

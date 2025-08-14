@@ -384,6 +384,13 @@ class HadeethLocalization {
             element.textContent = this.t(key);
         });
         
+        // Update all elements with data-i18n-html attribute (for HTML content)
+        const htmlElements = document.querySelectorAll('[data-i18n-html]');
+        htmlElements.forEach(element => {
+            const key = element.getAttribute('data-i18n-html');
+            element.innerHTML = this.t(key);
+        });
+        
         // Update placeholders
         const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
         placeholderElements.forEach(element => {
