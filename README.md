@@ -70,10 +70,10 @@ Transform your new tab into a peaceful Islamic garden experience featuring the c
 ├── data/
 │   └── riyadussalihin.json # Complete hadith collection
 └── icons/
-    ├── icon-16.svg         # Extension icons
-    ├── icon-48.svg
-    ├── icon-128.svg
-    └── logo.svg
+    ├── icon-16.png         # Extension icons (generated from logo.svg)
+    ├── icon-48.png
+    ├── icon-128.png
+    └── logo.svg            # Source logo file
 ```
 
 ### Technologies Used

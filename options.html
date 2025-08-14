@@ -55,8 +55,8 @@
                         </label>
                         <input type="range" id="fontSize" min="12" max="24" value="16" class="slider-range">
                         <div class="range-labels">
-                            <span>Small</span>
-                            <span>Large</span>
+                            <span data-i18n="options.small">Small</span>
+                            <span data-i18n="options.large">Large</span>
                         </div>
                     </div>
                 </section>
@@ -76,28 +76,28 @@
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Theme</span>
+                            <span class="label-text" data-i18n="options.themeLabel">Theme</span>
                         </label>
                         <div class="theme-options">
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="auto" checked>
                                 <span class="theme-card">
                                     <i data-feather="monitor"></i>
-                                    <span>Auto</span>
+                                    <span data-i18n="options.theme.auto">Auto</span>
                                 </span>
                             </label>
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="light">
                                 <span class="theme-card">
                                     <i data-feather="sun"></i>
-                                    <span>Light</span>
+                                    <span data-i18n="options.theme.light">Light</span>
                                 </span>
                             </label>
                             <label class="theme-option">
                                 <input type="radio" name="theme" value="dark">
                                 <span class="theme-card">
                                     <i data-feather="moon"></i>
-                                    <span>Dark</span>
+                                    <span data-i18n="options.theme.dark">Dark</span>
                                 </span>
                             </label>
                         </div>
@@ -108,21 +108,21 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="book-open"></i>
-                        Reading Progress
+                        <span data-i18n="options.readingProgress">Reading Progress</span>
                     </h2>
                     
                     <div class="progress-info">
                         <div class="progress-stat">
-                            <span class="stat-label">Current Hadith:</span>
-                            <span class="stat-value" id="currentHadithNumber">Loading...</span>
+                            <span class="stat-label" data-i18n="options.currentHadith">Current Hadith:</span>
+                            <span class="stat-value" id="currentHadithNumber" data-i18n="options.loading">Loading...</span>
                         </div>
                         <div class="progress-stat">
-                            <span class="stat-label">Total Hadiths:</span>
-                            <span class="stat-value" id="totalHadiths">Loading...</span>
+                            <span class="stat-label" data-i18n="options.totalHadiths">Total Hadiths:</span>
+                            <span class="stat-value" id="totalHadiths" data-i18n="options.loading">Loading...</span>
                         </div>
                         <div class="progress-stat">
-                            <span class="stat-label">Progress:</span>
-                            <span class="stat-value" id="progressPercentage">Loading...</span>
+                            <span class="stat-label" data-i18n="options.progress">Progress:</span>
+                            <span class="stat-value" id="progressPercentage" data-i18n="options.loading">Loading...</span>
                         </div>
                     </div>
                     
@@ -132,7 +132,7 @@
                     
                     <button id="resetProgressBtn" class="action-btn secondary">
                         <i data-feather="refresh-cw"></i>
-                        Reset to First Hadith
+                        <span data-i18n="options.resetProgress">Reset to First Hadith</span>
                     </button>
                 </section>
 
@@ -140,31 +140,31 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="star"></i>
-                        Favorites Management
+                        <span data-i18n="options.favoritesManagement">Favorites Management</span>
                     </h2>
                     
                     <div class="favorites-info">
                         <div class="favorites-stat">
-                            <span class="stat-label">Favorited Hadiths:</span>
-                            <span class="stat-value" id="favoritesCount">Loading...</span>
+                            <span class="stat-label" data-i18n="options.favoritedHadiths">Favorited Hadiths:</span>
+                            <span class="stat-value" id="favoritesCount" data-i18n="options.loading">Loading...</span>
                         </div>
                     </div>
                     
                     <div class="favorites-actions">
                         <button id="exportFavoritesBtn" class="action-btn secondary">
                             <i data-feather="download"></i>
-                            Export Favorites
+                            <span data-i18n="options.exportFavorites">Export Favorites</span>
                         </button>
                         <button id="importFavoritesBtn" class="action-btn secondary">
                             <i data-feather="upload"></i>
-                            Import Favorites
+                            <span data-i18n="options.importFavorites">Import Favorites</span>
                         </button>
                         <input type="file" id="importFile" accept=".json" style="display: none;">
                     </div>
                     
                     <button id="clearFavoritesBtn" class="action-btn danger">
                         <i data-feather="trash-2"></i>
-                        Clear All Favorites
+                        <span data-i18n="options.clearFavorites">Clear All Favorites</span>
                     </button>
                 </section>
 
@@ -172,25 +172,25 @@
                 <section class="settings-section">
                     <h2 class="section-title">
                         <i data-feather="globe"></i>
-                        Interface Language
+                        <span data-i18n="options.interfaceLanguage">Interface Language</span>
                     </h2>
                     
                     <div class="setting-group">
                         <label class="setting-label">
-                            <span class="label-text">Choose Language / اختر اللغة</span>
+                            <span class="label-text" data-i18n="options.chooseLanguage">Choose Language / اختر اللغة</span>
                         </label>
                         <div class="language-options">
                             <label class="language-option">
                                 <input type="radio" name="language" value="en" checked>
                                 <span class="language-card">
-                                    <span class="language-name">English</span>
+                                    <span class="language-name" data-i18n="options.languageEnglish">English</span>
                                     <span class="language-native">English</span>
                                 </span>
                             </label>
                             <label class="language-option">
                                 <input type="radio" name="language" value="ar">
                                 <span class="language-card">
-                                    <span class="language-name">Arabic</span>
+                                    <span class="language-name" data-i18n="options.languageArabic">Arabic</span>
                                     <span class="language-native">العربية</span>
                                 </span>
                             </label>
@@ -213,7 +213,7 @@
                                 <span class="slider"></span>
                             </div>
                         </label>
-                        <div class="setting-description">
+                        <div class="setting-description" data-i18n="notifications.description">
                             Get reminded to read your daily hadith at your preferred time
                         </div>
                     </div>
@@ -240,16 +240,16 @@
             <div class="footer-actions">
                 <button id="saveSettingsBtn" class="action-btn primary">
                     <i data-feather="save"></i>
-                    Save Settings
+                    <span data-i18n="options.saveSettings">Save Settings</span>
                 </button>
             </div>
             
             <div class="footer-info">
-                <p class="attribution">
+                <p class="attribution" data-i18n="options.attribution">
                     Hadith content from <a href="https://sunnah.com/riyadussalihin" target="_blank">sunnah.com</a> 
                     – used for personal educational purposes.
                 </p>
-                <p class="version">Hadeeth Garden Tab v1.0.0</p>
+                <p class="version" data-i18n="options.version">Hadeeth Garden Tab v1.0.2</p>
             </div>
         </footer>
     </div>

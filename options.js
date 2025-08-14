@@ -15,11 +15,13 @@ class HadeethGardenOptions {
 
     async init() {
         try {
+            // Initialize localization first
+            this.localization = new HadeethLocalization();
+            
             await this.loadHadithData();
             await this.loadSettings();
             
-            // Initialize localization
-            this.localization = new HadeethLocalization();
+            // Set language after loading settings
             this.localization.setLanguage(this.settings.language);
             this.localization.updateAllTranslations();
             
@@ -34,7 +36,10 @@ class HadeethGardenOptions {
             }
         } catch (error) {
             console.error('Failed to initialize options:', error);
-            this.showNotification('Failed to load settings. Please try again.', 'error');
+            const errorMessage = this.localization ? 
+                this.localization.t('messages.error.loadSettings') : 
+                'Failed to load settings. Please try again.';
+            this.showNotification(errorMessage, 'error');
         }
     }
 
@@ -238,7 +243,7 @@ class HadeethGardenOptions {
         try {
             // Validate settings
             if (!this.settings.showArabic && !this.settings.showEnglish) {
-                this.showNotification('At least one language must be enabled.', 'error');
+                this.showNotification(this.localization.t('messages.error.languageRequired'), 'error');
                 return;
             }
 
@@ -246,7 +251,7 @@ class HadeethGardenOptions {
             
 
             
-            this.showNotification('Settings saved successfully!', 'success');
+            this.showNotification(this.localization.t('messages.success.settingsSaved'), 'success');
             
             // Add visual feedback to save button
             const saveBtn = document.getElementById('saveSettingsBtn');
@@ -257,28 +262,28 @@ class HadeethGardenOptions {
             
         } catch (error) {
             console.error('Failed to save settings:', error);
-            this.showNotification('Failed to save settings. Please try again.', 'error');
+            this.showNotification(this.localization.t('messages.error.saveSettings'), 'error');
         }
     }
 
     async resetProgress() {
         try {
-            const confirmed = confirm('Are you sure you want to reset reading progress to the first hadith?');
+            const confirmed = confirm(this.localization.t('messages.confirm.resetProgress'));
             if (!confirmed) return;
 
             await chrome.storage.local.set({ currentIndex: 0 });
             await this.updateProgressInfo();
-            this.showNotification('Reading progress reset to the first hadith.', 'success');
+            this.showNotification(this.localization.t('messages.success.progressReset'), 'success');
         } catch (error) {
             console.error('Failed to reset progress:', error);
-            this.showNotification('Failed to reset progress. Please try again.', 'error');
+            this.showNotification(this.localization.t('messages.error.resetProgress'), 'error');
         }
     }
 
     exportFavorites() {
         try {
             if (this.favorites.length === 0) {
-                this.showNotification('No favorites to export.', 'info');
+                this.showNotification(this.localization.t('messages.info.noFavoritesToExport'), 'info');
                 return;
             }
 
@@ -306,10 +311,10 @@ class HadeethGardenOptions {
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            this.showNotification(`${this.favorites.length} favorites exported successfully!`, 'success');
+            this.showNotification(`${this.favorites.length} ${this.localization.t('messages.success.favoritesExported')}`, 'success');
         } catch (error) {
             console.error('Failed to export favorites:', error);
-            this.showNotification('Failed to export favorites. Please try again.', 'error');
+            this.showNotification(this.localization.t('messages.error.exportFavorites'), 'error');
         }
     }
 
@@ -319,7 +324,7 @@ class HadeethGardenOptions {
             const importData = JSON.parse(text);
             
             if (!importData.favorites || !Array.isArray(importData.favorites)) {
-                throw new Error('Invalid favorites file format');
+                throw new Error(this.localization.t('messages.error.invalidFile'));
             }
 
             // Extract hadith IDs and validate they exist in our data
@@ -328,12 +333,12 @@ class HadeethGardenOptions {
                 .filter(id => this.hadithData.some(h => h.id === id));
 
             if (validIds.length === 0) {
-                this.showNotification('No valid favorites found in the imported file.', 'error');
+                this.showNotification(this.localization.t('messages.error.noValidFavorites'), 'error');
                 return;
             }
 
             const confirmed = confirm(
-                `Import ${validIds.length} favorites? This will replace your current favorites.`
+                this.localization.t('messages.confirm.importFavorites', null, {count: validIds.length})
             );
             if (!confirmed) return;
 
@@ -342,13 +347,13 @@ class HadeethGardenOptions {
             await this.updateProgressInfo();
             
             this.showNotification(
-                `${validIds.length} favorites imported successfully!`, 
+                `${validIds.length} ${this.localization.t('messages.success.favoritesImported')}`, 
                 'success'
             );
         } catch (error) {
             console.error('Failed to import favorites:', error);
             this.showNotification(
-                'Failed to import favorites. Please check the file format.', 
+                this.localization.t('messages.error.importFavorites'), 
                 'error'
             );
         }
@@ -357,12 +362,12 @@ class HadeethGardenOptions {
     async clearFavorites() {
         try {
             if (this.favorites.length === 0) {
-                this.showNotification('No favorites to clear.', 'info');
+                this.showNotification(this.localization.t('messages.info.noFavoritesToClear'), 'info');
                 return;
             }
 
             const confirmed = confirm(
-                `Are you sure you want to clear all ${this.favorites.length} favorites? This cannot be undone.`
+                this.localization.t('messages.confirm.clearFavorites', null, {count: this.favorites.length})
             );
             if (!confirmed) return;
 
@@ -370,10 +375,10 @@ class HadeethGardenOptions {
             await chrome.storage.local.set({ favorites: this.favorites });
             await this.updateProgressInfo();
             
-            this.showNotification('All favorites cleared successfully.', 'success');
+            this.showNotification(this.localization.t('messages.success.favoritesCleared'), 'success');
         } catch (error) {
             console.error('Failed to clear favorites:', error);
-            this.showNotification('Failed to clear favorites. Please try again.', 'error');
+            this.showNotification(this.localization.t('messages.error.clearFavorites'), 'error');
         }
     }
 
