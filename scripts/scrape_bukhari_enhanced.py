@@ -92,14 +92,23 @@ class EnhancedHadithParser:
             book_number = 1
             hadith_in_book = 1
             
-            ref_elem = soup.find('div', class_='hadith_reference')
-            if ref_elem:
-                ref_text = ref_elem.get_text()
-                # Look for "In-book reference: Book X, Hadith Y"
-                book_match = re.search(r'Book (\d+), Hadith (\d+)', ref_text)
-                if book_match:
-                    book_number = int(book_match.group(1))
-                    hadith_in_book = int(book_match.group(2))
+            # Look for table-based reference (this is the correct structure)
+            ref_table = soup.find('table', class_='hadith_reference')
+            if ref_table:
+                rows = ref_table.find_all('tr')
+                for row in rows:
+                    cells = row.find_all('td')
+                    if len(cells) >= 2:
+                        label = cells[0].get_text().strip()
+                        value = cells[1].get_text().strip()
+                        
+                        if label == "In-book reference":
+                            # Look for "Book X, Hadith Y" pattern
+                            book_match = re.search(r'Book (\d+), Hadith (\d+)', value)
+                            if book_match:
+                                book_number = int(book_match.group(1))
+                                hadith_in_book = int(book_match.group(2))
+                                break
             
             # Extract chapter information
             chapter_title_en = ""
@@ -137,13 +146,18 @@ class EnhancedHadithParser:
             
             # Extract reference information
             reference = f"Sahih al-Bukhari {hadith_number}"
-            if ref_elem:
-                # Find the main reference line
-                ref_lines = ref_elem.get_text().split('\n')
-                for line in ref_lines:
-                    if line.startswith('Reference') and 'Sahih al-Bukhari' in line:
-                        reference = line.replace('Reference : ', '').strip()
-                        break
+            if ref_table:
+                # Find the main reference line from table
+                rows = ref_table.find_all('tr')
+                for row in rows:
+                    cells = row.find_all('td')
+                    if len(cells) >= 2:
+                        label = cells[0].get_text().strip()
+                        value = cells[1].get_text().strip()
+                        
+                        if label == "Reference":
+                            reference = value.replace(': ', '').strip()
+                            break
             
             # Construct the enhanced hadith object
             hadith_obj = {
