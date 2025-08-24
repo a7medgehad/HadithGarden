@@ -10,7 +10,8 @@ class HadeethGardenTab {
             fontSize: 16,
             theme: 'auto',
             language: 'en',
-            dailyGoal: 5
+            dailyGoal: 5,
+            collection: 'riyadussaliheen' // Default collection
         };
         this.favorites = [];
         this.localization = new HadeethLocalization();
@@ -116,13 +117,20 @@ class HadeethGardenTab {
 
     async loadHadithData() {
         try {
+            const collectionFiles = {
+                'riyadussaliheen': 'data/riyadussalihin.json',
+                'sahih-bukhari': 'data/sahih-bukhari.json'
+            };
+            
+            const fileName = collectionFiles[this.settings.collection] || collectionFiles['riyadussaliheen'];
+            
             let response;
             // Try to use Chrome extension API first, fallback to relative path
             try {
-                response = await fetch(chrome.runtime.getURL('data/riyadussalihin.json'));
+                response = await fetch(chrome.runtime.getURL(fileName));
             } catch (extensionError) {
                 // Fallback for when running outside extension context (like in development server)
-                response = await fetch('data/riyadussalihin.json');
+                response = await fetch(fileName);
             }
             
             if (!response.ok) {
@@ -1164,7 +1172,7 @@ class HadeethGardenTab {
         // Collections data
         const collections = [
             {
-                id: 'riyadussalihin',
+                id: 'riyadussaliheen',
                 nameKey: 'collections.riyadussalihin',
                 status: 'available',
                 description: isArabic ? 'مجموعة من أفضل الأحاديث في الأخلاق والآداب' : 'A collection of the finest hadith on ethics and manners',
@@ -1172,11 +1180,11 @@ class HadeethGardenTab {
                 icon: '🌿'
             },
             {
-                id: 'bukhari',
+                id: 'sahih-bukhari',
                 nameKey: 'collections.bukhari',
-                status: 'coming-soon',
+                status: 'available',
                 description: isArabic ? 'أصح كتاب بعد القرآن الكريم' : 'The most authentic book after the Quran',
-                count: 7563,
+                count: 10,
                 icon: '📖'
             },
             {
@@ -1248,6 +1256,9 @@ class HadeethGardenTab {
             overflow-y: auto;
         `;
         
+        // Get current collection info
+        const currentCollection = collections.find(c => c.id === this.settings.collection) || collections[0];
+        
         // Current collection section
         const currentSection = document.createElement('div');
         currentSection.style.cssText = `
@@ -1266,11 +1277,11 @@ class HadeethGardenTab {
                 align-items: center;
                 gap: 1rem;
             ">
-                <span style="font-size: 1.5rem;">🌿</span>
+                <span style="font-size: 1.5rem;">${currentCollection.icon}</span>
                 <div>
-                    <h4 style="margin: 0; font-size: 1rem;">${this.localization.t('collections.riyadussalihin')}</h4>
+                    <h4 style="margin: 0; font-size: 1rem;">${this.localization.t(currentCollection.nameKey)}</h4>
                     <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">
-                        ${isArabic ? `${this.localization.formatNumber(1896)} حديث` : `${this.localization.formatNumber(1896)} hadith`}
+                        ${isArabic ? `${this.localization.formatNumber(this.hadithData.length)} حديث` : `${this.localization.formatNumber(this.hadithData.length)} hadith`}
                     </p>
                 </div>
             </div>

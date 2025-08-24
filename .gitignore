@@ -2,6 +2,9 @@
 *.zip
 dist/
 build/
+build-chrome/
+build-edge/
+hadith-garden-*.zip
 
 # Chrome extension package (generated)
 chrome-extension-package/

@@ -14,6 +14,9 @@
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
+  "edge_url_overrides": {
+    "newtab": "newtab.html"
+  },
   "options_page": "options.html",
   "background": {
     "service_worker": "background.js"
@@ -35,10 +38,11 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "data/riyadussalihin.json", 
+        "data/riyadussalihin.json",
+        "data/sahih-bukhari.json", 
         "icons/*.png"
       ],
-      "matches": ["chrome-extension://*/*"]
+      "matches": ["chrome-extension://*/*", "edge-extension://*/*"]
     }
   ]
 }
