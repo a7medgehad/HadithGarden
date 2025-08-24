@@ -98,17 +98,29 @@ class HadeethGamification {
             // New day - reset daily progress
             this.userStats.todaysProgress = 0;
             
-            // Update streak
-            if (lastRead === new Date(Date.now() - 86400000).toDateString()) {
-                // Yesterday - continue streak
-                this.userStats.currentStreak++;
-            } else if (lastRead !== null) {
-                // Gap in reading - reset streak
-                this.userStats.currentStreak = 0;
-            }
+            // Check if streak should expire (more than 1 day gap)
+            this.validateStreak();
             
             // Save the updated stats
             await this.saveUserStats();
+        }
+    }
+    
+    validateStreak() {
+        if (!this.userStats.lastReadDate) {
+            // No previous read date, streak should be 0
+            this.userStats.currentStreak = 0;
+            return;
+        }
+        
+        const today = new Date();
+        const lastReadDate = new Date(this.userStats.lastReadDate);
+        const timeDiff = today.getTime() - lastReadDate.getTime();
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        
+        // If more than 1 day has passed since last read, reset streak
+        if (daysDiff > 1) {
+            this.userStats.currentStreak = 0;
         }
     }
     
@@ -151,16 +163,35 @@ class HadeethGamification {
     }
     
     calculateNewStreak() {
-        const today = new Date().toDateString();
-        const yesterday = new Date(Date.now() - 86400000).toDateString();
-        const lastRead = this.userStats.lastReadDate ? new Date(this.userStats.lastReadDate).toDateString() : null;
+        const today = new Date();
+        const todayString = today.toDateString();
         
-        if (lastRead === yesterday) {
-            return this.userStats.currentStreak + 1;
-        } else if (lastRead === today) {
+        // If no previous read date, start with streak of 1
+        if (!this.userStats.lastReadDate) {
+            return 1;
+        }
+        
+        const lastReadDate = new Date(this.userStats.lastReadDate);
+        const lastReadString = lastReadDate.toDateString();
+        
+        // If reading on the same day, keep current streak
+        if (lastReadString === todayString) {
             return this.userStats.currentStreak;
+        }
+        
+        // Calculate the difference in days
+        const timeDiff = today.getTime() - lastReadDate.getTime();
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        
+        if (daysDiff === 1) {
+            // Consecutive day - increment streak
+            return this.userStats.currentStreak + 1;
+        } else if (daysDiff > 1) {
+            // Gap in reading - start new streak
+            return 1;
         } else {
-            return 1; // Start new streak
+            // This shouldn't happen (negative days), but keep current streak as fallback
+            return this.userStats.currentStreak;
         }
     }
     
