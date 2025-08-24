@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hadith Garden",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Replaces your new tab with a serene Islamic theme featuring daily hadith from Riyāḍ al-Ṣāliḥīn, bilingual text & progress tracking.",
   "permissions": [
     "storage",

@@ -588,6 +588,102 @@ input:focus-visible {
     font-family: 'Arabic Typesetting', 'Times New Roman', serif;
 }
 
+/* Collection Selection Styles */
+.collection-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.collection-option {
+    cursor: pointer;
+    display: block;
+}
+
+.collection-option input[type="radio"] {
+    display: none;
+}
+
+.collection-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    transition: var(--transition);
+    text-align: left;
+    position: relative;
+}
+
+.collection-option input[type="radio"]:checked + .collection-card {
+    border-color: var(--light-green);
+    background: var(--soft-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.collection-card:hover {
+    border-color: var(--light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow);
+}
+
+.collection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.collection-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    font-family: 'Arabic Typesetting', 'Times New Roman', serif;
+}
+
+.collection-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.collection-badge.default {
+    background: var(--soft-green);
+    color: var(--primary-green);
+    border: 1px solid var(--border);
+}
+
+.collection-badge.new {
+    background: linear-gradient(135deg, var(--accent-gold), #ffb300);
+    color: var(--text-dark);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.collection-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.collection-count {
+    font-size: 0.8rem;
+    color: var(--primary-green);
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+    .collection-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* RTL Support for Options */
 [dir="rtl"] .language-options {
     direction: rtl;
@@ -595,4 +691,8 @@ input:focus-visible {
 
 [dir="rtl"] .language-card {
     text-align: center;
+}
+
+[dir="rtl"] .collection-card {
+    text-align: right;
 }

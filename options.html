@@ -61,6 +61,50 @@
                     </div>
                 </section>
 
+                <!-- Collection Settings -->
+                <section class="settings-section">
+                    <h2 class="section-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <span data-i18n="options.hadithCollection">Hadith Collection</span>
+                    </h2>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span class="label-text" data-i18n="options.chooseCollection">Choose Collection</span>
+                        </label>
+                        <div class="collection-options">
+                            <label class="collection-option">
+                                <input type="radio" name="collection" value="riyadussaliheen" checked>
+                                <span class="collection-card">
+                                    <div class="collection-header">
+                                        <span class="collection-title" data-i18n="options.collection.riyadussaliheen">Riyāḍ al-Ṣāliḥīn</span>
+                                        <span class="collection-badge default" data-i18n="options.collection.default">Default</span>
+                                    </div>
+                                    <span class="collection-description" data-i18n="options.collection.riyadussaliheenDesc">The Gardens of the Righteous by Imam al-Nawawi</span>
+                                    <span class="collection-count">1896 hadith</span>
+                                </span>
+                            </label>
+                            <label class="collection-option">
+                                <input type="radio" name="collection" value="sahih-bukhari">
+                                <span class="collection-card">
+                                    <div class="collection-header">
+                                        <span class="collection-title" data-i18n="options.collection.sahih-bukhari">Sahih al-Bukhari</span>
+                                        <span class="collection-badge new" data-i18n="options.collection.new">New</span>
+                                    </div>
+                                    <span class="collection-description" data-i18n="options.collection.sahih-bukhariDesc">The most authentic hadith collection</span>
+                                    <span class="collection-count">6638 hadith</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="setting-description" data-i18n="options.collection.warning">
+                            ⚠️ Changing collections will reset your reading progress and favorites
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Theme Settings -->
                 <section class="settings-section">
                     <h2 class="section-title">

@@ -100,6 +100,17 @@ class HadeethLocalization {
                 'options.attribution': 'Hadith content from <a href="https://sunnah.com/riyadussalihin" target="_blank">sunnah.com</a> – used for personal educational purposes.',
                 'options.version': 'Hadeeth Garden Tab v1.0.2',
                 
+                // Collection Options
+                'options.hadithCollection': 'Hadith Collection',
+                'options.chooseCollection': 'Choose Collection',
+                'options.collection.riyadussaliheen': 'Riyāḍ al-Ṣāliḥīn',
+                'options.collection.riyadussaliheenDesc': 'The Gardens of the Righteous by Imam al-Nawawi',
+                'options.collection.sahih-bukhari': 'Sahih al-Bukhari',
+                'options.collection.sahih-bukhariDesc': 'The most authentic hadith collection',
+                'options.collection.default': 'Default',
+                'options.collection.new': 'New',
+                'options.collection.warning': '⚠️ Changing collections will reset your reading progress and favorites',
+                
                 // Additional UI elements
                 'ui.achievements': 'Achievements',
                 'ui.daily_goal': 'Daily Goal',
@@ -271,6 +282,17 @@ class HadeethLocalization {
                 'options.saveSettings': 'حفظ الإعدادات',
                 'options.attribution': 'محتوى الأحاديث من <a href="https://sunnah.com/riyadussalihin" target="_blank">sunnah.com</a> – للاستخدام التعليمي الشخصي.',
                 'options.version': 'تبويبة حديقة الأحاديث v1.0.2',
+                
+                // Collection Options Arabic
+                'options.hadithCollection': 'مجموعة الأحاديث',
+                'options.chooseCollection': 'اختر المجموعة',
+                'options.collection.riyadussaliheen': 'رياض الصالحين',
+                'options.collection.riyadussaliheenDesc': 'حدائق الصالحين للإمام النووي',
+                'options.collection.sahih-bukhari': 'صحيح البخاري',
+                'options.collection.sahih-bukhariDesc': 'أصح مجموعة أحاديث',
+                'options.collection.default': 'افتراضي',
+                'options.collection.new': 'جديد',
+                'options.collection.warning': '⚠️ تغيير المجموعة سيعيد تعيين تقدم القراءة والمفضلة',
                 
                 // Additional UI elements
                 'ui.achievements': 'الإنجازات',
